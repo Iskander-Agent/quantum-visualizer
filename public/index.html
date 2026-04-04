@@ -237,8 +237,18 @@ tr{transition:background 0.1s}
 <span><span class="dot" style="background:var(--gray)"></span> No view</span>
 </div>
 </div>
-<div class="chart-body">
-<img src="/chart.svg" alt="Bubble scatter plot: Bitcoin developer influence rank vs quantum urgency score">
+<div class="chart-body" style="padding:1.5rem;position:relative">
+<canvas id="bubble-chart" style="width:100%;min-width:700px;height:420px;cursor:pointer;display:block"></canvas>
+<div id="bubble-tooltip" style="display:none;position:absolute;background:var(--bg-elevated);border:1px solid var(--border-light);border-radius:var(--radius-sm);padding:0.85rem 1rem;max-width:280px;z-index:10;pointer-events:none">
+  <div id="tt-name" style="font-weight:700;font-size:0.9rem;margin-bottom:0.25rem"></div>
+  <div id="tt-affil" style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem"></div>
+  <div id="tt-badge" style="margin-bottom:0.5rem"></div>
+  <div id="tt-summary" style="font-size:0.78rem;color:var(--text-secondary);line-height:1.5"></div>
+  <div id="tt-source" style="margin-top:0.5rem"></div>
+</div>
+<div style="display:flex;justify-content:space-between;margin-top:0.75rem;font-size:0.7rem;color:var(--text-muted)">
+  <span>&larr; Most Influential</span><span>Least Influential &rarr;</span>
+</div>
 </div>
 </div>
 </div>
@@ -502,6 +512,168 @@ render();
 });
 
 render();
+
+// === BUBBLE CHART ===
+const canvas = document.getElementById('bubble-chart');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('bubble-tooltip');
+const scoreColors = {5:'#dc2626',4:'#ea580c',3:'#ca8a04',2:'#2563eb',1:'#52525b'};
+const scoreBg = {5:'rgba(220,38,38,0.15)',4:'rgba(234,88,12,0.15)',3:'rgba(202,138,4,0.15)',2:'rgba(37,99,235,0.15)',1:'rgba(82,82,91,0.15)'};
+const scoreLabels = {5:'Urgent',4:'Proactive',3:'Cautious',2:'Dismissive',1:'No View'};
+
+let hoveredDev = null;
+let bubbles = [];
+
+function drawChart() {
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  const W = rect.width;
+  const H = 420;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  const padL = 52, padR = 20, padT = 30, padB = 48;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid lines + Y labels
+  for (let s = 1; s <= 5; s++) {
+    const y = padT + plotH - ((s - 1) / 4) * plotH;
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(63,63,70,0.5)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.moveTo(padL, y);
+    ctx.lineTo(padL + plotW, y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = scoreColors[s];
+    ctx.font = '600 10px Inter, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(s + ' - ' + scoreLabels[s], padL - 6, y + 4);
+  }
+
+  // X axis label
+  ctx.fillStyle = 'rgba(161,161,170,0.6)';
+  ctx.font = '10px Inter, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Developer Influence Rank (1 = most influential)', padL + plotW / 2, H - 6);
+
+  // Ranked devs only (not notable)
+  const ranked = devs.filter(d => !d.notable && d.rank >= 1);
+  bubbles = [];
+
+  ranked.forEach(dev => {
+    const x = padL + ((dev.rank - 1) / (total - 1)) * plotW;
+    const y = padT + plotH - ((dev.quantum_urgency_score - 1) / 4) * plotH;
+    const vol = dev.pq_work_volume || 0;
+    const r = Math.max(6, Math.min(18, 6 + vol * 2.5));
+    const isHovered = hoveredDev && hoveredDev.name === dev.name;
+    const color = scoreColors[dev.quantum_urgency_score];
+
+    if (isHovered) {
+      ctx.beginPath();
+      ctx.arc(x, y, r + 7, 0, Math.PI * 2);
+      ctx.fillStyle = scoreBg[dev.quantum_urgency_score];
+      ctx.fill();
+    }
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = isHovered ? color : color + 'cc';
+    ctx.fill();
+    ctx.strokeStyle = isHovered ? color : color + '66';
+    ctx.lineWidth = isHovered ? 2 : 1;
+    ctx.stroke();
+
+    if (dev.quantum_urgency_score >= 4 || isHovered) {
+      ctx.fillStyle = isHovered ? '#fafafa' : 'rgba(250,250,250,0.75)';
+      ctx.font = isHovered ? '600 9px Inter,sans-serif' : '500 8px Inter,sans-serif';
+      ctx.textAlign = 'center';
+      const label = dev.name.split(' ').pop();
+      ctx.fillText(label, x, y - r - 3);
+    }
+
+    bubbles.push({ dev, x, y, r });
+  });
+}
+
+function getDevAtPos(mx, my) {
+  for (let i = bubbles.length - 1; i >= 0; i--) {
+    const { dev, x, y, r } = bubbles[i];
+    if (Math.hypot(mx - x, my - y) <= r + 4) return dev;
+  }
+  return null;
+}
+
+function showTooltip(dev, mouseX, mouseY) {
+  document.getElementById('tt-name').textContent = dev.name;
+  document.getElementById('tt-affil').textContent = dev.affiliation;
+  document.getElementById('tt-badge').innerHTML = '<span class="badge badge-' + dev.quantum_urgency_score + '">' + dev.quantum_urgency_score + '</span> <span style="font-size:0.78rem;color:' + scoreColors[dev.quantum_urgency_score] + '">' + scoreLabels[dev.quantum_urgency_score] + '</span>';
+  document.getElementById('tt-summary').textContent = dev.summary || 'No public quantum position identified.';
+  const srcEl = document.getElementById('tt-source');
+  srcEl.innerHTML = dev.key_source ? '<a href="' + dev.key_source + '" target="_blank" rel="noopener" class="source-link">View source &rarr;</a>' : '';
+  tooltip.style.display = 'block';
+  const tw = 280;
+  const cbRect = canvas.parentElement.getBoundingClientRect();
+  let left = mouseX + 12;
+  let top = mouseY - 10;
+  if (left + tw > cbRect.width - 10) left = mouseX - tw - 12;
+  if (top > cbRect.height - 180) top = mouseY - 160;
+  tooltip.style.left = left + 'px';
+  tooltip.style.top = top + 'px';
+}
+
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const mx = (e.clientX - rect.left) * (canvas.width / dpr) / rect.width;
+  const my = (e.clientY - rect.top) * (canvas.height / dpr) / rect.height;
+  const dev = getDevAtPos(mx, my);
+  if (dev !== hoveredDev) {
+    hoveredDev = dev;
+    drawChart();
+  }
+  if (dev) {
+    canvas.style.cursor = 'pointer';
+    const cbRect = canvas.parentElement.getBoundingClientRect();
+    showTooltip(dev, e.clientX - cbRect.left, e.clientY - cbRect.top);
+  } else {
+    canvas.style.cursor = 'default';
+    tooltip.style.display = 'none';
+  }
+});
+
+canvas.addEventListener('mouseleave', () => {
+  hoveredDev = null;
+  tooltip.style.display = 'none';
+  drawChart();
+});
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const mx = (e.clientX - rect.left) * (canvas.width / dpr) / rect.width;
+  const my = (e.clientY - rect.top) * (canvas.height / dpr) / rect.height;
+  const dev = getDevAtPos(mx, my);
+  if (dev) {
+    searchQuery = dev.name;
+    activeScore = 'all';
+    document.getElementById('search').value = dev.name;
+    document.querySelectorAll('.pill').forEach(b => { b.classList.remove('active'); if (b.dataset.score === 'all') b.classList.add('active'); });
+    document.querySelectorAll('.stat-cell').forEach(c => c.classList.remove('active'));
+    render();
+    document.querySelector('.table-section')?.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+window.addEventListener('resize', () => { drawChart(); });
+drawChart();
+
 });
 </script>
 </body>
