@@ -644,12 +644,14 @@
       "name": "Karl-Johan Alm",
       "affiliation": "Independent",
       "role": "Core Developer",
-      "quantum_urgency_score": 1,
+      "quantum_urgency_score": 3,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": []
+      "summary": "Distinguished hash-protected vs exposed-pubkey quantum risk in bitcoin-dev thread. Argued Taproot naked pubkeys give attackers unlimited time vs hashed keys where attacker must race transaction confirmation. Cautious position: recognizes real quantum threat vector in P2TR design.",
+      "key_source": "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html",
+      "sources": [
+        "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html"
+      ]
     },
     {
       "rank": 45,
