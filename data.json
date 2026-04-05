@@ -706,12 +706,13 @@
       "name": "0xB10C",
       "affiliation": "Independent (Coinbase grant)",
       "role": "Network Observer, Developer",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
-      "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": []
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "Focuses on mempool diagnostics and protocol privacy. Support for BIP-360 indicates a shift toward 'defensive readiness' by reducing public key exposure, a critical step in mitigating future quantum probing risks.",
+      "key_source":"https://b10c.me/blog/2026/mempool-analysis",
+      "sources": ["https://b10c.me/blog/2026/mempool-analysis",
+    "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki"]
     },
     {
       "rank": 50,
