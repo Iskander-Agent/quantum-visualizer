@@ -620,12 +620,14 @@
       "name": "Adam Jonas",
       "affiliation": "Chaincode Labs (CEO)",
       "role": "CEO",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
-      "notable": false,
-      "summary": "No personal statements; org supports quantum research",
-      "key_source": null,
-      "sources": []
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "Chaincode Labs under Jonas published the foundational 2025 study estimating 20-50% BTC supply vulnerability. Jonas now advocates for BIP-360 (P2QRH) as a critical multi-year 'protection layer' for the network.",
+      "key_source": "https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
+      "sources": ["https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
+    "https://www.theblock.co/post/388969/coinshares-says-only-10200-btc-face-real-quantum-risk-pushing-back-on-overblown-estimates"
+  ]]
     },
     {
       "rank": 43,
