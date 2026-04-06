@@ -399,7 +399,7 @@ indexEl.innerHTML=`
 <div class="index-info">
 <div class="index-level">Bitcoin Quantum Readiness<span class="index-level-tag" style="background:${levelBg[comp.current_level]||'var(--red-bg)'};color:${levelColors[comp.current_level]||'var(--red)'}">${comp.current_level}</span></div>
 <div style="display:flex;gap:2rem;margin:1rem 0;flex-wrap:wrap">
-<div><span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:800;color:var(--orange)">${voiced.score}</span><span style="font-size:0.8rem;color:var(--text-muted)"> / 100 voiced urgency</span><br><span style="font-size:0.75rem;color:var(--text-muted)">${voiced.voices_count} developers with verifiable statements</span></div>
+<div><span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:800;color:var(--orange)">${voiced.score}</span><span style="font-size:0.8rem;color:var(--text-muted)"> / 100 avg urgency score</span><br><span style="font-size:0.75rem;color:var(--text-muted)">${voiced.voices_count} of 52 developers have voiced positions</span></div>
 <div><span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:800;color:var(--red)">${coverage.score}%</span><span style="font-size:0.8rem;color:var(--text-muted)"> coverage</span><br><span style="font-size:0.75rem;color:var(--text-muted)">${coverage.silent} of ${coverage.total} developers have said nothing</span></div>
 </div>
 <p class="index-explain">${comp.formula}</p>
