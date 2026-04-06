@@ -12,8 +12,8 @@
     "notable_additions": 2,
     "score_distribution": {
       "5_urgent": 3,
-      "4_proactive": 5,
-      "3_cautious": 4,
+      "4_proactive": 6,
+      "3_cautious": 3,
       "2_dismissive": 8,
       "1_no_known_view": 32
     },
@@ -39,10 +39,10 @@
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
     "quantum_readiness_index": {
       "voiced_urgency": {
-        "score": 63,
-        "description": "Among the 22 developers who have made verifiable public statements, the weighted average urgency is 63/100. Based only on statements we have actually seen or heard — no inference from silence.",
+        "score": 64,
+        "description": "Among the 22 developers who have made verifiable public statements, the weighted average urgency is 64/100. Based only on statements we have actually seen or heard � no inference from silence.",
         "voices_count": 22,
-        "weighted_sum": 69,
+        "weighted_sum": 70,
         "max_possible": 110
       },
       "coverage": {
@@ -54,7 +54,7 @@
       },
       "composite_readiness": {
         "score": 27,
-        "formula": "Voiced Urgency (63) multiplied by Coverage (42%) = 27/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
+        "formula": "Voiced Urgency (64) multiplied by Coverage (42%) = 27/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
         "interpretation": {
           "0_20": "Asleep — negligible awareness or engagement",
           "20_40": "Sleepwalking — a few voices, minimal collective action",
@@ -734,13 +734,14 @@
       "name": "Matt Corallo",
       "affiliation": "Spiral",
       "role": "Protocol Developer, LDK Lead",
-      "quantum_urgency_score": 3,
-      "pq_work_volume": 2,
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 3,
       "notable": true,
-      "summary": "'I think this is a strong motivation to do simple PQC today... a trivial OP_HASHBASEDSIG (probably SPHINCS+).' Cautious but concrete proposal.",
+      "summary": "Proposed OP_HASHBASEDSIG (SPHINCS+) on bitcoin-dev, then laid out a concrete two-step quantum upgrade path on Unchained podcast (Feb 22, 2026): enable PQ key commitments via soft fork first, disable legacy spend paths later. Actively pushing back on the no-one-is-building narrative, noting PQ discussion is now 30-40% of mailing list posts.",
       "key_source": "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/",
       "sources": [
-        "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/"
+        "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/",
+        "https://podcasts.apple.com/us/podcast/what-do-bitcoiners-do-about-quantum-with-matt-corallo/id1415720320?i=1000749245854"
       ]
     },
     {
