@@ -13,9 +13,9 @@
     "score_distribution": {
       "5_urgent": 3,
       "4_proactive": 6,
-      "3_cautious": 3,
+      "3_cautious": 4,
       "2_dismissive": 8,
-      "1_no_known_view": 32
+      "1_no_known_view": 31
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -39,22 +39,22 @@
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
     "quantum_readiness_index": {
       "voiced_urgency": {
-        "score": 64,
-        "description": "Among the 22 developers who have made verifiable public statements, the weighted average urgency is 64/100. Based only on statements we have actually seen or heard � no inference from silence.",
-        "voices_count": 22,
-        "weighted_sum": 70,
-        "max_possible": 110
+        "score": 63,
+        "description": "Among the 23 developers who have made verifiable public statements, the weighted average urgency is 63/100. Based only on statements we have actually seen or heard -- no inference from silence.",
+        "voices_count": 23,
+        "weighted_sum": 73,
+        "max_possible": 115
       },
       "coverage": {
-        "score": 42,
-        "description": "22 of 52 assessed developers (42%) have a verifiable public position on quantum risk. The other 30 have said nothing. Silence is not a data point — it is a gap.",
-        "voiced": 22,
-        "silent": 30,
+        "score": 44,
+        "description": "23 of 52 assessed developers (44%) have a verifiable public position on quantum risk. The other 29 have said nothing. Silence is not a data point -- it is a gap.",
+        "voiced": 23,
+        "silent": 29,
         "total": 52
       },
       "composite_readiness": {
-        "score": 27,
-        "formula": "Voiced Urgency (64) multiplied by Coverage (42%) = 27/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
+        "score": 28,
+        "formula": "Voiced Urgency (63) multiplied by Coverage (44%) = 28/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
         "interpretation": {
           "0_20": "Asleep — negligible awareness or engagement",
           "20_40": "Sleepwalking — a few voices, minimal collective action",
@@ -64,7 +64,7 @@
         },
         "current_level": "Sleepwalking"
       },
-      "as_of": "2026-04-05",
+      "as_of": "2026-04-06",
       "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
     }
   },
@@ -411,12 +411,15 @@
       "name": "Olaoluwa Osuntokun",
       "affiliation": "Lightning Labs (CTO)",
       "role": "BIP Editor, Lightning Lead",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk; BIP editor, Lightning focus",
-      "key_source": null,
-      "sources": []
+      "summary": "Engaged with PQ HD wallet derivation problem on bitcoin-dev (Dec 2025): analyzed DilithiumRK for BIP-32-like PQ key derivation, Falcon signatures, and NIST SPHINCS+ parameter set standardization. Not advocating for urgency; research-engaged.",
+      "key_source": "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+      "sources": [
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/"
+      ]
     },
     {
       "rank": 27,
