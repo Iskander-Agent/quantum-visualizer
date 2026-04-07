@@ -12,10 +12,10 @@
     "notable_additions": 2,
     "score_distribution": {
       "5_urgent": 3,
-      "4_proactive": 5,
-      "3_cautious": 4,
+      "4_proactive": 6,
+      "3_cautious": 8,
       "2_dismissive": 8,
-      "1_no_known_view": 32
+      "1_no_known_view": 27
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -40,21 +40,21 @@
     "quantum_readiness_index": {
       "voiced_urgency": {
         "score": 63,
-        "description": "Among the 22 developers who have made verifiable public statements, the weighted average urgency is 63/100. Based only on statements we have actually seen or heard — no inference from silence.",
-        "voices_count": 22,
-        "weighted_sum": 69,
-        "max_possible": 110
+        "description": "Among the 25 developers who have made verifiable public statements, the weighted average urgency is 63/100. Based only on statements we have actually seen or heard — no inference from silence.",
+        "voices_count": 25,
+        "weighted_sum": 79,
+        "max_possible": 125
       },
       "coverage": {
-        "score": 42,
-        "description": "22 of 52 assessed developers (42%) have a verifiable public position on quantum risk. The other 30 have said nothing. Silence is not a data point — it is a gap.",
-        "voiced": 22,
-        "silent": 30,
+        "score": 48,
+        "description": "25 of 52 assessed developers (48%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
+        "voiced": 25,
+        "silent": 27,
         "total": 52
       },
       "composite_readiness": {
-        "score": 27,
-        "formula": "Voiced Urgency (63) multiplied by Coverage (42%) = 27/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
+        "score": 30,
+        "formula": "Voiced Urgency (63) multiplied by Coverage (48%) = 30/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
         "interpretation": {
           "0_20": "Asleep — negligible awareness or engagement",
           "20_40": "Sleepwalking — a few voices, minimal collective action",
@@ -64,7 +64,7 @@
         },
         "current_level": "Sleepwalking"
       },
-      "as_of": "2026-04-05",
+      "as_of": "2026-04-07",
       "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
     }
   },
@@ -411,12 +411,15 @@
       "name": "Olaoluwa Osuntokun",
       "affiliation": "Lightning Labs (CTO)",
       "role": "BIP Editor, Lightning Lead",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk; BIP editor, Lightning focus",
-      "key_source": null,
-      "sources": []
+      "summary": "Engaged with PQ HD wallet derivation problem on bitcoin-dev (Dec 2025): analyzed DilithiumRK for BIP-32-like PQ key derivation, Falcon signatures, and NIST SPHINCS+ parameter set standardization. Not advocating for urgency; research-engaged.",
+      "key_source": "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+      "sources": [
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/"
+      ]
     },
     {
       "rank": 27,
@@ -608,24 +611,29 @@
       "name": "Alex Gladstein",
       "affiliation": "Human Rights Foundation (CSO)",
       "role": "Funding Leader, Advocate",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": []
+      "summary": "Published comprehensive HRF report \"The Quantum Threat to Bitcoin\" (Oct 31, 2025) warning 6.51M BTC vulnerable within 5 years. Supports BIP-360 as quantum-resistant framework. HRF Bitcoin Development Fund to sponsor PQ research, testnets, and migration tooling. Addressed burn-or-steal dilemma for vulnerable coins.",
+      "key_source": "https://hrf.org/latest/the-quantum-threat-to-bitcoin/",
+      "sources": [
+        "https://hrf.org/latest/the-quantum-threat-to-bitcoin/"
+      ]
     },
     {
       "rank": 42,
       "name": "Adam Jonas",
       "affiliation": "Chaincode Labs (CEO)",
       "role": "CEO",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
-      "notable": false,
-      "summary": "No personal statements; org supports quantum research",
-      "key_source": null,
-      "sources": []
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "Chaincode Labs under Jonas published the foundational 2025 study estimating 20-50% BTC supply vulnerability. Jonas now advocates for BIP-360 (P2QRH) as a critical multi-year 'protection layer' for the network.",
+      "key_source": "https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
+      "sources": [
+        "https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
+        "https://www.theblock.co/post/388969/coinshares-says-only-10200-btc-face-real-quantum-risk-pushing-back-on-overblown-estimates"
+      ]
     },
     {
       "rank": 43,
@@ -646,12 +654,14 @@
       "name": "Karl-Johan Alm",
       "affiliation": "Independent",
       "role": "Core Developer",
-      "quantum_urgency_score": 1,
+      "quantum_urgency_score": 3,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": []
+      "summary": "Distinguished hash-protected vs exposed-pubkey quantum risk in bitcoin-dev thread. Argued Taproot naked pubkeys give attackers unlimited time vs hashed keys where attacker must race transaction confirmation. Cautious position: recognizes real quantum threat vector in P2TR design.",
+      "key_source": "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html",
+      "sources": [
+        "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html"
+      ]
     },
     {
       "rank": 45,
@@ -670,12 +680,14 @@
       "name": "Mark Friedenbach",
       "affiliation": "Independent",
       "role": "BIP Author",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": []
+      "summary": "Opposed Taproot activation explicitly over quantum risk. Argued P2TR exposes public keys on-chain, making ~6.25M BTC (1/3 of supply) immediately vulnerable to quantum theft. Called Taproot activation without PQ mitigation irresponsible.",
+      "key_source": "https://freicoin.substack.com/p/why-im-against-taproot",
+      "sources": [
+        "https://freicoin.substack.com/p/why-im-against-taproot"
+      ]
     },
     {
       "rank": 47,
@@ -709,12 +721,9 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "Investigated April 2026: b10c.me blog contains no quantum or post-quantum cryptography content. GitHub repos (peer-observer, fork-observer, mainnet-observer, ofac-sanctioned-digital-currency-addresses) are focused on Bitcoin network monitoring and analysis, not cryptographic research. No bitcoin-dev mailing list posts on PQ topics found. Score remains 1 pending new primary source evidence.",
+      "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": [
-        "https://b10c.me",
-        "https://github.com/0xB10C"
-      ]
+      "sources": []
     },
     {
       "rank": 50,
@@ -733,13 +742,14 @@
       "name": "Matt Corallo",
       "affiliation": "Spiral",
       "role": "Protocol Developer, LDK Lead",
-      "quantum_urgency_score": 3,
-      "pq_work_volume": 2,
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 3,
       "notable": true,
-      "summary": "'I think this is a strong motivation to do simple PQC today... a trivial OP_HASHBASEDSIG (probably SPHINCS+).' Cautious but concrete proposal.",
+      "summary": "Proposed OP_HASHBASEDSIG (SPHINCS+) on bitcoin-dev, then laid out a concrete two-step quantum upgrade path on Unchained podcast (Feb 22, 2026): enable PQ key commitments via soft fork first, disable legacy spend paths later. Actively pushing back on the no-one-is-building narrative, noting PQ discussion is now 30-40% of mailing list posts.",
       "key_source": "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/",
       "sources": [
-        "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/"
+        "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/",
+        "https://podcasts.apple.com/us/podcast/what-do-bitcoiners-do-about-quantum-with-matt-corallo/id1415720320?i=1000749245854"
       ]
     },
     {
