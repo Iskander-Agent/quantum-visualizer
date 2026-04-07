@@ -13,9 +13,9 @@
     "score_distribution": {
       "5_urgent": 3,
       "4_proactive": 6,
-      "3_cautious": 4,
+      "3_cautious": 8,
       "2_dismissive": 8,
-      "1_no_known_view": 31
+      "1_no_known_view": 27
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -40,21 +40,21 @@
     "quantum_readiness_index": {
       "voiced_urgency": {
         "score": 63,
-        "description": "Among the 23 developers who have made verifiable public statements, the weighted average urgency is 63/100. Based only on statements we have actually seen or heard � no inference from silence.",
-        "voices_count": 23,
-        "weighted_sum": 73,
-        "max_possible": 115
+        "description": "Among the 25 developers who have made verifiable public statements, the weighted average urgency is 63/100. Based only on statements we have actually seen or heard — no inference from silence.",
+        "voices_count": 25,
+        "weighted_sum": 79,
+        "max_possible": 125
       },
       "coverage": {
-        "score": 44,
-        "description": "Only 23 of 52 assessed developers (44%) have any verifiable public position on quantum risk. The other 29 have said nothing. Silence is not a data point � it is a gap.",
-        "voiced": 23,
-        "silent": 29,
+        "score": 48,
+        "description": "25 of 52 assessed developers (48%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
+        "voiced": 25,
+        "silent": 27,
         "total": 52
       },
       "composite_readiness": {
-        "score": 28,
-        "formula": "Voiced Urgency (63) multiplied by Coverage (44%) = 28/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
+        "score": 30,
+        "formula": "Voiced Urgency (63) multiplied by Coverage (48%) = 30/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
         "interpretation": {
           "0_20": "Asleep — negligible awareness or engagement",
           "20_40": "Sleepwalking — a few voices, minimal collective action",
@@ -64,7 +64,7 @@
         },
         "current_level": "Sleepwalking"
       },
-      "as_of": "2026-04-06",
+      "as_of": "2026-04-07",
       "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
     }
   },
@@ -411,12 +411,15 @@
       "name": "Olaoluwa Osuntokun",
       "affiliation": "Lightning Labs (CTO)",
       "role": "BIP Editor, Lightning Lead",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk; BIP editor, Lightning focus",
-      "key_source": null,
-      "sources": []
+      "summary": "Engaged with PQ HD wallet derivation problem on bitcoin-dev (Dec 2025): analyzed DilithiumRK for BIP-32-like PQ key derivation, Falcon signatures, and NIST SPHINCS+ parameter set standardization. Not advocating for urgency; research-engaged.",
+      "key_source": "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+      "sources": [
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/"
+      ]
     },
     {
       "rank": 27,
@@ -627,9 +630,10 @@
       "notable": true,
       "summary": "Chaincode Labs under Jonas published the foundational 2025 study estimating 20-50% BTC supply vulnerability. Jonas now advocates for BIP-360 (P2QRH) as a critical multi-year 'protection layer' for the network.",
       "key_source": "https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
-      "sources": ["https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
-    "https://www.theblock.co/post/388969/coinshares-says-only-10200-btc-face-real-quantum-risk-pushing-back-on-overblown-estimates"
-  ]
+      "sources": [
+        "https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
+        "https://www.theblock.co/post/388969/coinshares-says-only-10200-btc-face-real-quantum-risk-pushing-back-on-overblown-estimates"
+      ]
     },
     {
       "rank": 43,
