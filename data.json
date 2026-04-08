@@ -511,20 +511,20 @@
       ]
     },
     {
-      "rank": 34,
-      "name": "Niklas Gogge",
-      "affiliation": "Brink",
-      "role": "Core Developer, Security",
-      "quantum_urgency_score": 2,
-      "pq_work_volume": 4,
-      "notable": false,
-      "summary": "Focuses on 'Hardening' rather than 'Upgrading.' Mentoring fuzz-testing efforts (Stratos) to secure the P2P layer against high-speed exploit vectors. Maintains a cautious stance: believes current focus should be on P2P robustness and kernel isolation (BIP-Kernel) before protocol-level PQC migration.",,
-      "key_source": "https://brink.dev/programs",
-      "sources": [
-        "https://brink.dev/programs",
-    "https://github.com/bitcoin/bitcoin/commits?author=dergoegge",
-    "https://www.youtube.com/watch?v=HDJqsL-f9DA"
-      ]
+  "rank": 34,
+  "name": "Niklas Gögge",
+  "affiliation": "Brink",
+  "role": "Core Developer",
+  "quantum_urgency_score": 1,
+  "pq_work_volume": 1,
+  "notable": false,
+  "summary": "Focuses on Bitcoin Core security through full-system fuzzing and P2P infrastructure hardening. Developer of 'Fuzzamoto' (presented Feb 2026) and mentor for security-focused Brink interns. No verifiable public statements found regarding post-quantum cryptography or quantum risk assessments.",
+  "key_source": "https://bitcoinmagazine.com/technical/keeping-bitcoin-core-secure",
+  "sources": [
+    "https://bitcoinmagazine.com/technical/keeping-bitcoin-core-secure",
+    "https://brink.dev/programs",
+    "https://github.com/dergoegge/fuzzamoto"
+  ]
     },
     {
       "rank": 35,
