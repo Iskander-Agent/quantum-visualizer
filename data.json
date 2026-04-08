@@ -1,17 +1,17 @@
 {
   "metadata": {
     "title": "Bitcoin Developer Quantum Urgency Map",
-    "date": "2026-04-07",
+    "date": "2026-04-08",
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
     "version": "2.2",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 52,
+    "total_assessed": 53,
     "ranked": 50,
-    "notable_additions": 2,
+    "notable_additions": 3,
     "score_distribution": {
-      "5_urgent": 3,
+      "5_urgent": 4,
       "4_proactive": 6,
       "3_cautious": 8,
       "2_dismissive": 8,
@@ -39,22 +39,22 @@
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
     "quantum_readiness_index": {
       "voiced_urgency": {
-        "score": 63,
-        "description": "Among the 25 developers who have made verifiable public statements, the weighted average urgency is 63/100. Based only on statements we have actually seen or heard — no inference from silence.",
-        "voices_count": 25,
-        "weighted_sum": 79,
-        "max_possible": 125
+        "score": 65,
+        "description": "Among the 26 developers who have made verifiable public statements, the weighted average urgency is 65/100. Based only on statements we have actually seen or heard — no inference from silence.",
+        "voices_count": 26,
+        "weighted_sum": 84,
+        "max_possible": 130
       },
       "coverage": {
-        "score": 48,
-        "description": "25 of 52 assessed developers (48%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
-        "voiced": 25,
+        "score": 49,
+        "description": "26 of 53 assessed developers (49%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
+        "voiced": 26,
         "silent": 27,
-        "total": 52
+        "total": 53
       },
       "composite_readiness": {
-        "score": 30,
-        "formula": "Voiced Urgency (63) multiplied by Coverage (48%) = 30/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
+        "score": 32,
+        "formula": "Voiced Urgency (65) multiplied by Coverage (49%) = 32/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
         "interpretation": {
           "0_20": "Asleep — negligible awareness or engagement",
           "20_40": "Sleepwalking — a few voices, minimal collective action",
@@ -64,7 +64,7 @@
         },
         "current_level": "Sleepwalking"
       },
-      "as_of": "2026-04-07",
+      "as_of": "2026-04-08",
       "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
     }
   },
@@ -765,6 +765,21 @@
       "sources": [
         "https://x.com/adam3us/status/1989721899991986374",
         "https://cointelegraph.com/news/bitcoin-quantum-threat-decades-post-quantum-migration"
+      ]
+    },
+    {
+      "rank": 53,
+      "name": "John Martinis",
+      "affiliation": "Qolab (CTO), ex-Google Quantum AI",
+      "role": "Nobel Laureate (2025 Physics), White House PCAST member",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "Called Bitcoin's elliptic curve cryptography \"the smaller, easier algorithms. The low-hanging fruit\" for quantum attacks (Benzinga, April 7 2026). Stated \"Bitcoin is a little bit different, which is why people should be thinking about this right now\" and \"the crypto community has to plan for this. It's a serious issue.\" Suggested a 5-10 year window. Led Google quantum supremacy demonstration (Sycamore, 2019). Shared 2025 Nobel Prize in Physics. Joined White House PCAST March 26 2026. CTO and co-founder of Qolab.",
+      "key_source": "https://www.benzinga.com/crypto/cryptocurrency/26/04/51687930/nobel-physicist-warns-bitcoin-could-be-cracked-in-minutes-but-the-community-has-5-10-years-to-act",
+      "sources": [
+        "https://www.benzinga.com/crypto/cryptocurrency/26/04/51687930/nobel-physicist-warns-bitcoin-could-be-cracked-in-minutes-but-the-community-has-5-10-years-to-act",
+        "https://thequantuminsider.com/2026/03/26/john-martinis-nobel-prize-winning-physicist-joins-white-house-science-and-technology-panel/"
       ]
     }
   ]
