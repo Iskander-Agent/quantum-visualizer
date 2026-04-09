@@ -407,20 +407,20 @@
       "sources": []
     },
     {
-  "rank": 26,
-  "name": "Olaoluwa Osuntokun",
-  "affiliation": "Lightning Labs (CTO)",
-  "role": "BIP Editor, Lightning Lead",
-  "quantum_urgency_score": 3,
-  "pq_work_volume": 2,
-  "notable": false,
-  "summary": "Engaged with PQ HD wallet derivation on bitcoin-dev (Dec 2025): DilithiumRK, Falcon, SPHINCS+. On Apr 8, 2026 posted working prototype of quantum-resistant Taproot wallet rescue tool to bitcoin-dev mailing list -- ZK seed attestation in 55 seconds, verification under 2 seconds, 1.7 MB proof. First executable code solving the BIP-360 Taproot rescue gap. Research-engaged, building working tools, not advocating for urgency.",
-  "key_source": "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
-  "sources": [
-    "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
-    "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
-    "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
-    "https://decrypt.co/361639/quantum-ready-bitcoin-prototype-debuts-adoption-hurdles-loom"
+      "rank": 26,
+      "name": "Olaoluwa Osuntokun",
+      "affiliation": "Lightning Labs (CTO)",
+      "role": "BIP Editor, Lightning Lead",
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 2,
+      "notable": false,
+      "summary": "Engaged with PQ HD wallet derivation on bitcoin-dev (Dec 2025): DilithiumRK, Falcon, SPHINCS+. On Apr 8, 2026 posted working prototype of quantum-resistant Taproot wallet rescue tool to bitcoin-dev mailing list -- ZK seed attestation in 55 seconds, verification under 2 seconds, 1.7 MB proof. First executable code solving the BIP-360 Taproot rescue gap. Research-engaged, building working tools, not advocating for urgency.",
+      "key_source": "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
+      "sources": [
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
+        "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
+        "https://decrypt.co/361639/quantum-ready-bitcoin-prototype-debuts-adoption-hurdles-loom"
       ]
     },
     {
