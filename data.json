@@ -510,17 +510,21 @@
         "https://bitcoinops.org/en/newsletters/2026/02/06/"
       ]
     },
-    {
+   {
       "rank": 34,
-      "name": "Niklas Gogge",
+      "name": "Niklas Gögge",
       "affiliation": "Brink",
       "role": "Core Developer, Security",
       "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": []
+      "summary": "Focuses on Bitcoin Core security through full-system fuzzing and P2P infrastructure hardening. Developer of the Fuzzamoto framework and serves as a mentor for security-focused Brink interns. No public statements found regarding quantum risk or post-quantum cryptography migration.",
+      "key_source": "https://bitcoinmagazine.com/print/the-core-issue-keeping-bitcoin-core-secure",
+      "sources": [
+        "https://bitcoinmagazine.com/print/the-core-issue-keeping-bitcoin-core-secure",
+        "https://brink.dev/programs",
+        "https://github.com/dergoegge/fuzzamoto"
+      ]
     },
     {
       "rank": 35,
