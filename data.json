@@ -414,13 +414,13 @@
       "quantum_urgency_score": 3,
       "pq_work_volume": 2,
       "notable": false,
-      "summary": "Engaged with PQ HD wallet derivation on bitcoin-dev (Dec 2025): DilithiumRK, Falcon, SPHINCS+. On Apr 8, 2026 posted working prototype of quantum-resistant Taproot wallet rescue tool to bitcoin-dev mailing list -- ZK seed attestation in 55 seconds, verification under 2 seconds, 1.7 MB proof. First executable code solving the BIP-360 Taproot rescue gap. Research-engaged, building working tools, not advocating for urgency.",
+      "summary": "Engaged with PQ HD wallet derivation on bitcoin-dev (Dec 2025): DilithiumRK, Falcon, SPHINCS+. On Apr 8, 2026 posted zk-STARK proof of BIP-32 seed knowledge enabling BIP-86 Taproot wallet recovery to bitcoin-dev mailing list. Proof generation ~55s on consumer MacBook, verification <2s, ~1.7 MB proof size (per CoinDesk). First executable code for post-quantum Taproot wallet recovery without exposing the seed. Research-engaged, building working tools, not advocating for urgency.",
       "key_source": "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
       "sources": [
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
         "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
-        "https://decrypt.co/361639/quantum-ready-bitcoin-prototype-debuts-adoption-hurdles-loom"
+        "https://www.crypto-news-flash.com/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool/"
       ]
     },
     {
