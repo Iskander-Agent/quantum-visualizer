@@ -1,15 +1,15 @@
 {
   "metadata": {
     "title": "Bitcoin Developer Quantum Urgency Map",
-    "date": "2026-04-08",
+    "date": "2026-04-10",
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.2",
+    "version": "2.4",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 53,
+    "total_assessed": 55,
     "ranked": 50,
-    "notable_additions": 3,
+    "notable_additions": 5,
     "score_distribution": {
       "5_urgent": 4,
       "4_proactive": 6,
@@ -412,13 +412,15 @@
       "affiliation": "Lightning Labs (CTO)",
       "role": "BIP Editor, Lightning Lead",
       "quantum_urgency_score": 3,
-      "pq_work_volume": 1,
+      "pq_work_volume": 2,
       "notable": false,
-      "summary": "Engaged with PQ HD wallet derivation problem on bitcoin-dev (Dec 2025): analyzed DilithiumRK for BIP-32-like PQ key derivation, Falcon signatures, and NIST SPHINCS+ parameter set standardization. Not advocating for urgency; research-engaged.",
-      "key_source": "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
+      "summary": "Engaged with PQ HD wallet derivation on bitcoin-dev (Dec 2025): DilithiumRK, Falcon, SPHINCS+. On Apr 8, 2026 posted zk-STARK proof of BIP-32 seed knowledge enabling BIP-86 Taproot wallet recovery to bitcoin-dev mailing list. Proof generation ~55s on consumer MacBook, verification <2s, ~1.7 MB proof size (per CoinDesk). First executable code for post-quantum Taproot wallet recovery without exposing the seed. Research-engaged, building working tools, not advocating for urgency.",
+      "key_source": "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
       "sources": [
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
-        "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/"
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
+        "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
+        "https://www.crypto-news-flash.com/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool/"
       ]
     },
     {
@@ -757,14 +759,15 @@
       "name": "Adam Back",
       "affiliation": "Blockstream (CEO)",
       "role": "CEO, Cryptographer",
-      "quantum_urgency_score": 2,
-      "pq_work_volume": 1,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 2,
       "notable": true,
-      "summary": "Explicitly dismissive: 'Probably not for 20-40 years'; 'short term NIL... ridiculously early'. Most outspoken dismissive voice.",
-      "key_source": "https://x.com/adam3us/status/1989721899991986374",
+      "summary": "Shifted from dismissive ('20-40 years, ridiculously early') to active preparation (Apr 8 CoinDesk): 'prepare Bitcoin and give people a decade to migrate keys to quantum-ready format.' Revealed 20-person Blockstream PQ research team building on Liquid as proving ground. NIST standards adoption underway. No longer dismissing -- actively building.",
+      "key_source": "https://www.coindesk.com/tech/2026/04/08/bitcoin-s-quantum-threat-is-distant-but-migration-clock-is-ticking-says-adam-back-says",
       "sources": [
         "https://x.com/adam3us/status/1989721899991986374",
-        "https://cointelegraph.com/news/bitcoin-quantum-threat-decades-post-quantum-migration"
+        "https://www.coindesk.com/tech/2026/04/08/bitcoin-s-quantum-threat-is-distant-but-migration-clock-is-ticking-says-adam-back-says",
+        "https://bitcoinmagazine.com/news/adam-back-says-quantum-threat-to-bitcoin"
       ]
     },
     {
@@ -780,6 +783,37 @@
       "sources": [
         "https://www.benzinga.com/crypto/cryptocurrency/26/04/51687930/nobel-physicist-warns-bitcoin-could-be-cracked-in-minutes-but-the-community-has-5-10-years-to-act",
         "https://thequantuminsider.com/2026/03/26/john-martinis-nobel-prize-winning-physicist-joins-white-house-science-and-technology-panel/"
+      ]
+    },
+    {
+      "rank": 54,
+      "name": "Jameson Lopp",
+      "affiliation": "Casa (Co-founder/CTO)",
+      "role": "BIP-361 author, Security Engineer",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 4,
+      "notable": true,
+      "summary": "Authored BIP-361 (PR #1895): ties legacy-signature sunset rules to supply inflation guardrails. Explicitly frames quantum migration as both cryptographic and monetary policy question. Active BIP contributor since July 2025.",
+      "key_source": "https://github.com/bitcoin/bips/pull/1895",
+      "sources": [
+        "https://github.com/bitcoin/bips/pull/1895",
+        "https://github.com/jlopp"
+      ]
+    },
+    {
+      "rank": 55,
+      "name": "Avihu Levy",
+      "affiliation": "StarkWare (CPO)",
+      "role": "Chief Product Officer, Cryptographer",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 5,
+      "notable": true,
+      "summary": "Published Quantum Safe Bitcoin (QSB) on Apr 9, 2026 -- first scheme enabling quantum-resistant Bitcoin transactions without any protocol changes. Uses hash-based proofs (RIPEMD-160 grinding) instead of ECDSA, achieving 118-bit pre-image resistance against quantum attack. Cost: $75-200 GPU compute per transaction. No soft fork, no BIP required. Also co-authored BIP-360.",
+      "key_source": "https://www.coindesk.com/markets/2026/04/10/quantum-safe-bitcoin-now-possible-without-a-soft-fork-but-costs-usd200-a-pop",
+      "sources": [
+        "https://www.coindesk.com/markets/2026/04/10/quantum-safe-bitcoin-now-possible-without-a-soft-fork-but-costs-usd200-a-pop",
+        "https://bitcoinmagazine.com/news/bitcoin-could-be-quantum-safe",
+        "https://starkware.co/blog/bitcoins-quantum-proposal-features-starkware-co-author/"
       ]
     }
   ]
