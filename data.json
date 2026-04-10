@@ -757,14 +757,15 @@
       "name": "Adam Back",
       "affiliation": "Blockstream (CEO)",
       "role": "CEO, Cryptographer",
-      "quantum_urgency_score": 2,
-      "pq_work_volume": 1,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 2,
       "notable": true,
-      "summary": "Explicitly dismissive: 'Probably not for 20-40 years'; 'short term NIL... ridiculously early'. Most outspoken dismissive voice.",
-      "key_source": "https://x.com/adam3us/status/1989721899991986374",
+      "summary": "Shifted from dismissive ('20-40 years, ridiculously early') to active preparation (Apr 8 CoinDesk): 'prepare Bitcoin and give people a decade to migrate keys to quantum-ready format.' Revealed 20-person Blockstream PQ research team building on Liquid as proving ground. NIST standards adoption underway. No longer dismissing -- actively building.",
+      "key_source": "https://www.coindesk.com/tech/2026/04/08/bitcoin-s-quantum-threat-is-distant-but-migration-clock-is-ticking-says-adam-back-says",
       "sources": [
         "https://x.com/adam3us/status/1989721899991986374",
-        "https://cointelegraph.com/news/bitcoin-quantum-threat-decades-post-quantum-migration"
+        "https://www.coindesk.com/tech/2026/04/08/bitcoin-s-quantum-threat-is-distant-but-migration-clock-is-ticking-says-adam-back-says",
+        "https://bitcoinmagazine.com/news/adam-back-says-quantum-threat-to-bitcoin"
       ]
     },
     {
@@ -781,6 +782,21 @@
         "https://www.benzinga.com/crypto/cryptocurrency/26/04/51687930/nobel-physicist-warns-bitcoin-could-be-cracked-in-minutes-but-the-community-has-5-10-years-to-act",
         "https://thequantuminsider.com/2026/03/26/john-martinis-nobel-prize-winning-physicist-joins-white-house-science-and-technology-panel/"
       ]
-    }
+    },
+      {
+      "rank": 54,
+      "name": "Avihu Levy",
+      "affiliation": "StarkWare (CPO)",
+      "role": "Chief Product Officer, Cryptographer",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 5,
+      "notable": true,
+      "summary": "Published Quantum Safe Bitcoin (QSB) on Apr 9, 2026 -- first scheme enabling quantum-resistant Bitcoin transactions without any protocol changes. Uses hash-based proofs (RIPEMD-160 grinding) instead of ECDSA, achieving 118-bit pre-image resistance against quantum attack. Cost: $75-150 GPU compute per transaction. No soft fork, no BIP required. Also co-authored BIP-360.",
+      "key_source": "https://www.coindesk.com/markets/2026/04/10/quantum-safe-bitcoin-now-possible-without-a-soft-fork-but-costs-usd200-a-pop",
+      "sources": [
+        "https://www.coindesk.com/markets/2026/04/10/quantum-safe-bitcoin-now-possible-without-a-soft-fork-but-costs-usd200-a-pop",
+        "https://bitcoinmagazine.com/news/bitcoin-could-be-quantum-safe",
+        "https://starkware.co/blog/bitcoins-quantum-proposal-features-starkware-co-author/"
+      ]
   ]
 }
