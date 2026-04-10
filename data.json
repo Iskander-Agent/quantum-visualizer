@@ -783,15 +783,15 @@
         "https://thequantuminsider.com/2026/03/26/john-martinis-nobel-prize-winning-physicist-joins-white-house-science-and-technology-panel/"
       ]
     },
-      {
-      "rank": 54,
+    {
+      "rank": 55,
       "name": "Avihu Levy",
       "affiliation": "StarkWare (CPO)",
       "role": "Chief Product Officer, Cryptographer",
       "quantum_urgency_score": 5,
       "pq_work_volume": 5,
       "notable": true,
-      "summary": "Published Quantum Safe Bitcoin (QSB) on Apr 9, 2026 -- first scheme enabling quantum-resistant Bitcoin transactions without any protocol changes. Uses hash-based proofs (RIPEMD-160 grinding) instead of ECDSA, achieving 118-bit pre-image resistance against quantum attack. Cost: $75-150 GPU compute per transaction. No soft fork, no BIP required. Also co-authored BIP-360.",
+      "summary": "Published Quantum Safe Bitcoin (QSB) on Apr 9, 2026 -- first scheme enabling quantum-resistant Bitcoin transactions without any protocol changes. Uses hash-based proofs (RIPEMD-160 grinding) instead of ECDSA, achieving 118-bit pre-image resistance against quantum attack. Cost: $75-200 GPU compute per transaction. No soft fork, no BIP required. Also co-authored BIP-360.",
       "key_source": "https://www.coindesk.com/markets/2026/04/10/quantum-safe-bitcoin-now-possible-without-a-soft-fork-but-costs-usd200-a-pop",
       "sources": [
         "https://www.coindesk.com/markets/2026/04/10/quantum-safe-bitcoin-now-possible-without-a-soft-fork-but-costs-usd200-a-pop",
