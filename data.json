@@ -34,20 +34,20 @@
       "Cointelegraph, Bitcoin Magazine, CryptoBriefing",
       "Podcasts (Stephan Livera, Blockspace)"
     ],
-    "critical_context": "Google Quantum AI (March 31, 2026): <500k physical qubits break ECDSA-256 in ~9 min — inside Bitcoin's block time. 20x easier than 2019 estimates. ~37% of BTC supply in quantum-vulnerable P2PK addresses. Zero public upgrade roadmap. Zero top developer response within 48 hours of the Google paper. BIP-360 merged but no activation timeline. Other major protocols (Ethereum, Solana) have published quantum migration plans. Bitcoin has not.",
-    "key_insight": "Bitcoin is sleepwalking into a quantum crisis. Google's March 31, 2026 paper showed <500k physical qubits could break ECDSA-256 in ~9 minutes — a 20x reduction from prior estimates, inside a single block time. ~37% of Bitcoin's supply sits in addresses with exposed public keys. Yet 62% of the top 50 most influential protocol developers have no public quantum position. The dismissive camp outnumbers the urgent camp nearly 3-to-1. No current Core maintainer scores above a 2. Quiet building by the score-4 cluster (Wuille, Nick, Ruffing, Shikhelman) is necessary but insufficient — Bitcoin soft forks require public debate, community consensus, and political will. None of that is happening. BIP-360 exists but has no activation timeline. Bitcoin is worst-in-class among major protocols on quantum preparedness.",
+    "critical_context": "Google Quantum AI (March 31, 2026): <500k physical qubits break ECDSA-256 in ~9 min \u2014 inside Bitcoin's block time. 20x easier than 2019 estimates. ~37% of BTC supply in quantum-vulnerable P2PK addresses. Zero public upgrade roadmap. Zero top developer response within 48 hours of the Google paper. BIP-360 merged but no activation timeline. Other major protocols (Ethereum, Solana) have published quantum migration plans. Bitcoin has not.",
+    "key_insight": "Bitcoin is sleepwalking into a quantum crisis. Google's March 31, 2026 paper showed <500k physical qubits could break ECDSA-256 in ~9 minutes \u2014 a 20x reduction from prior estimates, inside a single block time. ~37% of Bitcoin's supply sits in addresses with exposed public keys. Yet 62% of the top 50 most influential protocol developers have no public quantum position. The dismissive camp outnumbers the urgent camp nearly 3-to-1. No current Core maintainer scores above a 2. Quiet building by the score-4 cluster (Wuille, Nick, Ruffing, Shikhelman) is necessary but insufficient \u2014 Bitcoin soft forks require public debate, community consensus, and political will. None of that is happening. BIP-360 exists but has no activation timeline. Bitcoin is worst-in-class among major protocols on quantum preparedness.",
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
     "quantum_readiness_index": {
       "voiced_urgency": {
         "score": 65,
-        "description": "Among the 26 developers who have made verifiable public statements, the weighted average urgency is 65/100. Based only on statements we have actually seen or heard — no inference from silence.",
+        "description": "Among the 26 developers who have made verifiable public statements, the weighted average urgency is 65/100. Based only on statements we have actually seen or heard \u2014 no inference from silence.",
         "voices_count": 26,
         "weighted_sum": 84,
         "max_possible": 130
       },
       "coverage": {
         "score": 49,
-        "description": "26 of 53 assessed developers (49%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
+        "description": "26 of 53 assessed developers (49%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point \u2014 it is a gap.",
         "voiced": 26,
         "silent": 27,
         "total": 53
@@ -56,11 +56,11 @@
         "score": 32,
         "formula": "Voiced Urgency (65) multiplied by Coverage (49%) = 32/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
         "interpretation": {
-          "0_20": "Asleep — negligible awareness or engagement",
-          "20_40": "Sleepwalking — a few voices, minimal collective action",
-          "40_60": "Awakening — broad debate beginning, early preparation",
-          "60_80": "Mobilizing — consensus forming, concrete roadmap emerging",
-          "80_100": "Ready — near-total agreement, activation imminent"
+          "0_20": "Asleep \u2014 negligible awareness or engagement",
+          "20_40": "Sleepwalking \u2014 a few voices, minimal collective action",
+          "40_60": "Awakening \u2014 broad debate beginning, early preparation",
+          "60_80": "Mobilizing \u2014 consensus forming, concrete roadmap emerging",
+          "80_100": "Ready \u2014 near-total agreement, activation imminent"
         },
         "current_level": "Sleepwalking"
       },
@@ -645,7 +645,7 @@
       "quantum_urgency_score": 4,
       "pq_work_volume": 2,
       "notable": true,
-      "summary": "Published compound probability framework April 3, 2026: P(CRQC by 2030) × P(Bitcoin fails to upgrade) ≥5% existential risk. Calls for prioritizing PQ design now. First non-BIP-360-author, non-Blockstream researcher to cross into the proactive camp.",
+      "summary": "Published compound probability framework April 3, 2026: P(CRQC by 2030) \u00d7 P(Bitcoin fails to upgrade) \u22655% existential risk. Calls for prioritizing PQ design now. First non-BIP-360-author, non-Blockstream researcher to cross into the proactive camp.",
       "key_source": "https://nehanarula.org/2026/04/03/bitcoin-and-quantum-computing.html",
       "sources": [
         "https://nehanarula.org/2026/04/03/bitcoin-and-quantum-computing.html"
@@ -782,6 +782,21 @@
       "sources": [
         "https://www.benzinga.com/crypto/cryptocurrency/26/04/51687930/nobel-physicist-warns-bitcoin-could-be-cracked-in-minutes-but-the-community-has-5-10-years-to-act",
         "https://thequantuminsider.com/2026/03/26/john-martinis-nobel-prize-winning-physicist-joins-white-house-science-and-technology-panel/"
+      ]
+    },
+    {
+      "rank": 54,
+      "name": "Jameson Lopp",
+      "affiliation": "Casa (Co-founder/CTO)",
+      "role": "BIP-361 author, Security Engineer",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 4,
+      "notable": true,
+      "summary": "Authored BIP-361 (PR #1895): ties legacy-signature sunset rules to supply inflation guardrails. Explicitly frames quantum migration as both cryptographic and monetary policy question. Active BIP contributor since July 2025.",
+      "key_source": "https://github.com/bitcoin/bips/pull/1895",
+      "sources": [
+        "https://github.com/bitcoin/bips/pull/1895",
+        "https://github.com/jlopp"
       ]
     }
   ]
