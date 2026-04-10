@@ -5,16 +5,16 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.5",
+    "version": "2.6",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
     "total_assessed": 55,
     "ranked": 50,
     "notable_additions": 5,
     "score_distribution": {
-      "5_urgent": 4,
-      "4_proactive": 6,
-      "3_cautious": 8,
-      "2_dismissive": 8,
+      "5_urgent": 5,
+      "4_proactive": 7,
+      "3_cautious": 9,
+      "2_dismissive": 7,
       "1_no_known_view": 27
     },
     "scoring_rubric": {
@@ -39,22 +39,22 @@
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
     "quantum_readiness_index": {
       "voiced_urgency": {
-        "score": 65,
-        "description": "Among the 26 developers who have made verifiable public statements, the weighted average urgency is 65/100. Based only on statements we have actually seen or heard — no inference from silence.",
-        "voices_count": 26,
-        "weighted_sum": 84,
-        "max_possible": 130
+        "score": 67,
+        "description": "Among the 28 developers who have made verifiable public statements, the weighted average urgency is 67/100. Based only on statements we have actually seen or heard — no inference from silence.",
+        "voices_count": 28,
+        "weighted_sum": 94,
+        "max_possible": 140
       },
       "coverage": {
-        "score": 49,
-        "description": "26 of 53 assessed developers (49%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
-        "voiced": 26,
+        "score": 51,
+        "description": "28 of 55 assessed developers (51%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
+        "voiced": 28,
         "silent": 27,
-        "total": 53
+        "total": 55
       },
       "composite_readiness": {
-        "score": 32,
-        "formula": "Voiced Urgency (65) multiplied by Coverage (49%) = 32/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
+        "score": 34,
+        "formula": "Voiced Urgency (67) multiplied by Coverage (51%) = 34/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
         "interpretation": {
           "0_20": "Asleep — negligible awareness or engagement",
           "20_40": "Sleepwalking — a few voices, minimal collective action",
@@ -64,7 +64,7 @@
         },
         "current_level": "Sleepwalking"
       },
-      "as_of": "2026-04-08",
+      "as_of": "2026-04-10",
       "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
     }
   },
