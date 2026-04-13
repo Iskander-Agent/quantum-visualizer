@@ -189,6 +189,51 @@ tr:hover td{background:var(--bg-elevated)}
 tr{transition:background 0.1s}
 .stat-cell{transition:background 0.15s,transform 0.1s}
 .stat-cell:active{transform:scale(0.98)}
+
+/* Filter row (search + affiliation) */
+.filter-row{display:grid;grid-template-columns:1fr 240px;gap:0.75rem;margin-bottom:1rem}
+@media(max-width:640px){.filter-row{grid-template-columns:1fr}}
+.search-wrap{position:relative;margin-bottom:0}
+.affil-wrap{position:relative}
+.affil-select{width:100%;padding:0.6rem 2.25rem 0.6rem 2.5rem;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:0.85rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.15s;appearance:none;cursor:pointer;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.affil-select:focus{border-color:var(--accent)}
+.affil-select option{background:var(--bg-elevated);color:var(--text)}
+.affil-icon{position:absolute;left:0.85rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.7rem;pointer-events:none;font-weight:700;letter-spacing:0.06em}
+.affil-caret{position:absolute;right:0.85rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.65rem;pointer-events:none}
+
+/* Clickable rows */
+tbody tr{cursor:pointer}
+tbody tr.is-active td{background:var(--bg-hover)}
+
+/* Detail drawer */
+.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity 0.2s ease;z-index:50}
+.drawer-backdrop.is-open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(440px,100vw);background:var(--bg-elevated);border-left:1px solid var(--border);box-shadow:-12px 0 40px rgba(0,0,0,0.4);transform:translateX(100%);transition:transform 0.25s cubic-bezier(0.32,0.72,0,1);z-index:60;display:flex;flex-direction:column;overflow:hidden}
+.drawer.is-open{transform:translateX(0)}
+.drawer-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-shrink:0}
+.drawer-head-meta{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;font-family:'JetBrains Mono',monospace}
+.drawer-name{font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;line-height:1.25;margin-bottom:0.35rem}
+.drawer-affil{font-size:0.85rem;color:var(--text-secondary);line-height:1.5}
+.drawer-role{font-size:0.75rem;color:var(--text-muted);margin-top:0.2rem}
+.drawer-close{flex-shrink:0;width:32px;height:32px;border-radius:var(--radius-xs);background:transparent;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;transition:all 0.15s;font-family:'Inter',sans-serif}
+.drawer-close:hover{background:var(--bg-hover);color:var(--text);border-color:var(--border-light)}
+.drawer-body{padding:1.5rem;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+.drawer-row{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.drawer-row .badge{width:2.5rem;height:2.5rem;font-size:1rem}
+.drawer-row-label{font-size:0.85rem;font-weight:600}
+.drawer-row-meta{font-size:0.75rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+.drawer-section{margin-bottom:1.5rem}
+.drawer-section:last-child{margin-bottom:0}
+.drawer-section-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem}
+.drawer-summary{font-size:0.9rem;line-height:1.7;color:var(--text)}
+.drawer-summary.is-empty{color:var(--text-muted);font-style:italic}
+.drawer-key-source{display:inline-flex;align-items:center;gap:0.4rem;padding:0.45rem 0.75rem;background:rgba(247,147,26,0.08);border:1px solid rgba(247,147,26,0.2);border-radius:var(--radius-xs);color:var(--accent);font-size:0.8rem;font-weight:500;text-decoration:none;transition:all 0.15s;word-break:break-all}
+.drawer-key-source:hover{background:rgba(247,147,26,0.14);border-color:rgba(247,147,26,0.35)}
+.drawer-sources{display:flex;flex-direction:column;gap:0.4rem}
+.drawer-source{display:flex;align-items:flex-start;gap:0.5rem;padding:0.5rem 0.65rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-xs);color:var(--text-secondary);font-size:0.78rem;text-decoration:none;line-height:1.5;word-break:break-all;transition:all 0.15s}
+.drawer-source:hover{border-color:var(--border-light);color:var(--text);background:var(--bg-hover)}
+.drawer-source-num{flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--text-muted);font-size:0.7rem;padding-top:0.05rem;min-width:1.25rem}
+.drawer-empty{font-size:0.8rem;color:var(--text-muted);font-style:italic}
 </style>
 </head>
 <body>
@@ -275,9 +320,18 @@ tr{transition:background 0.1s}
 </div>
 <div class="filters" id="filters"></div>
 </div>
+<div class="filter-row">
 <div class="search-wrap">
 <span class="search-icon">&#x2315;</span>
 <input type="text" class="search-input" id="search" placeholder="Search by name, affiliation, or summary...">
+</div>
+<div class="affil-wrap">
+<span class="affil-icon">ORG</span>
+<select class="affil-select" id="affil-select" aria-label="Filter by affiliation">
+<option value="all">All affiliations</option>
+</select>
+<span class="affil-caret">&#x25BE;</span>
+</div>
 </div>
 <div class="table-wrap">
 <div class="table-scroll">
@@ -370,6 +424,35 @@ tr{transition:background 0.1s}
 
 </div>
 
+<!-- Detail drawer -->
+<div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-name" tabindex="-1">
+<div class="drawer-head">
+<div>
+<div class="drawer-head-meta" id="drawer-meta">Developer</div>
+<div class="drawer-name" id="drawer-name"></div>
+<div class="drawer-affil" id="drawer-affil"></div>
+<div class="drawer-role" id="drawer-role"></div>
+</div>
+<button type="button" class="drawer-close" id="drawer-close" aria-label="Close detail panel">&times;</button>
+</div>
+<div class="drawer-body">
+<div class="drawer-row" id="drawer-score-row"></div>
+<div class="drawer-section">
+<div class="drawer-section-label">Position Summary</div>
+<div class="drawer-summary" id="drawer-summary"></div>
+</div>
+<div class="drawer-section">
+<div class="drawer-section-label">Key Source</div>
+<div id="drawer-key-source-wrap"></div>
+</div>
+<div class="drawer-section">
+<div class="drawer-section-label">All Sources</div>
+<div class="drawer-sources" id="drawer-sources"></div>
+</div>
+</div>
+</aside>
+
 <script>
 fetch('/data.json').then(r=>r.json()).then(data=>{
 const devs=data.developers;
@@ -448,35 +531,55 @@ filtersEl.innerHTML+=`<button class="pill" data-score="${s.score}">${s.score}</b
 
 // State
 let activeScore='all';
+let activeAffiliation='all';
 let searchQuery='';
+let activeDevName=null;
+
+// Affiliation dropdown — populate from data
+const affilSelect=document.getElementById('affil-select');
+const affilCounts={};
+devs.forEach(d=>{const a=(d.affiliation||'').trim();if(a)affilCounts[a]=(affilCounts[a]||0)+1;});
+Object.keys(affilCounts).sort((a,b)=>a.localeCompare(b)).forEach(a=>{
+const opt=document.createElement('option');
+opt.value=a;
+opt.textContent=`${a} (${affilCounts[a]})`;
+affilSelect.appendChild(opt);
+});
+
+function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);}
 
 function render(){
 const tbody=document.getElementById('table-body');
 tbody.innerHTML='';
+const q=searchQuery.toLowerCase();
 const filtered=devs.filter(dev=>{
 const scoreMatch=activeScore==='all'||dev.quantum_urgency_score===parseInt(activeScore);
-const q=searchQuery.toLowerCase();
-const textMatch=!q||dev.name.toLowerCase().includes(q)||dev.affiliation.toLowerCase().includes(q)||(dev.summary&&dev.summary.toLowerCase().includes(q));
-return scoreMatch&&textMatch;
+const affilMatch=activeAffiliation==='all'||dev.affiliation===activeAffiliation;
+const textMatch=!q||dev.name.toLowerCase().includes(q)||(dev.affiliation||'').toLowerCase().includes(q)||(dev.summary&&dev.summary.toLowerCase().includes(q));
+return scoreMatch&&affilMatch&&textMatch;
 });
 document.getElementById('showing-count').textContent=`Showing ${filtered.length} of ${total}`;
 if(!filtered.length){
 tbody.innerHTML='<tr><td colspan="6" class="empty">No developers match your filters.</td></tr>';
 return;
 }
+const frag=document.createDocumentFragment();
 filtered.forEach(dev=>{
-const src=dev.key_source?`<a href="${dev.key_source}" class="source-link" target="_blank" rel="noopener">View</a>`:'<span style="color:var(--text-muted)">--</span>';
+const src=dev.key_source?`<a href="${escapeHtml(dev.key_source)}" class="source-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">View</a>`:'<span style="color:var(--text-muted)">--</span>';
 const notable=dev.notable?'<span class="notable-tag">notable</span>':'';
 const rank=dev.notable?'+':dev.rank;
-tbody.innerHTML+=`<tr>
-<td class="td-rank">${rank}</td>
-<td class="td-name">${dev.name}${notable}</td>
-<td class="td-affil">${dev.affiliation}</td>
+const tr=document.createElement('tr');
+if(activeDevName===dev.name)tr.classList.add('is-active');
+tr.innerHTML=`<td class="td-rank">${rank}</td>
+<td class="td-name">${escapeHtml(dev.name)}${notable}</td>
+<td class="td-affil">${escapeHtml(dev.affiliation)}</td>
 <td><span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span></td>
-<td class="td-summary">${dev.summary||'No public quantum position identified.'}</td>
-<td>${src}</td>
-</tr>`;
+<td class="td-summary">${escapeHtml(dev.summary||'No public quantum position identified.')}</td>
+<td>${src}</td>`;
+tr.addEventListener('click',()=>openDrawer(dev));
+frag.appendChild(tr);
 });
+tbody.appendChild(frag);
 }
 
 // Filter clicks (pills)
@@ -510,6 +613,75 @@ document.getElementById('search').addEventListener('input',e=>{
 searchQuery=e.target.value;
 render();
 });
+
+// Affiliation filter
+affilSelect.addEventListener('change',e=>{
+activeAffiliation=e.target.value;
+render();
+});
+
+// === DETAIL DRAWER ===
+const drawer=document.getElementById('drawer');
+const drawerBackdrop=document.getElementById('drawer-backdrop');
+const drawerCloseBtn=document.getElementById('drawer-close');
+let lastFocused=null;
+
+function openDrawer(dev){
+activeDevName=dev.name;
+const scoreLabelMap={5:'Urgent',4:'Proactive',3:'Cautious',2:'Dismissive',1:'No View'};
+document.getElementById('drawer-meta').textContent=dev.notable?'Notable Contributor':`Influence Rank #${dev.rank}`;
+document.getElementById('drawer-name').textContent=dev.name;
+document.getElementById('drawer-affil').textContent=dev.affiliation||'Independent';
+const roleEl=document.getElementById('drawer-role');
+if(dev.role){roleEl.textContent=dev.role;roleEl.style.display='block';}else{roleEl.style.display='none';}
+const vol=dev.pq_work_volume||0;
+const volLabel=vol===0?'no PQ work':vol===1?'1 PQ artifact':`${vol} PQ artifacts`;
+document.getElementById('drawer-score-row').innerHTML=
+`<span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span>`+
+`<div><div class="drawer-row-label" style="color:${({5:'var(--red)',4:'var(--orange)',3:'var(--yellow)',2:'var(--blue)',1:'var(--gray)'})[dev.quantum_urgency_score]}">${scoreLabelMap[dev.quantum_urgency_score]}</div>`+
+`<div class="drawer-row-meta">${volLabel}${dev.notable?' &middot; notable':''}</div></div>`;
+const summaryEl=document.getElementById('drawer-summary');
+if(dev.summary){summaryEl.textContent=dev.summary;summaryEl.classList.remove('is-empty');}
+else{summaryEl.textContent='No public quantum position identified.';summaryEl.classList.add('is-empty');}
+const ksWrap=document.getElementById('drawer-key-source-wrap');
+ksWrap.innerHTML=dev.key_source
+?`<a class="drawer-key-source" href="${escapeHtml(dev.key_source)}" target="_blank" rel="noopener">&#x2197; ${escapeHtml(dev.key_source)}</a>`
+:'<div class="drawer-empty">No key source on file.</div>';
+const sourcesEl=document.getElementById('drawer-sources');
+const sources=Array.isArray(dev.sources)?dev.sources.filter(Boolean):[];
+if(sources.length){
+sourcesEl.innerHTML=sources.map((s,i)=>`<a class="drawer-source" href="${escapeHtml(s)}" target="_blank" rel="noopener"><span class="drawer-source-num">${String(i+1).padStart(2,'0')}</span><span>${escapeHtml(s)}</span></a>`).join('');
+}else{
+sourcesEl.innerHTML='<div class="drawer-empty">No additional sources listed.</div>';
+}
+lastFocused=document.activeElement;
+drawer.classList.add('is-open');
+drawerBackdrop.classList.add('is-open');
+drawer.setAttribute('aria-hidden','false');
+drawerBackdrop.setAttribute('aria-hidden','false');
+document.body.style.overflow='hidden';
+setTimeout(()=>drawerCloseBtn.focus(),60);
+// re-render to highlight the active row
+render();
+}
+
+function closeDrawer(){
+activeDevName=null;
+drawer.classList.remove('is-open');
+drawerBackdrop.classList.remove('is-open');
+drawer.setAttribute('aria-hidden','true');
+drawerBackdrop.setAttribute('aria-hidden','true');
+document.body.style.overflow='';
+if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();
+render();
+}
+
+drawerCloseBtn.addEventListener('click',closeDrawer);
+drawerBackdrop.addEventListener('click',closeDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('is-open'))closeDrawer();});
+
+drawer.setAttribute('aria-hidden','true');
+drawerBackdrop.setAttribute('aria-hidden','true');
 
 render();
 
@@ -661,13 +833,8 @@ canvas.addEventListener('click', e => {
   const my = (e.clientY - rect.top) * (canvas.height / dpr) / rect.height;
   const dev = getDevAtPos(mx, my);
   if (dev) {
-    searchQuery = dev.name;
-    activeScore = 'all';
-    document.getElementById('search').value = dev.name;
-    document.querySelectorAll('.pill').forEach(b => { b.classList.remove('active'); if (b.dataset.score === 'all') b.classList.add('active'); });
-    document.querySelectorAll('.stat-cell').forEach(c => c.classList.remove('active'));
-    render();
-    document.querySelector('.table-section')?.scrollIntoView({ behavior: 'smooth' });
+    tooltip.style.display = 'none';
+    openDrawer(dev);
   }
 });
 
