@@ -606,10 +606,11 @@
       "quantum_urgency_score": 4,
       "pq_work_volume": 4,
       "notable": false,
-      "summary": "Authored Chaincode quantum report (May 2025): 20-50% of BTC potentially vulnerable; 7-year comprehensive plan recommended; leading institutional research effort",
+      "summary": "Co-authored Chaincode Labs' 2025 report “Bitcoin and Quantum Computing: Current Status and Future Directions,” estimating that a cryptographically relevant quantum computer could put roughly 4–10 million BTC (about 20–50% of supply) at risk by deriving private keys from exposed public keys, and proposing dual-track ~2-year contingency and ~7-year comprehensive migration paths to post-quantum cryptography.",
       "key_source": "https://chaincode.com/bitcoin-post-quantum.pdf",
       "sources": [
-        "https://chaincode.com/bitcoin-post-quantum.pdf"
+        "https://chaincode.com/bitcoin-post-quantum.pdf",
+        "https://www.youtube.com/watch?v=FNqYU9TudRU"
       ]
     },
     {
