@@ -639,7 +639,7 @@ const volLabel=vol===0?'no PQ work':vol===1?'1 PQ artifact':`${vol} PQ artifacts
 document.getElementById('drawer-score-row').innerHTML=
 `<span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span>`+
 `<div><div class="drawer-row-label" style="color:${({5:'var(--red)',4:'var(--orange)',3:'var(--yellow)',2:'var(--blue)',1:'var(--gray)'})[dev.quantum_urgency_score]}">${scoreLabelMap[dev.quantum_urgency_score]}</div>`+
-`<div class="drawer-row-meta">${volLabel}${dev.notable?' &middot; notable':''}</div></div>`;
+`<div class="drawer-row-meta">${volLabel}${dev.notable?' &middot; notable':''}${dev.last_verified?' &middot; verified '+escapeHtml(dev.last_verified):''}</div></div>`;
 const summaryEl=document.getElementById('drawer-summary');
 if(dev.summary){summaryEl.textContent=dev.summary;summaryEl.classList.remove('is-empty');}
 else{summaryEl.textContent='No public quantum position identified.';summaryEl.classList.add('is-empty');}
