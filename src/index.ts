@@ -1,4 +1,4 @@
-const ISKANDER_STX = "SP3JR7JXFT7ZM9JKSQPBQG1HPT0D365MA5TN0P12E";
+const QV_SERVICE_STX = "SP2D26THR4EFBY7PH9JXTG8V2XYM7SZGVTVW1Q572"; // Quantum Visualizer service wallet — see ~/.aibtc/quantum-visualizer-wallet.json
 const SBTC_ASSET = "SM3VDXK3WZZSA84XXFKAFAF15NNZX32CTSG82JFQ4.sbtc-token";
 const NETWORK = "stacks:1";
 const PRICE_SATS = "100";
@@ -27,7 +27,7 @@ function buildRequirements(): PaymentRequirements {
     network: NETWORK,
     amount: PRICE_SATS,
     asset: SBTC_ASSET,
-    payTo: ISKANDER_STX,
+    payTo: QV_SERVICE_STX,
     maxTimeoutSeconds: 60,
   };
 }
