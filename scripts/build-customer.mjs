@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Build public/customer.json — Customer World Model snapshot.
-// Pulls from aibtc.news signals API (quantum-* beats) and GitHub #33 comments (via gh).
+// Pulls from aibtc.news signals API (quantum-* beats), GitHub #33 comments via gh,
+// and the REVENUE_LOG KV namespace on Cloudflare for x402 paid-call events.
 // Fields we cannot verify are explicitly "unknown" — never fabricated.
 import fs from "fs";
 import { execSync } from "child_process";
@@ -9,14 +10,34 @@ const OUT = new URL("../public/customer.json", import.meta.url);
 const today = new Date().toISOString().slice(0, 10);
 const sevenDaysAgo = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
 
-async function fetchJSON(url) {
-  const r = await fetch(url);
+const CF_ACCOUNT_ID = "6401c671eef455c629ee2f10cd6cdc61";
+const KV_NAMESPACE_ID = "570c38b0f3324aab8afb4b8be15c3479";
+
+async function fetchJSON(url, opts = {}) {
+  const r = await fetch(url, opts);
   if (!r.ok) throw new Error(`${url} -> ${r.status}`);
   return r.json();
 }
 
 function gh(cmd) {
   return execSync(cmd, { encoding: "utf8", maxBuffer: 50 * 1024 * 1024 });
+}
+
+function readEnv(key) {
+  const envFile = `${process.env.HOME}/.openclaw/.env`;
+  const line = fs.readFileSync(envFile, "utf8").split("\n").find((l) => l.startsWith(`${key}=`));
+  if (!line) throw new Error(`${key} not in ${envFile}`);
+  return line.slice(key.length + 1);
+}
+
+async function fetchRevenueLedger() {
+  const token = readEnv("CLOUDFLARE_API_TOKEN");
+  const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/storage/kv/namespaces/${KV_NAMESPACE_ID}/values/ledger:events`;
+  const r = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+  if (r.status === 404) return [];
+  if (!r.ok) throw new Error(`KV fetch failed: ${r.status}`);
+  const text = await r.text();
+  try { return JSON.parse(text); } catch { return []; }
 }
 
 const signalsRes = await fetchJSON("https://aibtc.news/api/signals?limit=500");
@@ -40,8 +61,12 @@ const prsRaw = JSON.parse(
 const merged = prsRaw.filter((p) => p.state === "MERGED");
 const pr_contributors = [...new Set(merged.map((p) => p.author.login))];
 
+const ledger = await fetchRevenueLedger();
+const revenueSats = ledger.reduce((sum, e) => sum + (e.sats || 0), 0);
+const eventsLast7d = ledger.filter((e) => (e.ts || "").slice(0, 10) >= sevenDaysAgo);
+
 const customer = {
-  schema_version: 1,
+  schema_version: 2,
   as_of: today,
   quantum_beats: {
     total: quantum.length,
@@ -57,7 +82,10 @@ const customer = {
     },
     bounty_33_pool_sats: 250000,
     bounty_33_paid_confirmed: "unknown — awaiting on-chain payout ledger in #33",
-    revenue_x402_sats: 0,
+    revenue_x402_sats: revenueSats,
+    revenue_x402_events: ledger.length,
+    revenue_x402_last_7d_events: eventsLast7d.length,
+    revenue_x402_recent: ledger.slice(-5),
     inscription_sales_sats: 0,
   },
   narrative_traction: {
@@ -73,6 +101,7 @@ const customer = {
   freshness: {
     signals_fetched_at: new Date().toISOString(),
     github_fetched_at: new Date().toISOString(),
+    revenue_kv_fetched_at: new Date().toISOString(),
     next_refresh_target: "weekly synthesis (Sundays)",
   },
   notes: [
@@ -82,4 +111,4 @@ const customer = {
 };
 
 fs.writeFileSync(OUT, JSON.stringify(customer, null, 2) + "\n");
-console.log(`wrote customer.json: ${quantum.length} beats, ${comments.length} comments, ${merged.length} merged PRs`);
+console.log(`wrote customer.json: ${quantum.length} beats, ${comments.length} comments, ${merged.length} merged PRs, ${ledger.length} x402 events (${revenueSats} sats)`);

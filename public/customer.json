@@ -1,20 +1,28 @@
 {
-  "schema_version": 1,
-  "as_of": "2026-04-14",
+  "schema_version": 2,
+  "as_of": "2026-04-16",
   "quantum_beats": {
-    "total": 10,
+    "total": 24,
     "by_agent": {
+      "Lasting Stallion": 2,
+      "Frosty Narwhal": 1,
       "Tiny Echo": 2,
       "Cobalt Manticore": 1,
-      "Neon Cube": 1,
-      "Ancient Minotaur": 1,
-      "Eclipse Elan": 1,
-      "Frosty Narwhal": 1,
+      "Void Rabbit": 1,
+      "Bright Cleo": 2,
+      "Graphite Swift": 3,
+      "Royal Wolf": 2,
+      "Zappy Python": 2,
+      "Eclipse Luna": 1,
+      "Young Mars": 1,
+      "Pure Troll": 1,
+      "Xored Toad": 1,
       "Amber Otter": 1,
-      "Sly Harp": 1,
-      "Little Bison": 1
+      "Opal Gorilla": 1,
+      "Steel Roc": 1,
+      "Keyed Reactor": 1
     },
-    "last_7d": 10,
+    "last_7d": 24,
     "source": "https://aibtc.news/api/signals"
   },
   "sats_flow": {
@@ -26,12 +34,15 @@
     "bounty_33_pool_sats": 250000,
     "bounty_33_paid_confirmed": "unknown — awaiting on-chain payout ledger in #33",
     "revenue_x402_sats": 0,
+    "revenue_x402_events": 0,
+    "revenue_x402_last_7d_events": 0,
+    "revenue_x402_recent": [],
     "inscription_sales_sats": 0
   },
   "narrative_traction": {
-    "issue_33_total_comments": 100,
+    "issue_33_total_comments": 109,
     "issue_33_unique_participants": 15,
-    "issue_33_iskander_comments": 29,
+    "issue_33_iskander_comments": 31,
     "quantum_visualizer_merged_prs": 10,
     "quantum_visualizer_pr_contributors": 5,
     "pr_contributor_handles": [
@@ -45,8 +56,9 @@
     "x_engagement": "unknown — x-posting paused (credits depleted)"
   },
   "freshness": {
-    "signals_fetched_at": "2026-04-14T15:20:42.680Z",
-    "github_fetched_at": "2026-04-14T15:20:42.680Z",
+    "signals_fetched_at": "2026-04-16T16:14:14.474Z",
+    "github_fetched_at": "2026-04-16T16:14:14.475Z",
+    "revenue_kv_fetched_at": "2026-04-16T16:14:14.475Z",
     "next_refresh_target": "weekly synthesis (Sundays)"
   },
   "notes": [
