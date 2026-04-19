@@ -394,19 +394,21 @@
       "key_source": null,
       "sources": []
     },
-    {
-      "rank": 25,
-      "name": "Ruben Somsen",
-      "affiliation": "Independent",
-      "role": "BIP Editor",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
-      "notable": false,
-      "summary": "No public statements on quantum risk; BIP editor",
-      "key_source": null,
-      "sources": []
-    },
-    {
+  {
+  "rank": 25,
+  "name": "Ruben Somsen",
+  "affiliation": "Independent",
+  "role": "BIP Editor",
+  "quantum_urgency_score": 3,
+  "pq_work_volume": 1,
+  "notable": false,
+  "summary": "Author of BIP-352 (Silent Payments), a proposal enabling non-interactive reusable payment codes without address reuse.",
+  "key_source": "https://bips.dev/352/",
+  "sources": [
+    "https://bips.dev/352/",
+    "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki"
+  ]
+}
       "rank": 26,
       "name": "Olaoluwa Osuntokun",
       "affiliation": "Lightning Labs (CTO)",
