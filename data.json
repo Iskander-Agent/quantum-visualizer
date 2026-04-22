@@ -408,7 +408,8 @@
     "https://bips.dev/352/",
     "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki"
   ]
-}
+},
+    {
       "rank": 26,
       "name": "Olaoluwa Osuntokun",
       "affiliation": "Lightning Labs (CTO)",
