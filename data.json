@@ -5,7 +5,7 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.6",
+    "version": "2.7",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
     "total_assessed": 56,
     "ranked": 50,
@@ -66,7 +66,116 @@
       },
       "as_of": "2026-04-10",
       "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
-    }
+    },
+    "update_history": [
+      {
+        "date": "2026-04-04",
+        "developer": "Neha Narula",
+        "change": "score 1→3 (MIT DCI quantum research posture)",
+        "pr": null,
+        "contributor": "Iskander-Agent"
+      },
+      {
+        "date": "2026-04-04",
+        "developer": "baseline seed",
+        "change": "50 ranked developers imported from Issue #30 research",
+        "pr": null,
+        "contributor": "Iskander-Agent"
+      },
+      {
+        "date": "2026-04-04",
+        "developer": "Mark Friedenbach",
+        "change": "score 1→3 — quantum risk position documented",
+        "pr": "#1",
+        "contributor": "@tearful-saw"
+      },
+      {
+        "date": "2026-04-04",
+        "developer": "Karl-Johan Alm",
+        "change": "score 1→3 — quantum risk position documented",
+        "pr": "#1",
+        "contributor": "@tearful-saw"
+      },
+      {
+        "date": "2026-04-05",
+        "developer": "Adam Jonas",
+        "change": "quantum urgency score update",
+        "pr": "#4",
+        "contributor": "@Dannye013"
+      },
+      {
+        "date": "2026-04-05",
+        "developer": "0xB10C",
+        "change": "score remains 1 — documented null result April 2026",
+        "pr": "#3",
+        "contributor": "@SlyHarp"
+      },
+      {
+        "date": "2026-04-05",
+        "developer": "Matt Corallo",
+        "change": "score 3→4 — two-step PQ upgrade path advocacy",
+        "pr": "#5",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-06",
+        "developer": "Alex Gladstein",
+        "change": "score 1→3 — HRF quantum threat report + PQ research funding",
+        "pr": "#6",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-08",
+        "developer": "John Martinis",
+        "change": "added as notable addition — score 5 (Nobel 2025)",
+        "pr": "#9",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-09",
+        "developer": "Olaoluwa Osuntokun",
+        "change": "pq_work_volume 1→2 — PQ HD wallet rescue prototype",
+        "pr": "#11",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-09",
+        "developer": "Niklas Gögge",
+        "change": "entry update",
+        "pr": "#15",
+        "contributor": "@Dannye013"
+      },
+      {
+        "date": "2026-04-10",
+        "developer": "Adam Back",
+        "change": "score 2→3",
+        "pr": "#16",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-10",
+        "developer": "Avihu Levy",
+        "change": "added as notable — StarkWare QSB",
+        "pr": "#16",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-12",
+        "developer": "Clara Shikhelman",
+        "change": "sources + summary update",
+        "pr": "#19",
+        "contributor": "@1feems"
+      },
+      {
+        "date": "2026-04-19",
+        "developer": "Adam Gibson (waxwing / AdamISZ)",
+        "change": "new entry — score 2 (aware, dismissive of urgency-based action); JoinMarket creator; bitcoin-dev Algorithm Agility thread Apr 2026",
+        "pr": null,
+        "contributor": "@lekanbams"
+      }
+    ],
+    "last_updated": "2026-04-19",
+    "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
     {
@@ -822,7 +931,7 @@
       ]
     },
     {
-      "rank": 56,
+      "rank": 57,
       "name": "Adam Gibson (waxwing / AdamISZ)",
       "affiliation": "Independent (JoinMarket)",
       "role": "Bitcoin privacy researcher, cryptographer",
