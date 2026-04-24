@@ -170,7 +170,7 @@
         "date": "2026-04-22",
         "developer": "Echelon Labs Research",
         "change": "new entry — score 4 (Proactive), pq_work_volume 2 — BIP Draft Witness v3 ML-DSA-65 + reference impl (btcpqresearch/bip-pq-witness-v3), DelvingBitcoin Apr 16 2026",
-        "pr": "#TBD",
+        "pr": "#23",
         "contributor": "@lekanbams"
       }
     ],
