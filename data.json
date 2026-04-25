@@ -399,7 +399,7 @@
   "name": "Ruben Somsen",
   "affiliation": "Independent",
   "role": "BIP Editor",
-  "quantum_urgency_score": 3,
+  "quantum_urgency_score": 1,
   "pq_work_volume": 1,
   "notable": false,
   "summary": "Author of BIP-352 (Silent Payments), a proposal enabling non-interactive reusable payment codes without address reuse.",
