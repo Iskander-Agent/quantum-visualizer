@@ -7,7 +7,7 @@
     "agent_bns": "iskander-ai.btc",
     "version": "2.7",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 56,
+    "total_assessed": 57,
     "ranked": 50,
     "notable_additions": 5,
     "score_distribution": {
@@ -172,9 +172,16 @@
         "change": "new entry — score 2 (aware, dismissive of urgency-based action); JoinMarket creator; bitcoin-dev Algorithm Agility thread Apr 2026",
         "pr": null,
         "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-22",
+        "developer": "Echelon Labs Research",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 2 — BIP Draft Witness v3 ML-DSA-65 + reference impl",
+        "pr": "#23",
+        "contributor": "@lekanbams"
       }
     ],
-    "last_updated": "2026-04-19",
+    "last_updated": "2026-04-26",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -503,21 +510,21 @@
       "key_source": null,
       "sources": []
     },
-  {
-  "rank": 25,
-  "name": "Ruben Somsen",
-  "affiliation": "Independent",
-  "role": "BIP Editor",
-  "quantum_urgency_score": 1,
-  "pq_work_volume": 1,
-  "notable": false,
-  "summary": "Author of BIP-352 (Silent Payments), a proposal enabling non-interactive reusable payment codes without address reuse.",
-  "key_source": "https://bips.dev/352/",
-  "sources": [
-    "https://bips.dev/352/",
-    "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki"
-  ]
-},
+    {
+      "rank": 25,
+      "name": "Ruben Somsen",
+      "affiliation": "Independent",
+      "role": "BIP Editor",
+      "quantum_urgency_score": 1,
+      "pq_work_volume": 1,
+      "notable": false,
+      "summary": "Author of BIP-352 (Silent Payments), a proposal enabling non-interactive reusable payment codes without address reuse.",
+      "key_source": "https://bips.dev/352/",
+      "sources": [
+        "https://bips.dev/352/",
+        "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki"
+      ]
+    },
     {
       "rank": 26,
       "name": "Olaoluwa Osuntokun",
@@ -948,6 +955,24 @@
         "https://github.com/AdamISZ"
       ],
       "last_verified": "2026-04-19"
+    },
+    {
+      "rank": 56,
+      "name": "Echelon Labs Research",
+      "affiliation": "Echelon Labs Research (btcpqresearch)",
+      "role": "Post-quantum research collective",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 2,
+      "notable": false,
+      "summary": "Published BIP Draft 'Witness Version 3: ML-DSA-65 Post-Quantum Key-Path Spending' on DelvingBitcoin on Apr 16, 2026, with a full working reference implementation (btcpqresearch/bip-pq-witness-v3) applying cleanly against bitcoin/bitcoin at commit c97ac44c. Proposes OP_3 + bech32m bc1r outputs, 5,261-byte witness stacks (3,309-byte sig + 1,952-byte pubkey), PQSighash tagged hash (epoch 1, ext_flag 3), SCRIPT_VERIFY_WITNESS_V3 flag, deployable as BIP 9 soft fork. Offered as a candidate PQ scheme for BIP-361 Phase B migration.",
+      "key_source": "https://delvingbitcoin.org/t/bip-draft-witness-version-3-ml-dsa-65-post-quantum-key-path-spending/2422",
+      "sources": [
+        "https://delvingbitcoin.org/t/bip-draft-witness-version-3-ml-dsa-65-post-quantum-key-path-spending/2422",
+        "https://github.com/btcpqresearch/bip-pq-witness-v3/blob/7bbfb294337201eb7273692110b1d137e07d3e40/bip-pq-witness-v3.mediawiki",
+        "https://github.com/btcpqresearch/bip-pq-witness-v3",
+        "https://csrc.nist.gov/pubs/fips/204/final"
+      ],
+      "last_verified": "2026-04-22"
     }
   ]
 }
