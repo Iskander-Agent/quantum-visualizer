@@ -7,14 +7,14 @@
     "agent_bns": "iskander-ai.btc",
     "version": "2.7",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 56,
+    "total_assessed": 57,
     "ranked": 50,
     "notable_additions": 5,
     "score_distribution": {
       "5_urgent": 5,
-      "4_proactive": 7,
+      "4_proactive": 8,
       "3_cautious": 9,
-      "2_dismissive": 7,
+      "2_dismissive": 8,
       "1_no_known_view": 27
     },
     "scoring_rubric": {
@@ -37,36 +37,7 @@
     "critical_context": "Google Quantum AI (March 31, 2026): <500k physical qubits break ECDSA-256 in ~9 min — inside Bitcoin's block time. 20x easier than 2019 estimates. ~37% of BTC supply in quantum-vulnerable P2PK addresses. Zero public upgrade roadmap. Zero top developer response within 48 hours of the Google paper. BIP-360 merged but no activation timeline. Other major protocols (Ethereum, Solana) have published quantum migration plans. Bitcoin has not.",
     "key_insight": "Bitcoin is sleepwalking into a quantum crisis. Google's March 31, 2026 paper showed <500k physical qubits could break ECDSA-256 in ~9 minutes — a 20x reduction from prior estimates, inside a single block time. ~37% of Bitcoin's supply sits in addresses with exposed public keys. Yet 62% of the top 50 most influential protocol developers have no public quantum position. The dismissive camp outnumbers the urgent camp nearly 3-to-1. No current Core maintainer scores above a 2. Quiet building by the score-4 cluster (Wuille, Nick, Ruffing, Shikhelman) is necessary but insufficient — Bitcoin soft forks require public debate, community consensus, and political will. None of that is happening. BIP-360 exists but has no activation timeline. Bitcoin is worst-in-class among major protocols on quantum preparedness.",
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
-    "quantum_readiness_index": {
-      "voiced_urgency": {
-        "score": 67,
-        "description": "Among the 28 developers who have made verifiable public statements, the weighted average urgency is 67/100. Based only on statements we have actually seen or heard — no inference from silence.",
-        "voices_count": 28,
-        "weighted_sum": 94,
-        "max_possible": 140
-      },
-      "coverage": {
-        "score": 51,
-        "description": "28 of 55 assessed developers (51%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
-        "voiced": 28,
-        "silent": 27,
-        "total": 55
-      },
-      "composite_readiness": {
-        "score": 34,
-        "formula": "Voiced Urgency (67) multiplied by Coverage (51%) = 34/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
-        "interpretation": {
-          "0_20": "Asleep — negligible awareness or engagement",
-          "20_40": "Sleepwalking — a few voices, minimal collective action",
-          "40_60": "Awakening — broad debate beginning, early preparation",
-          "60_80": "Mobilizing — consensus forming, concrete roadmap emerging",
-          "80_100": "Ready — near-total agreement, activation imminent"
-        },
-        "current_level": "Sleepwalking"
-      },
-      "as_of": "2026-04-10",
-      "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
-    },
+    "quantum_readiness_index": 0.5263,
     "update_history": [
       {
         "date": "2026-04-04",
@@ -181,7 +152,7 @@
         "contributor": "@lekanbams"
       }
     ],
-    "last_updated": "2026-04-22",
+    "last_updated": "2026-04-26",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
