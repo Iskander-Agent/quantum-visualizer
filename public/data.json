@@ -7,7 +7,7 @@
     "agent_bns": "iskander-ai.btc",
     "version": "2.7",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 55,
+    "total_assessed": 56,
     "ranked": 50,
     "notable_additions": 5,
     "score_distribution": {
@@ -165,9 +165,16 @@
         "change": "sources + summary update",
         "pr": "#19",
         "contributor": "@1feems"
+      },
+      {
+        "date": "2026-04-19",
+        "developer": "Adam Gibson (waxwing / AdamISZ)",
+        "change": "new entry — score 2 (aware, dismissive of urgency-based action); JoinMarket creator; bitcoin-dev Algorithm Agility thread Apr 2026",
+        "pr": null,
+        "contributor": "@lekanbams"
       }
     ],
-    "last_updated": "2026-04-14",
+    "last_updated": "2026-04-19",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -976,6 +983,22 @@
         "https://starkware.co/blog/bitcoins-quantum-proposal-features-starkware-co-author/"
       ],
       "last_verified": "2026-04-10"
+    },
+    {
+      "rank": 57,
+      "name": "Adam Gibson (waxwing / AdamISZ)",
+      "affiliation": "Independent (JoinMarket)",
+      "role": "Bitcoin privacy researcher, cryptographer",
+      "quantum_urgency_score": 2,
+      "pq_work_volume": 1,
+      "notable": false,
+      "summary": "Opposes mandatory coin-freezing on principled grounds. In the Algorithm Agility bitcoin-dev thread (Apr 2026): ‘We won’t know for sure when the world shifts from outputs are safe to claimable by anyone.’ Argues Bitcoin’s value derives from immutable property rights — ‘if you locked a utxo with a certain ruleset in the past, that ruleset will still be active.’ Acknowledges quantum uncertainty but maintains principles outweigh safety-based arguments for coin freezing. Advocates opt-in PQ solutions (P2MR) only. Creator of JoinMarket, Bitcoin privacy researcher.",
+      "key_source": "https://groups.google.com/g/bitcoindev/c/7jkVS1K9WLo/m/wY6tgodKAQAJ",
+      "sources": [
+        "https://groups.google.com/g/bitcoindev/c/7jkVS1K9WLo/m/wY6tgodKAQAJ",
+        "https://github.com/AdamISZ"
+      ],
+      "last_verified": "2026-04-19"
     }
   ]
 }
