@@ -155,7 +155,7 @@
         "date": "2026-04-27",
         "developer": "Oriole (IACR ePrint 2026/793)",
         "change": "added as notable — score 4 (Proactive), pq_work_volume 1; lattice threshold-signature scheme proposed for BIP-360 P2QRH multi-sig (LWE-based, adaptive security, partial non-interactivity)",
-        "pr": "#TBD",
+        "pr": "#26",
         "contributor": "@lekanbams"
       }
     ],
