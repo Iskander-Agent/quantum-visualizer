@@ -155,7 +155,7 @@
         "date": "2026-04-27",
         "developer": "Craig Gidney (Google Quantum AI)",
         "change": "added as notable — score 5 (Urgent), pq_work_volume 3; arXiv 2603.28846 v2 foundational secp256k1 ECDLP paper (under 500K physical qubits, ~9 min crack), 10% CRQC-by-2030 anchor cited by Narula score-update",
-        "pr": "#TBD",
+        "pr": "#25",
         "contributor": "@lekanbams"
       }
     ],
