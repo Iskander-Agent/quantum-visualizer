@@ -155,7 +155,7 @@
         "date": "2026-04-27",
         "developer": "Delfosse et al. (IonQ — Walking Cat)",
         "change": "added as notable — score 4 (Proactive), pq_work_volume 1; arXiv 2604.19481 trapped-ion full-stack FT blueprint, [[102,22,9]] LDPC code, second hardware trajectory toward Babbush <500K-qubit secp256k1 ECDLP threshold",
-        "pr": "#TBD",
+        "pr": "#28",
         "contributor": "@lekanbams"
       }
     ],
