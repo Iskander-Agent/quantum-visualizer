@@ -5,14 +5,14 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.7",
+    "version": "2.8",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 57,
+    "total_assessed": 58,
     "ranked": 50,
-    "notable_additions": 5,
+    "notable_additions": 6,
     "score_distribution": {
       "5_urgent": 5,
-      "4_proactive": 8,
+      "4_proactive": 9,
       "3_cautious": 9,
       "2_dismissive": 8,
       "1_no_known_view": 27
@@ -150,9 +150,16 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 2 — BIP Draft Witness v3 ML-DSA-65 + reference impl",
         "pr": "#23",
         "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-27",
+        "developer": "Delfosse et al. (IonQ — Walking Cat)",
+        "change": "added as notable — score 4 (Proactive), pq_work_volume 1; arXiv 2604.19481 trapped-ion full-stack FT blueprint, [[102,22,9]] LDPC code, second hardware trajectory toward Babbush <500K-qubit secp256k1 ECDLP threshold",
+        "pr": "#TBD",
+        "contributor": "@lekanbams"
       }
     ],
-    "last_updated": "2026-04-26",
+    "last_updated": "2026-04-27",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -944,6 +951,23 @@
         "https://csrc.nist.gov/pubs/fips/204/final"
       ],
       "last_verified": "2026-04-22"
+    },
+    {
+      "rank": 61,
+      "name": "Delfosse et al. (IonQ — Walking Cat)",
+      "affiliation": "IonQ — trapped-ion fault-tolerant computing research",
+      "role": "Quantum hardware architects",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "arXiv 2604.19481 (Delfosse et al., 21 Apr 2026) — 'Walking Cat Architecture': a full-stack trapped-ion fault-tolerant blueprint with compiler, QEC protocols, micro-architecture, fast decoder, and end-to-end simulations. The [[102,22,9]] LDPC code packs 22 logical qubits into 102 physical qubits — a 2,514-physical system yields 110 logical qubits running at ~1M T-gates per day. Distinct hardware path from neutral-atom (QuEra) and IBM heavy-hex; provides a second viable trajectory toward the Babbush et al. <500K-physical-qubit / <1,200-logical-qubit secp256k1 ECDLP break threshold. Delfosse (ex-Microsoft, now IonQ) leads a complete arch+code+decoder design targeting hundreds of logical qubits running millions of logical gates on near-term ion traps.",
+      "key_source": "https://arxiv.org/abs/2604.19481",
+      "sources": [
+        "https://arxiv.org/abs/2604.19481",
+        "https://www.ionq.com/blog/blueprint-for-fault-tolerant-trapped-ion-quantum-computing-the-walking-cat-architecture",
+        "https://thequantuminsider.com/2026/04/23/ionq-researchers-say-walking-cat-blueprint-could-lead-to-machines-that-run-millions-of-gates-on-thousands-of-qubits/"
+      ],
+      "last_verified": "2026-04-25"
     }
   ]
 }
