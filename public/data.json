@@ -155,7 +155,7 @@
         "date": "2026-04-27",
         "developer": "Chevignard, Fouque, Schrottenloher (INRIA)",
         "change": "added as notable — score 4 (Proactive), pq_work_volume 1; EUROCRYPT 2026 paper IACR 2026/280, 44% logical-qubit reduction for prime-curve ECDLP (P-256: 1,193 qubits), inherited by secp256k1",
-        "pr": "#TBD",
+        "pr": "#27",
         "contributor": "@lekanbams"
       }
     ],
