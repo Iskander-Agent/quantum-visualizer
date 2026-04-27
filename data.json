@@ -5,13 +5,13 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.7",
+    "version": "2.8",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 57,
+    "total_assessed": 58,
     "ranked": 50,
-    "notable_additions": 5,
+    "notable_additions": 6,
     "score_distribution": {
-      "5_urgent": 5,
+      "5_urgent": 6,
       "4_proactive": 8,
       "3_cautious": 9,
       "2_dismissive": 8,
@@ -150,9 +150,16 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 2 — BIP Draft Witness v3 ML-DSA-65 + reference impl",
         "pr": "#23",
         "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-27",
+        "developer": "Craig Gidney (Google Quantum AI)",
+        "change": "added as notable — score 5 (Urgent), pq_work_volume 3; arXiv 2603.28846 v2 foundational secp256k1 ECDLP paper (under 500K physical qubits, ~9 min crack), 10% CRQC-by-2030 anchor cited by Narula score-update",
+        "pr": "#TBD",
+        "contributor": "@lekanbams"
       }
     ],
-    "last_updated": "2026-04-26",
+    "last_updated": "2026-04-27",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -944,6 +951,24 @@
         "https://csrc.nist.gov/pubs/fips/204/final"
       ],
       "last_verified": "2026-04-22"
+    },
+    {
+      "rank": 58,
+      "name": "Craig Gidney (Google Quantum AI)",
+      "affiliation": "Google Quantum AI",
+      "role": "Quantum cryptanalysis researcher",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 3,
+      "notable": true,
+      "summary": "Lead/co-author of arXiv 2603.28846 (Mar 2026, Babbush, Gidney et al.), the foundational Google Quantum AI paper that compressed the secp256k1 ECDLP qubit threshold to under 500,000 physical qubits — projecting a ~9 minute crack window for any pubkey-revealed BTC. v2 (Apr 15) further distinguished fast-clock (superconducting/photonic) from slow-clock (ion-trap/neutral-atom) architectures, quantifying on-spend mempool attacks within mempool-confirmation latency. Gidney's separately published 10% CRQC-by-2030 probability estimate is the explicit anchor cited in Neha Narula's score-update post; Babbush threshold figures (1,200 logical qubits / under 90M Toffoli gates) are the de facto reference standard now adopted across the bitcoin-dev PQ thread, BIP-360/BIP-361 drafts, and Bitcoin Optech newsletters.",
+      "key_source": "https://arxiv.org/abs/2603.28846",
+      "sources": [
+        "https://arxiv.org/abs/2603.28846",
+        "https://arxiv.org/pdf/2603.28846",
+        "https://research.google/people/craig-gidney/",
+        "https://nehanarula.org/2026/04/03/bitcoin-and-quantum-computing.html"
+      ],
+      "last_verified": "2026-04-27"
     }
   ]
 }
