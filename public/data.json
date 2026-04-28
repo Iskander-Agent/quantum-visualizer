@@ -5,14 +5,14 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.7",
+    "version": "2.8",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 58,
+    "total_assessed": 62,
     "ranked": 50,
-    "notable_additions": 8,
+    "notable_additions": 12,
     "score_distribution": {
-      "5_urgent": 6,
-      "4_proactive": 8,
+      "5_urgent": 7,
+      "4_proactive": 11,
       "3_cautious": 9,
       "2_dismissive": 8,
       "1_no_known_view": 27
@@ -37,7 +37,7 @@
     "critical_context": "Google Quantum AI (March 31, 2026): <500k physical qubits break ECDSA-256 in ~9 min — inside Bitcoin's block time. 20x easier than 2019 estimates. ~37% of BTC supply in quantum-vulnerable P2PK addresses. Zero public upgrade roadmap. Zero top developer response within 48 hours of the Google paper. BIP-360 merged but no activation timeline. Other major protocols (Ethereum, Solana) have published quantum migration plans. Bitcoin has not.",
     "key_insight": "Bitcoin is sleepwalking into a quantum crisis. Google's March 31, 2026 paper showed <500k physical qubits could break ECDSA-256 in ~9 minutes — a 20x reduction from prior estimates, inside a single block time. ~37% of Bitcoin's supply sits in addresses with exposed public keys. Yet 62% of the top 50 most influential protocol developers have no public quantum position. The dismissive camp outnumbers the urgent camp nearly 3-to-1. No current Core maintainer scores above a 2. Quiet building by the score-4 cluster (Wuille, Nick, Ruffing, Shikhelman) is necessary but insufficient — Bitcoin soft forks require public debate, community consensus, and political will. None of that is happening. BIP-360 exists but has no activation timeline. Bitcoin is worst-in-class among major protocols on quantum preparedness.",
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
-    "quantum_readiness_index": 0.5345,
+    "quantum_readiness_index": 0.5645,
     "update_history": [
       {
         "date": "2026-04-04",
@@ -157,9 +157,37 @@
         "change": "new entry — score 5 (Urgent), pq_work_volume 2 — Q-Day Prize winner, 15-bit ECC break on IBM quantum hardware",
         "pr": "#24",
         "contributor": "Iskander-Agent"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Craig Gidney (Google Quantum AI)",
+        "change": "new entry — score 5 (Urgent), pq_work_volume 3; foundational secp256k1 ECDLP paper (arXiv 2603.28846)",
+        "pr": "#25",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Oriole (IACR ePrint 2026/793)",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 1; lattice threshold-sig scheme for BIP-360 P2QRH multi-sig",
+        "pr": "#26",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Chevignard, Fouque, Schrottenloher (INRIA)",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 1; EUROCRYPT 2026 44% qubit reduction for ECDLP",
+        "pr": "#27",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Delfosse et al. (IonQ — Walking Cat)",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 1; trapped-ion FT blueprint, second hardware path",
+        "pr": "#28",
+        "contributor": "@lekanbams"
       }
     ],
-    "last_updated": "2026-04-27",
+    "last_updated": "2026-04-28",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1020,6 +1048,74 @@
         "https://www.prnewswire.com/news-releases/project-eleven-awards-1-btc-q-day-prize-for-largest-quantum-attack-on-elliptic-curve-cryptography-to-date-302752439.html"
       ],
       "last_verified": "2026-04-26"
+    },
+    {
+      "rank": 59,
+      "name": "Craig Gidney (Google Quantum AI)",
+      "affiliation": "Google Quantum AI",
+      "role": "Quantum cryptanalysis researcher",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 3,
+      "notable": true,
+      "summary": "Lead/co-author of arXiv 2603.28846 (Mar 2026, Babbush, Gidney et al.), the foundational Google Quantum AI paper that compressed the secp256k1 ECDLP qubit threshold to under 500,000 physical qubits — projecting a ~9 minute crack window for any pubkey-revealed BTC. v2 (Apr 15) further distinguished fast-clock (superconducting/photonic) from slow-clock (ion-trap/neutral-atom) architectures, quantifying on-spend mempool attacks within mempool-confirmation latency. Gidney's separately published 10% CRQC-by-2030 probability estimate is the explicit anchor cited in Neha Narula's score-update post; Babbush threshold figures (1,200 logical qubits / under 90M Toffoli gates) are the de facto reference standard now adopted across the bitcoin-dev PQ thread, BIP-360/BIP-361 drafts, and Bitcoin Optech newsletters.",
+      "key_source": "https://arxiv.org/abs/2603.28846",
+      "sources": [
+        "https://arxiv.org/abs/2603.28846",
+        "https://arxiv.org/pdf/2603.28846",
+        "https://research.google/people/craig-gidney/",
+        "https://nehanarula.org/2026/04/03/bitcoin-and-quantum-computing.html"
+      ],
+      "last_verified": "2026-04-27"
+    },
+    {
+      "rank": 60,
+      "name": "Oriole (IACR ePrint 2026/793)",
+      "affiliation": "Academic — lattice cryptography research",
+      "role": "Post-quantum threshold signature scheme",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "IACR ePrint 2026/793 'Oriole — Adaptively Secure Partially Non-Interactive Threshold Signatures from Lattices' proposes a lattice-based threshold signature scheme with adaptive security under standard LWE assumptions, skipping FROST's trusted-setup overhead. Partial non-interactivity (NI pre-signing, interactive finalize) maps directly to Bitcoin multi-sig flows where co-signers go online at different times. Positioned as a deployment-ready candidate for BIP-360 P2QRH multi-sig design space, which currently lacks a lattice-tier threshold scheme. Tradeoff: ~1.5x signature size vs Falcon, making witness-bloat the primary deployment concern.",
+      "key_source": "https://eprint.iacr.org/2026/793",
+      "sources": [
+        "https://eprint.iacr.org/2026/793",
+        "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
+        "https://bitcoinops.org/en/newsletters/2026/04/24/"
+      ],
+      "last_verified": "2026-04-26"
+    },
+    {
+      "rank": 61,
+      "name": "Chevignard, Fouque, Schrottenloher (INRIA)",
+      "affiliation": "INRIA — quantum cryptanalysis research",
+      "role": "Academic quantum cryptanalysts",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "EUROCRYPT 2026 paper (IACR ePrint 2026/280) 'Reducing the Number of Qubits in Quantum ECDLP' presents prime-curve ECDLP quantum circuits achieving 3.12n + o(n) qubits versus 5n + o(n) prior (Häner 2020). For P-256: 1,193 logical qubits — a 44% reduction. Techniques: Legendre symbol compression (avoids modular inversion), residue number system lifting to integers, spooky pebbling for space-efficient uncomputation. P-256 now breaks with 42% fewer logical qubits than RSA-3072. Bitcoin's secp256k1 shares the same 256-bit curve structure, inheriting the compression directly — this measurably tightens the Babbush et al. <500K physical-qubit ECDLP-256 budget.",
+      "key_source": "https://eprint.iacr.org/2026/280",
+      "sources": [
+        "https://eprint.iacr.org/2026/280",
+        "https://arxiv.org/abs/2603.28846"
+      ],
+      "last_verified": "2026-04-26"
+    },
+    {
+      "rank": 62,
+      "name": "Delfosse et al. (IonQ — Walking Cat)",
+      "affiliation": "IonQ — trapped-ion fault-tolerant computing research",
+      "role": "Quantum hardware architects",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "arXiv 2604.19481 (Delfosse et al., 21 Apr 2026) — 'Walking Cat Architecture': a full-stack trapped-ion fault-tolerant blueprint with compiler, QEC protocols, micro-architecture, fast decoder, and end-to-end simulations. The [[102,22,9]] LDPC code packs 22 logical qubits into 102 physical qubits — a 2,514-physical system yields 110 logical qubits running at ~1M T-gates per day. Distinct hardware path from neutral-atom (QuEra) and IBM heavy-hex; provides a second viable trajectory toward the Babbush et al. <500K-physical-qubit / <1,200-logical-qubit secp256k1 ECDLP break threshold. Delfosse (ex-Microsoft, now IonQ) leads a complete arch+code+decoder design targeting hundreds of logical qubits running millions of logical gates on near-term ion traps.",
+      "key_source": "https://arxiv.org/abs/2604.19481",
+      "sources": [
+        "https://arxiv.org/abs/2604.19481",
+        "https://www.ionq.com/blog/blueprint-for-fault-tolerant-trapped-ion-quantum-computing-the-walking-cat-architecture",
+        "https://thequantuminsider.com/2026/04/23/ionq-researchers-say-walking-cat-blueprint-could-lead-to-machines-that-run-millions-of-gates-on-thousands-of-qubits/"
+      ],
+      "last_verified": "2026-04-25"
     }
   ]
 }
