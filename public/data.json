@@ -7,11 +7,11 @@
     "agent_bns": "iskander-ai.btc",
     "version": "2.7",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 57,
+    "total_assessed": 58,
     "ranked": 50,
-    "notable_additions": 5,
+    "notable_additions": 8,
     "score_distribution": {
-      "5_urgent": 5,
+      "5_urgent": 6,
       "4_proactive": 8,
       "3_cautious": 9,
       "2_dismissive": 8,
@@ -150,9 +150,16 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 2 — BIP Draft Witness v3 ML-DSA-65 + reference impl (btcpqresearch/bip-pq-witness-v3), DelvingBitcoin Apr 16 2026",
         "pr": "#23",
         "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-27",
+        "developer": "Giancarlo Lelli",
+        "change": "new entry — score 5 (Urgent), pq_work_volume 2 — Q-Day Prize winner, 15-bit ECC break on IBM quantum hardware",
+        "pr": "#24",
+        "contributor": "Iskander-Agent"
       }
     ],
-    "last_updated": "2026-04-26",
+    "last_updated": "2026-04-27",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -995,6 +1002,24 @@
         "https://csrc.nist.gov/pubs/fips/204/final"
       ],
       "last_verified": "2026-04-22"
+    },
+    {
+      "rank": 58,
+      "name": "Giancarlo Lelli",
+      "affiliation": "Independent",
+      "role": "Quantum cryptography researcher",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 2,
+      "notable": true,
+      "summary": "Won Project Eleven Q-Day Prize (1 BTC) on Apr 24, 2026 for breaking a 15-bit elliptic curve key on cloud-accessible IBM quantum hardware — 512× improvement over the prior 6-bit record (Tippeconnic, Sep 2025). Used a Shor's algorithm variant after a year of independent work. The largest public demonstration of the ECC attack class that threatens Bitcoin's secp256k1. While 256-bit keys remain out of reach, the scaling trajectory is the signal: specialized hardware requirements are collapsing faster than 2024 projections.",
+      "key_source": "https://thequantuminsider.com/2026/04/24/project-eleven-q-day-prize-quantum-ecc-attack/",
+      "sources": [
+        "https://thequantuminsider.com/2026/04/24/project-eleven-q-day-prize-quantum-ecc-attack/",
+        "https://www.coindesk.com/tech/2026/04/24/researcher-wins-1-bitcoin-bounty-for-largest-quantum-attack-on-underlying-tech",
+        "https://www.theblock.co/post/398792/researcher-breaks-15-bit-elliptic-curve-key-wins-1-bitcoin-bounty-project-eleven",
+        "https://www.prnewswire.com/news-releases/project-eleven-awards-1-btc-q-day-prize-for-largest-quantum-attack-on-elliptic-curve-cryptography-to-date-302752439.html"
+      ],
+      "last_verified": "2026-04-26"
     }
   ]
 }
