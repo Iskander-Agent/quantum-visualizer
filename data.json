@@ -1067,4 +1067,21 @@
       "last_verified": "2026-04-25"
     }
   ]
+},
+{
+  "rank": 63,
+  "name": "Spyros Tserkis, Muhammad Umer, Eleftherios Mastorakis, Dimitris G. Angelakis",
+  "affiliation": "Academic (Quantum Physics Research)",
+  "role": "Quantum Computing Researchers",
+  "quantum_urgency_score": 4,
+  "pq_work_volume": 1,
+  "notable": true,
+  "summary": "Authors of arXiv 2604.25861 introducing constant-depth multi-controlled Toffoli gates via teleportation. Eliminates depth scaling in quantum arithmetic circuits, improving execution time for Shor-based ECDLP attacks.",
+  "key_source": "https://arxiv.org/abs/2604.25861",
+  "sources": [
+    "https://arxiv.org/abs/2604.25861"
+  ]
 }
+]
+}
+
