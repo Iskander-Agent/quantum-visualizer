@@ -5,14 +5,14 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.8",
+    "version": "2.9",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 62,
+    "total_assessed": 63,
     "ranked": 50,
-    "notable_additions": 12,
+    "notable_additions": 13,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 11,
+      "4_proactive": 12,
       "3_cautious": 9,
       "2_dismissive": 8,
       "1_no_known_view": 27
@@ -37,7 +37,7 @@
     "critical_context": "Google Quantum AI (March 31, 2026): <500k physical qubits break ECDSA-256 in ~9 min — inside Bitcoin's block time. 20x easier than 2019 estimates. ~37% of BTC supply in quantum-vulnerable P2PK addresses. Zero public upgrade roadmap. Zero top developer response within 48 hours of the Google paper. BIP-360 merged but no activation timeline. Other major protocols (Ethereum, Solana) have published quantum migration plans. Bitcoin has not.",
     "key_insight": "Bitcoin is sleepwalking into a quantum crisis. Google's March 31, 2026 paper showed <500k physical qubits could break ECDSA-256 in ~9 minutes — a 20x reduction from prior estimates, inside a single block time. ~37% of Bitcoin's supply sits in addresses with exposed public keys. Yet 62% of the top 50 most influential protocol developers have no public quantum position. The dismissive camp outnumbers the urgent camp nearly 3-to-1. No current Core maintainer scores above a 2. Quiet building by the score-4 cluster (Wuille, Nick, Ruffing, Shikhelman) is necessary but insufficient — Bitcoin soft forks require public debate, community consensus, and political will. None of that is happening. BIP-360 exists but has no activation timeline. Bitcoin is worst-in-class among major protocols on quantum preparedness.",
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
-    "quantum_readiness_index": 0.5645,
+    "quantum_readiness_index": 0.5714,
     "update_history": [
       {
         "date": "2026-04-04",
@@ -185,6 +185,13 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 1; trapped-ion FT blueprint, second hardware path",
         "pr": "#28",
         "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-05-01",
+        "developer": "Postquant Labs / Quip Network",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 2; no-fork WOTS+ Bitcoin wallet/SDK launched on Arch Network",
+        "pr": "#32",
+        "contributor": "@Nuval999"
       }
     ],
     "last_updated": "2026-04-28",
@@ -1116,6 +1123,23 @@
         "https://thequantuminsider.com/2026/04/23/ionq-researchers-say-walking-cat-blueprint-could-lead-to-machines-that-run-millions-of-gates-on-thousands-of-qubits/"
       ],
       "last_verified": "2026-04-25"
+    },
+    {
+      "rank": 63,
+      "name": "Postquant Labs / Quip Network",
+      "affiliation": "Postquant Labs — Arch Network Bitcoin smart-contract layer",
+      "role": "Post-quantum Bitcoin wallet and SDK team",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 2,
+      "notable": true,
+      "summary": "Launched Quip.Network on Apr 28, 2026: a no-soft-fork Bitcoin wallet and SDK that layers WOTS+ (Winternitz One-Time Signature) hash-based signatures through Arch Network's Bitcoin-native smart-contract layer while retaining existing ECDSA custody. CTO Dr. Richard Carback frames the design as reducing the exposed-public-key quantum attack window to roughly two Bitcoin blocks (~20 minutes), aimed at P2PK and reused-P2PKH UTXOs while BIP-360/361 ratification remains unresolved. This is not a consensus upgrade and still depends on adoption/Arch integration, but it is a concrete deployable mitigation path with live developer tooling rather than another roadmap-only proposal.",
+      "key_source": "https://www.coindesk.com/tech/2026/04/28/emb-2-pm-utc-new-wallet-offers-way-to-tackle-bitcoin-s-quantum-risk-without-a-fork",
+      "sources": [
+        "https://www.coindesk.com/tech/2026/04/28/emb-2-pm-utc-new-wallet-offers-way-to-tackle-bitcoin-s-quantum-risk-without-a-fork",
+        "https://www.prnewswire.com/news-releases/quipnetwork-unveils-quantum-resistant-bitcoin-protection-as-coin-freeze-debate-divides-developers-302755947.html",
+        "https://arxiv.org/abs/2603.28846"
+      ],
+      "last_verified": "2026-05-01"
     }
   ]
 }
