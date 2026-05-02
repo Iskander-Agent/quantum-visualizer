@@ -190,11 +190,11 @@
         "date": "2026-05-01",
         "developer": "Postquant Labs / Quip Network",
         "change": "new entry — score 4 (Proactive), pq_work_volume 2; no-fork WOTS+ Bitcoin wallet/SDK launched on Arch Network",
-        "pr": "#32",
+        "pr": "#33",
         "contributor": "@Nuval999"
       }
     ],
-    "last_updated": "2026-04-28",
+    "last_updated": "2026-05-01",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
