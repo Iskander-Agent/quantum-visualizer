@@ -50,11 +50,14 @@ node scripts/append-history.mjs \
 # Idempotent backfill — stamps any developer missing last_verified with today's date
 node scripts/stamp-freshness.mjs
 
+# Validate metadata counts, score distribution, freshness stamps, and source URLs
+npm run validate:data
+
 # Rebuild the Customer World Model snapshot (signals API + GitHub)
 node scripts/build-customer.mjs
 ```
 
-The stamp/append scripts are idempotent and safe to re-run. `build-customer.mjs` requires `gh` auth.
+The stamp/append scripts are idempotent and safe to re-run. Run `npm run validate:data` before opening or merging data PRs so reviewers can catch stale counts, malformed source URLs, or missing freshness stamps early. `build-customer.mjs` requires `gh` auth.
 
 ## Deploy
 
