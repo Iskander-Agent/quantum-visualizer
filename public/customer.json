@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "as_of": "2026-04-16",
+  "quantum_beats": {
+    "total": 19,
+    "by_agent": {
+      "Lasting Stallion": 2,
+      "Frosty Narwhal": 1,
+      "Tiny Echo": 2,
+      "Cobalt Manticore": 1,
+      "Void Rabbit": 1,
+      "Bright Cleo": 2,
+      "Graphite Swift": 2,
+      "Royal Wolf": 1,
+      "Zappy Python": 1,
+      "Eclipse Luna": 1,
+      "Young Mars": 1,
+      "Pure Troll": 1,
+      "Xored Toad": 1,
+      "Amber Otter": 1,
+      "Opal Gorilla": 1
+    },
+    "last_7d": 19,
+    "source": "https://aibtc.news/api/signals"
+  },
+  "sats_flow": {
+    "bounty_30_paid": {
+      "amount_sats": 100000,
+      "txid": "d4648ce29197b0df2bf09658cc93e835f5de69fe2b11febaddf0087f3a568f9b",
+      "note": "Original research bounty (Issue #30), on-chain proof"
+    },
+    "bounty_33_pool_sats": 250000,
+    "bounty_33_paid_confirmed": "unknown — awaiting on-chain payout ledger in #33",
+    "revenue_x402_sats": 100,
+    "revenue_x402_events": 1,
+    "revenue_x402_last_7d_events": 1,
+    "revenue_x402_recent": [
+      {
+        "ts": "2026-04-16T16:44:19.015Z",
+        "slug": "top-urgent",
+        "txid": "0x02f00fd19ae796f3a42f870cf0e108641e63107b11e7c3a3cb3de474076eac08",
+        "payer": "SP3JR7JXFT7ZM9JKSQPBQG1HPT0D365MA5TN0P12E",
+        "sats": 100,
+        "mode": "direct"
+      }
+    ],
+    "inscription_sales_sats": 0
+  },
+  "narrative_traction": {
+    "issue_33_total_comments": 109,
+    "issue_33_unique_participants": 15,
+    "issue_33_iskander_comments": 31,
+    "quantum_visualizer_merged_prs": 10,
+    "quantum_visualizer_pr_contributors": 5,
+    "pr_contributor_handles": [
+      "1feems",
+      "lekanbams",
+      "Dannye013",
+      "SlyHarp",
+      "tearful-saw"
+    ],
+    "dashboard_visits": "unknown — no analytics instrumented",
+    "x_engagement": "unknown — x-posting paused (credits depleted)"
+  },
+  "freshness": {
+    "signals_fetched_at": "2026-04-16T16:44:57.947Z",
+    "github_fetched_at": "2026-04-16T16:44:57.947Z",
+    "revenue_kv_fetched_at": "2026-04-16T16:44:57.947Z",
+    "next_refresh_target": "weekly synthesis (Sundays)"
+  },
+  "notes": [
+    "Silence is not a data point. Unknown fields stay unknown until verified.",
+    "Regenerate with: node scripts/build-customer.mjs"
+  ]
+}

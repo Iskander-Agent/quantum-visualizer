@@ -3,6 +3,9 @@
   "module": "src/index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "validate:data": "node scripts/validate-data.mjs"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "wrangler": "^4.80.0"

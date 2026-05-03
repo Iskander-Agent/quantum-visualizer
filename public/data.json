@@ -5,16 +5,16 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "2.6",
+    "version": "2.8",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 55,
+    "total_assessed": 62,
     "ranked": 50,
-    "notable_additions": 5,
+    "notable_additions": 12,
     "score_distribution": {
-      "5_urgent": 5,
-      "4_proactive": 7,
+      "5_urgent": 7,
+      "4_proactive": 11,
       "3_cautious": 9,
-      "2_dismissive": 7,
+      "2_dismissive": 8,
       "1_no_known_view": 27
     },
     "scoring_rubric": {
@@ -37,36 +37,158 @@
     "critical_context": "Google Quantum AI (March 31, 2026): <500k physical qubits break ECDSA-256 in ~9 min — inside Bitcoin's block time. 20x easier than 2019 estimates. ~37% of BTC supply in quantum-vulnerable P2PK addresses. Zero public upgrade roadmap. Zero top developer response within 48 hours of the Google paper. BIP-360 merged but no activation timeline. Other major protocols (Ethereum, Solana) have published quantum migration plans. Bitcoin has not.",
     "key_insight": "Bitcoin is sleepwalking into a quantum crisis. Google's March 31, 2026 paper showed <500k physical qubits could break ECDSA-256 in ~9 minutes — a 20x reduction from prior estimates, inside a single block time. ~37% of Bitcoin's supply sits in addresses with exposed public keys. Yet 62% of the top 50 most influential protocol developers have no public quantum position. The dismissive camp outnumbers the urgent camp nearly 3-to-1. No current Core maintainer scores above a 2. Quiet building by the score-4 cluster (Wuille, Nick, Ruffing, Shikhelman) is necessary but insufficient — Bitcoin soft forks require public debate, community consensus, and political will. None of that is happening. BIP-360 exists but has no activation timeline. Bitcoin is worst-in-class among major protocols on quantum preparedness.",
     "x_source_note": "X/Twitter post dates confirmed via snowflake ID decoding. Content verified manually by agent; automated verification blocked by platform access restrictions.",
-    "quantum_readiness_index": {
-      "voiced_urgency": {
-        "score": 67,
-        "description": "Among the 28 developers who have made verifiable public statements, the weighted average urgency is 67/100. Based only on statements we have actually seen or heard — no inference from silence.",
-        "voices_count": 28,
-        "weighted_sum": 94,
-        "max_possible": 140
+    "quantum_readiness_index": 0.5645,
+    "update_history": [
+      {
+        "date": "2026-04-04",
+        "developer": "Neha Narula",
+        "change": "score 1→3 (MIT DCI quantum research posture)",
+        "pr": null,
+        "contributor": "Iskander-Agent"
       },
-      "coverage": {
-        "score": 51,
-        "description": "28 of 55 assessed developers (51%) have a verifiable public position on quantum risk. The other 27 have said nothing. Silence is not a data point — it is a gap.",
-        "voiced": 28,
-        "silent": 27,
-        "total": 55
+      {
+        "date": "2026-04-04",
+        "developer": "baseline seed",
+        "change": "50 ranked developers imported from Issue #30 research",
+        "pr": null,
+        "contributor": "Iskander-Agent"
       },
-      "composite_readiness": {
-        "score": 34,
-        "formula": "Voiced Urgency (67) multiplied by Coverage (51%) = 34/100. A high urgency score means nothing if almost nobody is talking. Both numbers must rise for Bitcoin to be quantum-ready.",
-        "interpretation": {
-          "0_20": "Asleep — negligible awareness or engagement",
-          "20_40": "Sleepwalking — a few voices, minimal collective action",
-          "40_60": "Awakening — broad debate beginning, early preparation",
-          "60_80": "Mobilizing — consensus forming, concrete roadmap emerging",
-          "80_100": "Ready — near-total agreement, activation imminent"
-        },
-        "current_level": "Sleepwalking"
+      {
+        "date": "2026-04-04",
+        "developer": "Mark Friedenbach",
+        "change": "score 1→3 — quantum risk position documented",
+        "pr": "#1",
+        "contributor": "@tearful-saw"
       },
-      "as_of": "2026-04-10",
-      "methodology_note": "Scores derived only from verifiable public statements (mailing list posts, academic papers, Bitcoin Improvement Proposals, X posts, conference talks, podcasts). No score is inferred from silence. Developers with no verifiable statement are excluded from the urgency calculation and counted only in the coverage metric."
-    }
+      {
+        "date": "2026-04-04",
+        "developer": "Karl-Johan Alm",
+        "change": "score 1→3 — quantum risk position documented",
+        "pr": "#1",
+        "contributor": "@tearful-saw"
+      },
+      {
+        "date": "2026-04-05",
+        "developer": "Adam Jonas",
+        "change": "quantum urgency score update",
+        "pr": "#4",
+        "contributor": "@Dannye013"
+      },
+      {
+        "date": "2026-04-05",
+        "developer": "0xB10C",
+        "change": "score remains 1 — documented null result April 2026",
+        "pr": "#3",
+        "contributor": "@SlyHarp"
+      },
+      {
+        "date": "2026-04-05",
+        "developer": "Matt Corallo",
+        "change": "score 3→4 — two-step PQ upgrade path advocacy",
+        "pr": "#5",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-06",
+        "developer": "Alex Gladstein",
+        "change": "score 1→3 — HRF quantum threat report + PQ research funding",
+        "pr": "#6",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-08",
+        "developer": "John Martinis",
+        "change": "added as notable addition — score 5 (Nobel 2025)",
+        "pr": "#9",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-09",
+        "developer": "Olaoluwa Osuntokun",
+        "change": "pq_work_volume 1→2 — PQ HD wallet rescue prototype",
+        "pr": "#11",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-09",
+        "developer": "Niklas Gögge",
+        "change": "entry update",
+        "pr": "#15",
+        "contributor": "@Dannye013"
+      },
+      {
+        "date": "2026-04-10",
+        "developer": "Adam Back",
+        "change": "score 2→3",
+        "pr": "#16",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-10",
+        "developer": "Avihu Levy",
+        "change": "added as notable — StarkWare QSB",
+        "pr": "#16",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-12",
+        "developer": "Clara Shikhelman",
+        "change": "sources + summary update",
+        "pr": "#19",
+        "contributor": "@1feems"
+      },
+      {
+        "date": "2026-04-19",
+        "developer": "Adam Gibson (waxwing / AdamISZ)",
+        "change": "new entry — score 2 (aware, dismissive of urgency-based action); JoinMarket creator; bitcoin-dev Algorithm Agility thread Apr 2026",
+        "pr": null,
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-22",
+        "developer": "Echelon Labs Research",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 2 — BIP Draft Witness v3 ML-DSA-65 + reference impl (btcpqresearch/bip-pq-witness-v3), DelvingBitcoin Apr 16 2026",
+        "pr": "#23",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-27",
+        "developer": "Giancarlo Lelli",
+        "change": "new entry — score 5 (Urgent), pq_work_volume 2 — Q-Day Prize winner, 15-bit ECC break on IBM quantum hardware",
+        "pr": "#24",
+        "contributor": "Iskander-Agent"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Craig Gidney (Google Quantum AI)",
+        "change": "new entry — score 5 (Urgent), pq_work_volume 3; foundational secp256k1 ECDLP paper (arXiv 2603.28846)",
+        "pr": "#25",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Oriole (IACR ePrint 2026/793)",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 1; lattice threshold-sig scheme for BIP-360 P2QRH multi-sig",
+        "pr": "#26",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Chevignard, Fouque, Schrottenloher (INRIA)",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 1; EUROCRYPT 2026 44% qubit reduction for ECDLP",
+        "pr": "#27",
+        "contributor": "@lekanbams"
+      },
+      {
+        "date": "2026-04-28",
+        "developer": "Delfosse et al. (IonQ — Walking Cat)",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 1; trapped-ion FT blueprint, second hardware path",
+        "pr": "#28",
+        "contributor": "@lekanbams"
+      }
+    ],
+    "last_updated": "2026-04-28",
+    "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
     {
@@ -83,7 +205,8 @@
         "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
         "https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki",
         "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 2,
@@ -95,7 +218,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; retired from Bitcoin development 2022",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 3,
@@ -109,7 +233,8 @@
       "key_source": "https://groups.google.com/g/bitcoindev/c/gOfL5ag_bDU/m/n41i8uXACgAJ",
       "sources": [
         "https://groups.google.com/g/bitcoindev/c/gOfL5ag_bDU/m/n41i8uXACgAJ"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 4,
@@ -123,7 +248,8 @@
       "key_source": null,
       "sources": [
         "https://www.dci.mit.edu/people"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 5,
@@ -135,7 +261,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; focused on build systems and release management",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 6,
@@ -147,7 +274,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; focused on wallet infrastructure",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 7,
@@ -165,7 +293,8 @@
         "https://x.com/n1ckler/status/2038695067754328095",
         "https://delvingbitcoin.org/t/shrincs",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 8,
@@ -179,7 +308,8 @@
       "key_source": "https://gnusha.org/pi/bitcoindev/ZjD-dMMGxoGNgzIg@camus/",
       "sources": [
         "https://gnusha.org/pi/bitcoindev/ZjD-dMMGxoGNgzIg@camus/"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 9,
@@ -193,7 +323,8 @@
       "key_source": "https://podcasts.apple.com/ug/podcast/id1569130932?i=1000665129605",
       "sources": [
         "https://podcasts.apple.com/ug/podcast/id1569130932?i=1000665129605"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 10,
@@ -205,7 +336,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; focused on multiprocess architecture",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 11,
@@ -217,7 +349,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; focused on libbitcoinkernel",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 12,
@@ -229,7 +362,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; focused on build system/GUI",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 13,
@@ -241,7 +375,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; focused on P2P relay and mempool",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 14,
@@ -253,7 +388,8 @@
       "notable": false,
       "summary": "No personal statements; org published quantum report (Shikhelman May 2025)",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 15,
@@ -267,7 +403,8 @@
       "key_source": "https://x.com/LukeDashjr/status/2001602642179408164",
       "sources": [
         "https://x.com/LukeDashjr/status/2001602642179408164"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 16,
@@ -281,7 +418,8 @@
       "key_source": "https://x.com/murchandamus/status/1989417359988462015",
       "sources": [
         "https://x.com/murchandamus/status/1989417359988462015"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 17,
@@ -297,7 +435,8 @@
         "https://cointelegraph.com/magazine/bitcoin-7-years-upgrade-post-quantum-bip-360-co-author/",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
         "https://github.com/bitcoin/bips/blob/master/bip-0347.mediawiki"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 18,
@@ -313,7 +452,8 @@
         "https://github.com/bitcoin/bips/pull/1670",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
         "https://delvingbitcoin.org/t/proposing-a-p2qrh-bip-towards-a-quantum-resistant-soft-fork/956"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 19,
@@ -327,7 +467,8 @@
       "key_source": "https://x.com/theinstagibbs/status/1995889077661430216",
       "sources": [
         "https://x.com/theinstagibbs/status/1995889077661430216"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 20,
@@ -339,7 +480,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; less active recently",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 21,
@@ -351,7 +493,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; less active recently",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 22,
@@ -366,7 +509,8 @@
       "sources": [
         "https://eprint.iacr.org/2025/1307",
         "https://gist.github.com/harding/bfd094ab488fd3932df59452e5ec753f"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 23,
@@ -380,7 +524,8 @@
       "key_source": "https://x.com/darosior/status/2002021021625225310",
       "sources": [
         "https://x.com/darosior/status/2002021021625225310"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 24,
@@ -392,7 +537,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; BIP editor",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 25,
@@ -404,7 +550,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk; BIP editor",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 26,
@@ -421,7 +568,8 @@
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
         "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
         "https://www.crypto-news-flash.com/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool/"
-      ]
+      ],
+      "last_verified": "2026-04-09"
     },
     {
       "rank": 27,
@@ -433,7 +581,8 @@
       "notable": false,
       "summary": "No quantum statements found across gnusha.org and diyhpl.us transcript archives",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 28,
@@ -445,7 +594,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 29,
@@ -457,7 +607,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 30,
@@ -469,7 +620,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 31,
@@ -481,7 +633,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 32,
@@ -493,7 +646,8 @@
       "notable": false,
       "summary": "Working on FROST (quantum-tangential) but no quantum position statements",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 33,
@@ -510,7 +664,8 @@
         "https://bitcoinops.org/en/newsletters/2025/06/06/",
         "https://bitcoinops.org/en/newsletters/2025/08/01/",
         "https://bitcoinops.org/en/newsletters/2026/02/06/"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 34,
@@ -526,7 +681,8 @@
         "https://bitcoinmagazine.com/print/the-core-issue-keeping-bitcoin-core-secure",
         "https://brink.dev/programs",
         "https://github.com/dergoegge/fuzzamoto"
-      ]
+      ],
+      "last_verified": "2026-04-09"
     },
     {
       "rank": 35,
@@ -538,7 +694,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 36,
@@ -553,7 +710,8 @@
       "sources": [
         "https://gnusha.org/pi/bitcoindev/aHuKIKqvCZl5rcEX@petertodd.org/",
         "https://groups.google.com/g/bitcoindev/c/uEaf4bj07rE"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 37,
@@ -567,7 +725,8 @@
       "key_source": "https://gnusha.org/pi/bitcoindev/87b4e402-39d8-46b0-8269-4f81fa501627n@googlegroups.com/",
       "sources": [
         "https://gnusha.org/pi/bitcoindev/87b4e402-39d8-46b0-8269-4f81fa501627n@googlegroups.com/"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 38,
@@ -582,7 +741,8 @@
       "sources": [
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
         "https://github.com/bitcoin/bips/pull/1670"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 39,
@@ -596,7 +756,8 @@
       "key_source": "https://gnusha.org/pi/bitcoindev/ED96C777-5BBD-4ACE-8821-A53FDE8FA128@sprovoost.nl/",
       "sources": [
         "https://gnusha.org/pi/bitcoindev/ED96C777-5BBD-4ACE-8821-A53FDE8FA128@sprovoost.nl/"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 40,
@@ -610,7 +771,8 @@
       "key_source": "https://chaincode.com/bitcoin-post-quantum.pdf",
       "sources": [
         "https://chaincode.com/bitcoin-post-quantum.pdf"
-      ]
+      ],
+      "last_verified": "2026-04-12"
     },
     {
       "rank": 41,
@@ -624,7 +786,8 @@
       "key_source": "https://hrf.org/latest/the-quantum-threat-to-bitcoin/",
       "sources": [
         "https://hrf.org/latest/the-quantum-threat-to-bitcoin/"
-      ]
+      ],
+      "last_verified": "2026-04-06"
     },
     {
       "rank": 42,
@@ -639,7 +802,8 @@
       "sources": [
         "https://www.galaxy.com/insights/research/bitcoin-quantum-computing-risk",
         "https://www.theblock.co/post/388969/coinshares-says-only-10200-btc-face-real-quantum-risk-pushing-back-on-overblown-estimates"
-      ]
+      ],
+      "last_verified": "2026-04-05"
     },
     {
       "rank": 43,
@@ -653,7 +817,8 @@
       "key_source": "https://nehanarula.org/2026/04/03/bitcoin-and-quantum-computing.html",
       "sources": [
         "https://nehanarula.org/2026/04/03/bitcoin-and-quantum-computing.html"
-      ]
+      ],
+      "last_verified": "2026-04-04"
     },
     {
       "rank": 44,
@@ -667,7 +832,8 @@
       "key_source": "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html",
       "sources": [
         "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html"
-      ]
+      ],
+      "last_verified": "2026-04-04"
     },
     {
       "rank": 45,
@@ -679,7 +845,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 46,
@@ -693,7 +860,8 @@
       "key_source": "https://freicoin.substack.com/p/why-im-against-taproot",
       "sources": [
         "https://freicoin.substack.com/p/why-im-against-taproot"
-      ]
+      ],
+      "last_verified": "2026-04-04"
     },
     {
       "rank": 47,
@@ -705,7 +873,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 48,
@@ -717,7 +886,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 49,
@@ -729,7 +899,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-05"
     },
     {
       "rank": 50,
@@ -741,7 +912,8 @@
       "notable": false,
       "summary": "No public statements on quantum risk",
       "key_source": null,
-      "sources": []
+      "sources": [],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 51,
@@ -756,7 +928,8 @@
       "sources": [
         "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/",
         "https://podcasts.apple.com/us/podcast/what-do-bitcoiners-do-about-quantum-with-matt-corallo/id1415720320?i=1000749245854"
-      ]
+      ],
+      "last_verified": "2026-04-05"
     },
     {
       "rank": 52,
@@ -772,7 +945,8 @@
         "https://x.com/adam3us/status/1989721899991986374",
         "https://www.coindesk.com/tech/2026/04/08/bitcoin-s-quantum-threat-is-distant-but-migration-clock-is-ticking-says-adam-back-says",
         "https://bitcoinmagazine.com/news/adam-back-says-quantum-threat-to-bitcoin"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 53,
@@ -787,7 +961,8 @@
       "sources": [
         "https://www.benzinga.com/crypto/cryptocurrency/26/04/51687930/nobel-physicist-warns-bitcoin-could-be-cracked-in-minutes-but-the-community-has-5-10-years-to-act",
         "https://thequantuminsider.com/2026/03/26/john-martinis-nobel-prize-winning-physicist-joins-white-house-science-and-technology-panel/"
-      ]
+      ],
+      "last_verified": "2026-04-08"
     },
     {
       "rank": 54,
@@ -802,7 +977,8 @@
       "sources": [
         "https://github.com/bitcoin/bips/pull/1895",
         "https://github.com/jlopp"
-      ]
+      ],
+      "last_verified": "2026-04-10"
     },
     {
       "rank": 55,
@@ -818,7 +994,128 @@
         "https://www.coindesk.com/markets/2026/04/10/quantum-safe-bitcoin-now-possible-without-a-soft-fork-but-costs-usd200-a-pop",
         "https://bitcoinmagazine.com/news/bitcoin-could-be-quantum-safe",
         "https://starkware.co/blog/bitcoins-quantum-proposal-features-starkware-co-author/"
-      ]
+      ],
+      "last_verified": "2026-04-10"
+    },
+    {
+      "rank": 57,
+      "name": "Adam Gibson (waxwing / AdamISZ)",
+      "affiliation": "Independent (JoinMarket)",
+      "role": "Bitcoin privacy researcher, cryptographer",
+      "quantum_urgency_score": 2,
+      "pq_work_volume": 1,
+      "notable": false,
+      "summary": "Opposes mandatory coin-freezing on principled grounds. In the Algorithm Agility bitcoin-dev thread (Apr 2026): ‘We won’t know for sure when the world shifts from outputs are safe to claimable by anyone.’ Argues Bitcoin’s value derives from immutable property rights — ‘if you locked a utxo with a certain ruleset in the past, that ruleset will still be active.’ Acknowledges quantum uncertainty but maintains principles outweigh safety-based arguments for coin freezing. Advocates opt-in PQ solutions (P2MR) only. Creator of JoinMarket, Bitcoin privacy researcher.",
+      "key_source": "https://groups.google.com/g/bitcoindev/c/7jkVS1K9WLo/m/wY6tgodKAQAJ",
+      "sources": [
+        "https://groups.google.com/g/bitcoindev/c/7jkVS1K9WLo/m/wY6tgodKAQAJ",
+        "https://github.com/AdamISZ"
+      ],
+      "last_verified": "2026-04-19"
+    },
+    {
+      "rank": 56,
+      "name": "Echelon Labs Research",
+      "affiliation": "Echelon Labs Research (btcpqresearch)",
+      "role": "Post-quantum research collective",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 2,
+      "notable": false,
+      "summary": "Published BIP Draft ‘Witness Version 3: ML-DSA-65 Post-Quantum Key-Path Spending’ on DelvingBitcoin on Apr 16, 2026, with a full working reference implementation (btcpqresearch/bip-pq-witness-v3) applying cleanly against bitcoin/bitcoin at commit c97ac44c. Proposes OP_3 + bech32m bc1r outputs, 5,261-byte witness stacks (3,309-byte sig + 1,952-byte pubkey), PQSighash tagged hash (epoch 1, ext_flag 3), SCRIPT_VERIFY_WITNESS_V3 flag, deployable as BIP 9 soft fork. Offered as a candidate PQ scheme for BIP-361 Phase B migration.",
+      "key_source": "https://delvingbitcoin.org/t/bip-draft-witness-version-3-ml-dsa-65-post-quantum-key-path-spending/2422",
+      "sources": [
+        "https://delvingbitcoin.org/t/bip-draft-witness-version-3-ml-dsa-65-post-quantum-key-path-spending/2422",
+        "https://github.com/btcpqresearch/bip-pq-witness-v3/blob/7bbfb294337201eb7273692110b1d137e07d3e40/bip-pq-witness-v3.mediawiki",
+        "https://github.com/btcpqresearch/bip-pq-witness-v3",
+        "https://csrc.nist.gov/pubs/fips/204/final"
+      ],
+      "last_verified": "2026-04-22"
+    },
+    {
+      "rank": 58,
+      "name": "Giancarlo Lelli",
+      "affiliation": "Independent",
+      "role": "Quantum cryptography researcher",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 2,
+      "notable": true,
+      "summary": "Won Project Eleven Q-Day Prize (1 BTC) on Apr 24, 2026 for breaking a 15-bit elliptic curve key on cloud-accessible IBM quantum hardware — 512× improvement over the prior 6-bit record (Tippeconnic, Sep 2025). Used a Shor's algorithm variant after a year of independent work. The largest public demonstration of the ECC attack class that threatens Bitcoin's secp256k1. While 256-bit keys remain out of reach, the scaling trajectory is the signal: specialized hardware requirements are collapsing faster than 2024 projections.",
+      "key_source": "https://thequantuminsider.com/2026/04/24/project-eleven-q-day-prize-quantum-ecc-attack/",
+      "sources": [
+        "https://thequantuminsider.com/2026/04/24/project-eleven-q-day-prize-quantum-ecc-attack/",
+        "https://www.coindesk.com/tech/2026/04/24/researcher-wins-1-bitcoin-bounty-for-largest-quantum-attack-on-underlying-tech",
+        "https://www.theblock.co/post/398792/researcher-breaks-15-bit-elliptic-curve-key-wins-1-bitcoin-bounty-project-eleven",
+        "https://www.prnewswire.com/news-releases/project-eleven-awards-1-btc-q-day-prize-for-largest-quantum-attack-on-elliptic-curve-cryptography-to-date-302752439.html"
+      ],
+      "last_verified": "2026-04-26"
+    },
+    {
+      "rank": 59,
+      "name": "Craig Gidney (Google Quantum AI)",
+      "affiliation": "Google Quantum AI",
+      "role": "Quantum cryptanalysis researcher",
+      "quantum_urgency_score": 5,
+      "pq_work_volume": 3,
+      "notable": true,
+      "summary": "Lead/co-author of arXiv 2603.28846 (Mar 2026, Babbush, Gidney et al.), the foundational Google Quantum AI paper that compressed the secp256k1 ECDLP qubit threshold to under 500,000 physical qubits — projecting a ~9 minute crack window for any pubkey-revealed BTC. v2 (Apr 15) further distinguished fast-clock (superconducting/photonic) from slow-clock (ion-trap/neutral-atom) architectures, quantifying on-spend mempool attacks within mempool-confirmation latency. Gidney's separately published 10% CRQC-by-2030 probability estimate is the explicit anchor cited in Neha Narula's score-update post; Babbush threshold figures (1,200 logical qubits / under 90M Toffoli gates) are the de facto reference standard now adopted across the bitcoin-dev PQ thread, BIP-360/BIP-361 drafts, and Bitcoin Optech newsletters.",
+      "key_source": "https://arxiv.org/abs/2603.28846",
+      "sources": [
+        "https://arxiv.org/abs/2603.28846",
+        "https://arxiv.org/pdf/2603.28846",
+        "https://research.google/people/craig-gidney/",
+        "https://nehanarula.org/2026/04/03/bitcoin-and-quantum-computing.html"
+      ],
+      "last_verified": "2026-04-27"
+    },
+    {
+      "rank": 60,
+      "name": "Oriole (IACR ePrint 2026/793)",
+      "affiliation": "Academic — lattice cryptography research",
+      "role": "Post-quantum threshold signature scheme",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "IACR ePrint 2026/793 'Oriole — Adaptively Secure Partially Non-Interactive Threshold Signatures from Lattices' proposes a lattice-based threshold signature scheme with adaptive security under standard LWE assumptions, skipping FROST's trusted-setup overhead. Partial non-interactivity (NI pre-signing, interactive finalize) maps directly to Bitcoin multi-sig flows where co-signers go online at different times. Positioned as a deployment-ready candidate for BIP-360 P2QRH multi-sig design space, which currently lacks a lattice-tier threshold scheme. Tradeoff: ~1.5x signature size vs Falcon, making witness-bloat the primary deployment concern.",
+      "key_source": "https://eprint.iacr.org/2026/793",
+      "sources": [
+        "https://eprint.iacr.org/2026/793",
+        "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
+        "https://bitcoinops.org/en/newsletters/2026/04/24/"
+      ],
+      "last_verified": "2026-04-26"
+    },
+    {
+      "rank": 61,
+      "name": "Chevignard, Fouque, Schrottenloher (INRIA)",
+      "affiliation": "INRIA — quantum cryptanalysis research",
+      "role": "Academic quantum cryptanalysts",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "EUROCRYPT 2026 paper (IACR ePrint 2026/280) 'Reducing the Number of Qubits in Quantum ECDLP' presents prime-curve ECDLP quantum circuits achieving 3.12n + o(n) qubits versus 5n + o(n) prior (Häner 2020). For P-256: 1,193 logical qubits — a 44% reduction. Techniques: Legendre symbol compression (avoids modular inversion), residue number system lifting to integers, spooky pebbling for space-efficient uncomputation. P-256 now breaks with 42% fewer logical qubits than RSA-3072. Bitcoin's secp256k1 shares the same 256-bit curve structure, inheriting the compression directly — this measurably tightens the Babbush et al. <500K physical-qubit ECDLP-256 budget.",
+      "key_source": "https://eprint.iacr.org/2026/280",
+      "sources": [
+        "https://eprint.iacr.org/2026/280",
+        "https://arxiv.org/abs/2603.28846"
+      ],
+      "last_verified": "2026-04-26"
+    },
+    {
+      "rank": 62,
+      "name": "Delfosse et al. (IonQ — Walking Cat)",
+      "affiliation": "IonQ — trapped-ion fault-tolerant computing research",
+      "role": "Quantum hardware architects",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "arXiv 2604.19481 (Delfosse et al., 21 Apr 2026) — 'Walking Cat Architecture': a full-stack trapped-ion fault-tolerant blueprint with compiler, QEC protocols, micro-architecture, fast decoder, and end-to-end simulations. The [[102,22,9]] LDPC code packs 22 logical qubits into 102 physical qubits — a 2,514-physical system yields 110 logical qubits running at ~1M T-gates per day. Distinct hardware path from neutral-atom (QuEra) and IBM heavy-hex; provides a second viable trajectory toward the Babbush et al. <500K-physical-qubit / <1,200-logical-qubit secp256k1 ECDLP break threshold. Delfosse (ex-Microsoft, now IonQ) leads a complete arch+code+decoder design targeting hundreds of logical qubits running millions of logical gates on near-term ion traps.",
+      "key_source": "https://arxiv.org/abs/2604.19481",
+      "sources": [
+        "https://arxiv.org/abs/2604.19481",
+        "https://www.ionq.com/blog/blueprint-for-fault-tolerant-trapped-ion-quantum-computing-the-walking-cat-architecture",
+        "https://thequantuminsider.com/2026/04/23/ionq-researchers-say-walking-cat-blueprint-could-lead-to-machines-that-run-millions-of-gates-on-thousands-of-qubits/"
+      ],
+      "last_verified": "2026-04-25"
     }
   ]
 }
