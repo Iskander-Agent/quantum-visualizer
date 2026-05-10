@@ -213,9 +213,16 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 1; LightStim DEM automation for QEC (arXiv 2604.21472)",
         "pr": "#31",
         "contributor": "@1feems"
+      },
+      {
+        "date": "2026-05-10",
+        "developer": "Ava Chow / Jon Atack",
+        "change": "documented BIP-360 review/contribution evidence; scores unchanged, pq_work_volume 0 to 1",
+        "pr": null,
+        "contributor": "@vegita"
       }
     ],
-    "last_updated": "2026-05-05",
+    "last_updated": "2026-05-10",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -293,11 +300,15 @@
       "affiliation": "Blockstream",
       "role": "Maintainer",
       "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk; focused on wallet infrastructure",
-      "key_source": null,
-      "sources": []
+      "summary": "No public quantum urgency position found, but directly engaged with BIP-360 witness-version design on bitcoin-dev and is credited in BIP-360 acknowledgements as a reviewer/contributor. Technical review posture, not activation advocacy.",
+      "key_source": "https://gnusha.org/pi/bitcoindev/d5b68a7e-0eea-465d-95f5-9cb6557697d8%40achow101.com/",
+      "sources": [
+        "https://gnusha.org/pi/bitcoindev/d5b68a7e-0eea-465d-95f5-9cb6557697d8%40achow101.com/",
+        "https://bips.dev/360/"
+      ],
+      "last_verified": "2026-05-10"
     },
     {
       "rank": 7,
@@ -538,11 +549,15 @@
       "affiliation": "Independent",
       "role": "BIP Editor, Core Contributor",
       "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk; BIP editor",
-      "key_source": null,
-      "sources": []
+      "summary": "No public quantum urgency position found, but BIP-360 credits him among reviewers/contributors. Treat as documented technical review involvement, not public advocacy for an urgent PQ upgrade.",
+      "key_source": "https://bips.dev/360/",
+      "sources": [
+        "https://bips.dev/360/",
+        "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki"
+      ],
+      "last_verified": "2026-05-10"
     },
     {
       "rank": 25,
