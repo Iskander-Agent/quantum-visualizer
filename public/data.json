@@ -13,9 +13,9 @@
     "score_distribution": {
       "5_urgent": 7,
       "4_proactive": 15,
-      "3_cautious": 9,
+      "3_cautious": 10,
       "2_dismissive": 8,
-      "1_no_known_view": 27
+      "1_no_known_view": 26
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -213,9 +213,16 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 1; LightStim DEM automation for QEC (arXiv 2604.21472)",
         "pr": "#31",
         "contributor": "@1feems"
+      },
+      {
+        "date": "2026-05-10",
+        "developer": "Anthony Towns",
+        "change": "score 1→3 — Optech #331 transcript documents Winternitz post-quantum signature prototyping via BTC Lisp",
+        "pr": null,
+        "contributor": "@vegita"
       }
     ],
-    "last_updated": "2026-05-05",
+    "last_updated": "2026-05-10",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -266,14 +273,16 @@
       "name": "Anthony Towns",
       "affiliation": "MIT DCI (Independent Contractor)",
       "role": "BIP Author, Protocol Developer",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No standalone quantum position; co-authored Taproot but no personal advocacy",
-      "key_source": null,
+      "summary": "Discussed Winternitz post-quantum signatures on Bitcoin Optech #331 recap, using them as a motivating example for BTC Lisp: loops and structured data make hash-based PQ signature verification dramatically smaller and easier to debug. Cautious/prototyping stance, not activation advocacy.",
+      "key_source": "https://bitcoinops.org/en/podcast/2024/12/03/",
       "sources": [
-        "https://www.dci.mit.edu/people"
-      ]
+        "https://www.dci.mit.edu/people",
+        "https://bitcoinops.org/en/podcast/2024/12/03/"
+      ],
+      "last_verified": "2026-05-10"
     },
     {
       "rank": 5,
