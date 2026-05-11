@@ -7,12 +7,12 @@
     "agent_bns": "iskander-ai.btc",
     "version": "3.0",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 66,
+    "total_assessed": 67,
     "ranked": 50,
-    "notable_additions": 16,
+    "notable_additions": 17,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 15,
+      "4_proactive": 16,
       "3_cautious": 9,
       "2_dismissive": 8,
       "1_no_known_view": 27
@@ -213,9 +213,16 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 1; LightStim DEM automation for QEC (arXiv 2604.21472)",
         "pr": "#31",
         "contributor": "@1feems"
+      },
+      {
+        "date": "2026-05-11",
+        "developer": "Jonas Schnelli",
+        "change": "new notable entry — score 4; May 2026 bitcoin-dev post endorses classical-then-PQ BIP-324 upgrade using ML-KEM inside v2 transport",
+        "pr": null,
+        "contributor": "@coreymull"
       }
     ],
-    "last_updated": "2026-05-05",
+    "last_updated": "2026-05-11",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1155,6 +1162,22 @@
         "https://arxiv.org/abs/2604.21472"
       ],
       "last_verified": "2026-05-05"
+    },
+    {
+      "rank": 67,
+      "name": "Jonas Schnelli",
+      "affiliation": "Independent; former Bitcoin Core maintainer",
+      "role": "BIP-324 author, former Bitcoin Core maintainer",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "BIP-324 co-author who endorsed a concrete post-quantum upgrade path for Bitcoin P2P transport on the May 2026 bitcoin-dev BIP-324 PQ thread. Favors classical-then-PQ upgrade: run ML-KEM inside the established v2 ChaCha20Poly1305 channel to preserve byte-0 pseudorandomness while adding hybrid security against harvest-now-decrypt-later quantum adversaries. Cautious about traffic-shape leakage and DoS details, but points to OpenSSH mlkem768x25519-sha256 as a practical combiner reference.",
+      "key_source": "https://gnusha.org/pi/bitcoindev/547ADFCA-2BB1-4E16-A26A-C92262EBBD84@gmail.com/",
+      "sources": [
+        "https://gnusha.org/pi/bitcoindev/547ADFCA-2BB1-4E16-A26A-C92262EBBD84@gmail.com/",
+        "https://bips.dev/324/"
+      ],
+      "last_verified": "2026-05-11"
     }
   ]
 }
