@@ -234,6 +234,33 @@ tbody tr.is-active td{background:var(--bg-hover)}
 .drawer-source:hover{border-color:var(--border-light);color:var(--text);background:var(--bg-hover)}
 .drawer-source-num{flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--text-muted);font-size:0.7rem;padding-top:0.05rem;min-width:1.25rem}
 .drawer-empty{font-size:0.8rem;color:var(--text-muted);font-style:italic}
+
+/* Compare view */
+.compare-panel{display:none;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:1rem;overflow:hidden}
+.compare-panel.is-open{display:block}
+.compare-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.85rem 1rem;border-bottom:1px solid var(--border)}
+.compare-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)}
+.compare-count{font-size:0.8rem;color:var(--text-secondary);margin-top:0.15rem}
+.compare-clear,.compare-btn,.drawer-compare-btn,.compare-remove{border:1px solid var(--border);background:var(--bg);color:var(--text-secondary);border-radius:var(--radius-xs);font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;cursor:pointer;transition:all 0.15s}
+.compare-clear{padding:0.45rem 0.75rem;flex-shrink:0}
+.compare-clear:hover,.compare-btn:hover,.drawer-compare-btn:hover,.compare-remove:hover{border-color:var(--border-light);background:var(--bg-hover);color:var(--text)}
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border)}
+.compare-card{background:var(--bg-elevated);padding:1rem;min-height:260px;display:flex;flex-direction:column;gap:0.75rem}
+.compare-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem}
+.compare-name{font-size:0.95rem;font-weight:700;line-height:1.25}
+.compare-meta{font-size:0.7rem;color:var(--text-muted);line-height:1.5;margin-top:0.25rem}
+.compare-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-xs);overflow:hidden}
+.compare-stat{background:var(--bg);padding:0.55rem;text-align:center}
+.compare-stat-value{font-family:'JetBrains Mono',monospace;font-size:0.9rem;font-weight:800}
+.compare-stat-label{font-size:0.55rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.15rem}
+.compare-summary{font-size:0.78rem;color:var(--text-secondary);line-height:1.55;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.compare-source{font-size:0.75rem;color:var(--accent);text-decoration:none;margin-top:auto;font-weight:600;word-break:break-all}
+.compare-source:hover{text-decoration:underline}
+.compare-remove{padding:0.3rem 0.5rem;line-height:1}
+.compare-btn{padding:0.35rem 0.55rem;white-space:nowrap}
+.compare-btn.is-selected,.drawer-compare-btn.is-selected{background:rgba(247,147,26,0.12);border-color:rgba(247,147,26,0.35);color:var(--accent)}
+.drawer-compare-btn{padding:0.5rem 0.75rem;width:100%;margin-bottom:1.25rem}
+@media(max-width:640px){.compare-head{align-items:flex-start;flex-direction:column}.compare-clear{width:100%}.compare-grid{grid-template-columns:1fr}.compare-card{min-height:auto}}
 </style>
 </head>
 <body>
@@ -333,6 +360,16 @@ tbody tr.is-active td{background:var(--bg-hover)}
 <span class="affil-caret">&#x25BE;</span>
 </div>
 </div>
+<div class="compare-panel" id="compare-panel" aria-live="polite">
+<div class="compare-head">
+<div>
+<div class="compare-label">Compare View</div>
+<div class="compare-count" id="compare-count"></div>
+</div>
+<button type="button" class="compare-clear" id="compare-clear">Clear</button>
+</div>
+<div class="compare-grid" id="compare-grid"></div>
+</div>
 <div class="table-wrap">
 <div class="table-scroll">
 <table>
@@ -344,6 +381,7 @@ tbody tr.is-active td{background:var(--bg-hover)}
 <th style="width:3.5rem">Score</th>
 <th>Position Summary</th>
 <th style="width:4rem">Source</th>
+<th style="width:5.5rem">Compare</th>
 </tr>
 </thead>
 <tbody id="table-body"></tbody>
@@ -438,6 +476,7 @@ tbody tr.is-active td{background:var(--bg-hover)}
 </div>
 <div class="drawer-body">
 <div class="drawer-row" id="drawer-score-row"></div>
+<button type="button" class="drawer-compare-btn" id="drawer-compare-btn" aria-pressed="false">Add to compare</button>
 <div class="drawer-section">
 <div class="drawer-section-label">Position Summary</div>
 <div class="drawer-summary" id="drawer-summary"></div>
@@ -460,11 +499,45 @@ const dist=data.metadata.score_distribution;
 const total=data.metadata.total_assessed;
 const qri=data.metadata.quantum_readiness_index;
 
+function levelForScore(value){
+if(value<20)return 'Asleep';
+if(value<40)return 'Sleepwalking';
+if(value<60)return 'Awakening';
+if(value<80)return 'Mobilizing';
+return 'Ready';
+}
+
+function normalizeReadiness(raw){
+if(raw&&typeof raw==='object'&&raw.composite_readiness&&raw.voiced_urgency&&raw.coverage)return raw;
+const silent=dist['1_no_known_view']||0;
+const voicedCount=Math.max(0,total-silent);
+const weighted=(dist['5_urgent']||0)*5+(dist['4_proactive']||0)*4+(dist['3_cautious']||0)*3+(dist['2_dismissive']||0)*2;
+const voicedScore=voicedCount?Math.round(weighted/(voicedCount*5)*100):0;
+const coverageScore=total?Math.round(voicedCount/total*100):0;
+let compositeScore=Math.round(voicedScore*coverageScore/100);
+if(typeof raw==='number'&&Number.isFinite(raw)){
+compositeScore=Math.round(raw<=1?raw*100:raw);
+}
+const currentLevel=levelForScore(compositeScore);
+return {
+composite_readiness:{
+score:compositeScore,
+current_level:currentLevel,
+formula:typeof raw==='number'
+?'Index loaded from metadata. Voiced urgency and coverage panels are derived from the current score distribution.'
+:'Voiced urgency multiplied by coverage. Derived from the current score distribution because no structured index object was present.'
+},
+voiced_urgency:{score:voicedScore,voices_count:voicedCount},
+coverage:{score:coverageScore,silent,total}
+};
+}
+
 // Readiness Index
 const indexEl=document.getElementById('index-card');
-const comp=qri.composite_readiness;
-const voiced=qri.voiced_urgency;
-const coverage=qri.coverage;
+const normalizedQri=normalizeReadiness(qri);
+const comp=normalizedQri.composite_readiness;
+const voiced=normalizedQri.voiced_urgency;
+const coverage=normalizedQri.coverage;
 const score=comp.score;
 const circumference=2*Math.PI*65;
 const offset=circumference-(score/100)*circumference;
@@ -534,6 +607,8 @@ let activeScore='all';
 let activeAffiliation='all';
 let searchQuery='';
 let activeDevName=null;
+let drawerDev=null;
+const compareNames=new Set();
 
 // Affiliation dropdown — populate from data
 const affilSelect=document.getElementById('affil-select');
@@ -548,6 +623,58 @@ affilSelect.appendChild(opt);
 
 function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);}
 
+function selectedCompareDevs(){
+return Array.from(compareNames).map(name=>devs.find(d=>d.name===name)).filter(Boolean);
+}
+
+function toggleCompare(dev){
+if(compareNames.has(dev.name)){
+compareNames.delete(dev.name);
+}else{
+if(compareNames.size>=4)compareNames.delete(compareNames.values().next().value);
+compareNames.add(dev.name);
+}
+render();
+if(drawerDev&&drawerDev.name===dev.name)updateDrawerCompareButton();
+}
+
+function renderCompare(){
+const panel=document.getElementById('compare-panel');
+const grid=document.getElementById('compare-grid');
+const count=document.getElementById('compare-count');
+const selected=selectedCompareDevs();
+panel.classList.toggle('is-open',selected.length>0);
+count.textContent=selected.length?`${selected.length} selected; choose up to 4 developers for side-by-side review.`:'No developers selected.';
+grid.innerHTML=selected.map(dev=>{
+const rank=dev.notable?'+':dev.rank;
+const vol=dev.pq_work_volume||0;
+const source=dev.key_source?`<a class="compare-source" href="${escapeHtml(dev.key_source)}" target="_blank" rel="noopener">Open key source</a>`:'<span class="drawer-empty">No key source.</span>';
+return `<article class="compare-card">
+<div class="compare-card-head">
+<div>
+<div class="compare-name">${escapeHtml(dev.name)}</div>
+<div class="compare-meta">${escapeHtml(dev.affiliation||'Independent')}${dev.role?'<br>'+escapeHtml(dev.role):''}</div>
+</div>
+<button type="button" class="compare-remove" data-remove="${escapeHtml(dev.name)}" aria-label="Remove ${escapeHtml(dev.name)} from compare">&times;</button>
+</div>
+<div class="compare-stats">
+<div class="compare-stat"><div class="compare-stat-value">${rank}</div><div class="compare-stat-label">Rank</div></div>
+<div class="compare-stat"><div class="compare-stat-value"><span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span></div><div class="compare-stat-label">Score</div></div>
+<div class="compare-stat"><div class="compare-stat-value">${vol}</div><div class="compare-stat-label">PQ Work</div></div>
+</div>
+<div class="compare-summary">${escapeHtml(dev.summary||'No public quantum position identified.')}</div>
+${source}
+</article>`;
+}).join('');
+grid.querySelectorAll('[data-remove]').forEach(btn=>{
+btn.addEventListener('click',e=>{
+e.stopPropagation();
+compareNames.delete(btn.dataset.remove);
+render();
+});
+});
+}
+
 function render(){
 const tbody=document.getElementById('table-body');
 tbody.innerHTML='';
@@ -559,8 +686,9 @@ const textMatch=!q||dev.name.toLowerCase().includes(q)||(dev.affiliation||'').to
 return scoreMatch&&affilMatch&&textMatch;
 });
 document.getElementById('showing-count').textContent=`Showing ${filtered.length} of ${total}`;
+renderCompare();
 if(!filtered.length){
-tbody.innerHTML='<tr><td colspan="6" class="empty">No developers match your filters.</td></tr>';
+tbody.innerHTML='<tr><td colspan="7" class="empty">No developers match your filters.</td></tr>';
 return;
 }
 const frag=document.createDocumentFragment();
@@ -568,6 +696,7 @@ filtered.forEach(dev=>{
 const src=dev.key_source?`<a href="${escapeHtml(dev.key_source)}" class="source-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">View</a>`:'<span style="color:var(--text-muted)">--</span>';
 const notable=dev.notable?'<span class="notable-tag">notable</span>':'';
 const rank=dev.notable?'+':dev.rank;
+const selected=compareNames.has(dev.name);
 const tr=document.createElement('tr');
 if(activeDevName===dev.name)tr.classList.add('is-active');
 tr.innerHTML=`<td class="td-rank">${rank}</td>
@@ -575,7 +704,12 @@ tr.innerHTML=`<td class="td-rank">${rank}</td>
 <td class="td-affil">${escapeHtml(dev.affiliation)}</td>
 <td><span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span></td>
 <td class="td-summary">${escapeHtml(dev.summary||'No public quantum position identified.')}</td>
-<td>${src}</td>`;
+<td>${src}</td>
+<td><button type="button" class="compare-btn ${selected?'is-selected':''}" aria-pressed="${selected}">${selected?'Added':'Compare'}</button></td>`;
+tr.querySelector('.compare-btn').addEventListener('click',e=>{
+e.stopPropagation();
+toggleCompare(dev);
+});
 tr.addEventListener('click',()=>openDrawer(dev));
 frag.appendChild(tr);
 });
@@ -624,9 +758,19 @@ render();
 const drawer=document.getElementById('drawer');
 const drawerBackdrop=document.getElementById('drawer-backdrop');
 const drawerCloseBtn=document.getElementById('drawer-close');
+const drawerCompareBtn=document.getElementById('drawer-compare-btn');
 let lastFocused=null;
 
+function updateDrawerCompareButton(){
+if(!drawerDev)return;
+const selected=compareNames.has(drawerDev.name);
+drawerCompareBtn.textContent=selected?'Remove from compare':'Add to compare';
+drawerCompareBtn.classList.toggle('is-selected',selected);
+drawerCompareBtn.setAttribute('aria-pressed',String(selected));
+}
+
 function openDrawer(dev){
+drawerDev=dev;
 activeDevName=dev.name;
 const scoreLabelMap={5:'Urgent',4:'Proactive',3:'Cautious',2:'Dismissive',1:'No View'};
 document.getElementById('drawer-meta').textContent=dev.notable?'Notable Contributor':`Influence Rank #${dev.rank}`;
@@ -654,6 +798,7 @@ sourcesEl.innerHTML=sources.map((s,i)=>`<a class="drawer-source" href="${escapeH
 }else{
 sourcesEl.innerHTML='<div class="drawer-empty">No additional sources listed.</div>';
 }
+updateDrawerCompareButton();
 lastFocused=document.activeElement;
 drawer.classList.add('is-open');
 drawerBackdrop.classList.add('is-open');
@@ -667,6 +812,7 @@ render();
 
 function closeDrawer(){
 activeDevName=null;
+drawerDev=null;
 drawer.classList.remove('is-open');
 drawerBackdrop.classList.remove('is-open');
 drawer.setAttribute('aria-hidden','true');
@@ -677,6 +823,14 @@ render();
 }
 
 drawerCloseBtn.addEventListener('click',closeDrawer);
+drawerCompareBtn.addEventListener('click',()=>{
+if(drawerDev)toggleCompare(drawerDev);
+});
+document.getElementById('compare-clear').addEventListener('click',()=>{
+compareNames.clear();
+render();
+updateDrawerCompareButton();
+});
 drawerBackdrop.addEventListener('click',closeDrawer);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('is-open'))closeDrawer();});
 
