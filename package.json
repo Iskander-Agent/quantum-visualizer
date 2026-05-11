@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "validate:data": "node scripts/validate-data.mjs"
+    "validate:data": "node scripts/validate-data.mjs",
+    "check:frontend": "node scripts/check-frontend.mjs"
   },
   "devDependencies": {
     "@types/bun": "latest",

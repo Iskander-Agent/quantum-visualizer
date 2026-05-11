@@ -143,6 +143,28 @@ tr:hover td{background:var(--bg-elevated)}
 .method-title{font-size:0.9rem;font-weight:600;margin-bottom:0.5rem}
 .method-desc{font-size:0.8rem;color:var(--text-secondary);line-height:1.6}
 
+/* Freshness audit */
+.freshness-section{padding:2.5rem 0;border-top:1px solid var(--border)}
+.freshness-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
+.freshness-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.freshness-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:680px;line-height:1.6}
+.freshness-body{display:grid;grid-template-columns:1.1fr 1fr;gap:1px;background:var(--border)}
+.freshness-card{background:var(--bg-elevated);padding:1.25rem}
+.freshness-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1rem}
+.freshness-kpi{background:var(--bg);padding:0.9rem;text-align:center;min-width:0}
+.freshness-num{font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:800;letter-spacing:0}
+.freshness-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem}
+.freshness-list{display:flex;flex-direction:column;gap:0.55rem}
+.freshness-item{display:grid;grid-template-columns:6.4rem 1fr;gap:0.75rem;align-items:start;padding:0.65rem 0.75rem;border:1px solid var(--border);border-radius:var(--radius-xs);background:var(--bg);font-size:0.8rem}
+.freshness-date{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:0.72rem;white-space:nowrap;padding-top:0.1rem}
+.freshness-title{font-weight:600;margin-bottom:0.2rem}
+.freshness-change{color:var(--text-secondary);line-height:1.5}
+.freshness-muted{font-size:0.8rem;color:var(--text-muted);font-style:italic}
+.freshness-stale{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.7rem}
+.freshness-chip{display:inline-flex;align-items:center;gap:0.3rem;padding:0.3rem 0.5rem;border:1px solid var(--border);border-radius:100px;background:var(--bg);font-size:0.72rem;color:var(--text-secondary)}
+.freshness-chip span{font-family:'JetBrains Mono',monospace;color:var(--text-muted);font-size:0.68rem}
+@media(max-width:760px){.freshness-body{grid-template-columns:1fr}.freshness-kpis{grid-template-columns:1fr 1fr}.freshness-item{grid-template-columns:1fr}}
+
 /* API section */
 .api-section{padding:2rem 0;border-top:1px solid var(--border)}
 .api-card{display:flex;align-items:center;justify-content:space-between;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem;flex-wrap:wrap;gap:0.75rem}
@@ -353,6 +375,32 @@ tbody tr.is-active td{background:var(--bg-hover)}
 </div>
 </section>
 
+<!-- Freshness Audit -->
+<section class="freshness-section">
+<div class="container">
+<div class="freshness-panel" id="freshness-panel">
+<div class="freshness-head">
+<div>
+<h2 class="section-title">Source Freshness Audit</h2>
+<p class="freshness-sub">Operational view of the company world model: verification coverage, stale entries, and recent data changes. This makes the backlog inspectable without reading raw JSON.</p>
+</div>
+<span class="section-count" id="freshness-asof"></span>
+</div>
+<div class="freshness-body" id="freshness-body">
+<div class="freshness-card">
+<div class="freshness-kpis" id="freshness-kpis"></div>
+<div class="drawer-section-label">Stale Or Missing Verification</div>
+<div class="freshness-stale" id="freshness-stale-list"></div>
+</div>
+<div class="freshness-card">
+<div class="drawer-section-label">Recent Update History</div>
+<div class="freshness-list" id="freshness-updates"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- Methodology -->
 <section class="method-section">
 <div class="container">
@@ -502,6 +550,55 @@ indexEl.innerHTML=`
 // Key insight
 document.getElementById('key-insight').textContent=data.metadata.key_insight;
 document.getElementById('context').textContent=data.metadata.critical_context;
+
+function daysBetween(a,b){
+const ms=Date.parse(a+'T00:00:00Z');
+const ns=Date.parse(b+'T00:00:00Z');
+if(Number.isNaN(ms)||Number.isNaN(ns))return null;
+return Math.max(0,Math.round((ns-ms)/86400000));
+}
+
+function renderFreshnessAudit(){
+const asOf=data.metadata.last_updated||data.metadata.date||new Date().toISOString().slice(0,10);
+const verified=devs.filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d.last_verified||''));
+const stale=devs.filter(d=>{
+const age=daysBetween(d.last_verified,asOf);
+return age===null||age>30;
+}).sort((a,b)=>{
+const aa=daysBetween(a.last_verified,asOf);
+const bb=daysBetween(b.last_verified,asOf);
+return (bb??9999)-(aa??9999);
+});
+const sourced=devs.filter(d=>Array.isArray(d.sources)&&d.sources.length>0);
+const updates=Array.isArray(data.metadata.update_history)?data.metadata.update_history.slice().reverse().slice(0,6):[];
+const pct=n=>Math.round((n/Math.max(1,total))*100);
+document.getElementById('freshness-asof').textContent='As of '+asOf;
+document.getElementById('freshness-kpis').innerHTML=[
+{num:pct(verified.length)+'%',label:'verified'},
+{num:pct(sourced.length)+'%',label:'sourced'},
+{num:stale.length,label:'>30d stale'}
+].map(k=>`<div class="freshness-kpi"><div class="freshness-num">${k.num}</div><div class="freshness-label">${k.label}</div></div>`).join('');
+const staleEl=document.getElementById('freshness-stale-list');
+staleEl.innerHTML=stale.length
+?stale.slice(0,12).map(d=>{
+const age=daysBetween(d.last_verified,asOf);
+const ageText=age===null?'missing':age+'d';
+return `<button type="button" class="freshness-chip" data-dev="${escapeHtml(d.name)}">${escapeHtml(d.name)} <span>${escapeHtml(ageText)}</span></button>`;
+}).join('')
+:'<div class="freshness-muted">No entries older than 30 days.</div>';
+staleEl.querySelectorAll('.freshness-chip').forEach(btn=>{
+btn.addEventListener('click',()=>{
+const dev=devs.find(d=>d.name===btn.dataset.dev);
+if(dev)openDrawer(dev);
+});
+});
+const updatesEl=document.getElementById('freshness-updates');
+updatesEl.innerHTML=updates.length
+?updates.map(u=>`<div class="freshness-item"><div class="freshness-date">${escapeHtml(u.date||'unknown')}</div><div><div class="freshness-title">${escapeHtml(u.developer||'World model')}</div><div class="freshness-change">${escapeHtml(u.change||'Update recorded.')}${u.pr?' · '+escapeHtml(u.pr):''}${u.contributor?' · '+escapeHtml(u.contributor):''}</div></div></div>`).join('')
+:'<div class="freshness-muted">No update history recorded yet.</div>';
+}
+
+renderFreshnessAudit();
 
 // Stats
 const statsEl=document.getElementById('stats');
