@@ -7,13 +7,13 @@
     "agent_bns": "iskander-ai.btc",
     "version": "3.0",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 66,
+    "total_assessed": 67,
     "ranked": 50,
-    "notable_additions": 16,
+    "notable_additions": 17,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 15,
-      "3_cautious": 9,
+      "4_proactive": 17,
+      "3_cautious": 8,
       "2_dismissive": 8,
       "1_no_known_view": 27
     },
@@ -213,9 +213,23 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 1; LightStim DEM automation for QEC (arXiv 2604.21472)",
         "pr": "#31",
         "contributor": "@1feems"
+      },
+      {
+        "date": "2026-05-11",
+        "developer": "Han Luo et al.",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 1; space-efficient ECDLP circuit lowers 256-bit prime-field estimate to 1,333 logical qubits (arXiv 2604.02311)",
+        "pr": null,
+        "contributor": "@NoeFabris"
+      },
+      {
+        "date": "2026-05-11",
+        "developer": "Olaoluwa Osuntokun",
+        "change": "score 3→4 — May 2026 bitcoin-dev post proposes immediate post-quantum BIP-324 transport upgrade path using ML-KEM/hybrid KEM designs",
+        "pr": null,
+        "contributor": "@NoeFabris"
       }
     ],
-    "last_updated": "2026-05-05",
+    "last_updated": "2026-05-11",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -564,17 +578,21 @@
       "name": "Olaoluwa Osuntokun",
       "affiliation": "Lightning Labs (CTO)",
       "role": "BIP Editor, Lightning Lead",
-      "quantum_urgency_score": 3,
-      "pq_work_volume": 2,
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 3,
       "notable": false,
-      "summary": "Engaged with PQ HD wallet derivation on bitcoin-dev (Dec 2025): DilithiumRK, Falcon, SPHINCS+. On Apr 8, 2026 posted zk-STARK proof of BIP-32 seed knowledge enabling BIP-86 Taproot wallet recovery to bitcoin-dev mailing list. Proof generation ~55s on consumer MacBook, verification <2s, ~1.7 MB proof size (per CoinDesk). First executable code for post-quantum Taproot wallet recovery without exposing the seed. Research-engaged, building working tools, not advocating for urgency.",
-      "key_source": "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
+      "summary": "Escalated from research-engaged to proactive in May 2026 bitcoin-dev discussion by proposing a post-quantum path for BIP-324 transport encryption. Argues Bitcoin P2P transport is also quantum-vulnerable because BIP-324 uses ECDH, describes harvest-now-decrypt-later risk for encrypted peer traffic, and calls PQ BIP-324 a lower-hanging target worth pursuing immediately. Explores pure ML-KEM, hybrid ECDH+ML-KEM, classical-then-PQ upgrade, and obfuscated KEM tradeoffs; follow-up rejects TLS 1.3 as a poor fit for Bitcoin Core dependency, secp256k1, authentication, and oblivious-handshake constraints.",
+      "key_source": "https://gnusha.org/pi/bitcoindev/CAO3Pvs9U3prZJiDs0Ns7LSA07R8hM-GQou_FcTZZz-JUQpUYHw@mail.gmail.com/",
       "sources": [
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
         "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
-        "https://www.crypto-news-flash.com/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool/"
-      ]
+        "https://www.crypto-news-flash.com/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool/",
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs9U3prZJiDs0Ns7LSA07R8hM-GQou_FcTZZz-JUQpUYHw@mail.gmail.com/",
+        "https://gnusha.org/pi/bitcoindev/CAO3Pvs8i=pLP30nRh_iyjSRJXne19wNezmQmo=JAk8+E4uJPhg@mail.gmail.com/",
+        "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki"
+      ],
+      "last_verified": "2026-05-11"
     },
     {
       "rank": 27,
@@ -1155,6 +1173,21 @@
         "https://arxiv.org/abs/2604.21472"
       ],
       "last_verified": "2026-05-05"
+    },
+    {
+      "rank": 67,
+      "name": "Han Luo, Ziyi Yang, Ziruo Wang, Yuexin Su, Tongyang Li",
+      "affiliation": "Academic (Quantum Cryptanalysis Research)",
+      "role": "Quantum ECDLP resource-estimation researchers",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "Authors of arXiv 2604.02311 introducing a space-efficient quantum algorithm for elliptic-curve discrete logarithms with concrete resource estimation. Their reversible modular-inversion construction reduces the 256-bit prime-field ECDLP logical-qubit estimate to 1,333, down from 2,124 in the prior low-width Haener et al. implementation. This is a direct Bitcoin-relevant secp256k1 pressure signal: it narrows the resource gap for Shor-class ECDLP attacks while keeping the discussion grounded in explicit circuit counts rather than generic quantum timelines.",
+      "key_source": "https://arxiv.org/abs/2604.02311",
+      "sources": [
+        "https://arxiv.org/abs/2604.02311"
+      ],
+      "last_verified": "2026-05-11"
     }
   ]
 }
