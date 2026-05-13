@@ -14,8 +14,8 @@
       "5_urgent": 7,
       "4_proactive": 19,
       "3_cautious": 8,
-      "2_dismissive": 8,
-      "1_no_known_view": 27
+      "2_dismissive": 9,
+      "1_no_known_view": 26
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -276,6 +276,13 @@
         "change": "new entry — score 4 (Proactive), pq_work_volume 1; neutral-atom Shor implementation path for P-256 ECDLP with ~26k physical qubits (arXiv 2603.28627) — rank 69",
         "pr": "#50",
         "contributor": "@1feems"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "Mike Schmidt",
+        "change": "score 1 to 2; Bitcoin Optech #393 documents proportional, research-aware quantum concern during P2MR/BIP360 discussion",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-14",
@@ -794,13 +801,15 @@
       "name": "Mike Schmidt",
       "affiliation": "Brink (co-founder)",
       "role": "Co-Founder & Executive Director",
-      "quantum_urgency_score": 1,
+      "quantum_urgency_score": 2,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": [],
-      "last_verified": "2026-04-10"
+      "summary": "In Bitcoin Optech Podcast #393, joined the P2MR/BIP360 quantum-resistance discussion and agreed with a proportional, research-aware stance: Bitcoin quantum concern should scale with visible quantum-computing progress rather than urgent rollout pressure.",
+      "key_source": "https://bitcoinops.org/en/podcast/2026/02/24/",
+      "sources": [
+        "https://bitcoinops.org/en/podcast/2026/02/24/"
+      ],
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 31,
