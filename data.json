@@ -7,12 +7,12 @@
     "agent_bns": "iskander-ai.btc",
     "version": "3.0",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 68,
+    "total_assessed": 69,
     "ranked": 50,
-    "notable_additions": 18,
+    "notable_additions": 19,
     "score_distribution": {
       "5_urgent": 7,
-"4_proactive": 18,
+"4_proactive": 19,
       "3_cautious": 8,
       "2_dismissive": 8,
       "1_no_known_view": 27
@@ -269,9 +269,16 @@
         "change": "score 3→4 — May 2026 bitcoin-dev post proposes immediate post-quantum BIP-324 transport upgrade path using ML-KEM/hybrid KEM designs",
         "pr": "#39",
         "contributor": "@NoeFabris"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "conduition",
+        "change": "new notable entry — score 4 (Proactive), pq_work_volume 2; BIP-361 technical review and merged rescue-protocol correction PR",
+        "pr": null,
+        "contributor": "@xoxoskeleton"
       }
     ],
-    "last_updated": "2026-05-11",
+    "last_updated": "2026-05-13",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1306,6 +1313,26 @@
         "https://arxiv.org/abs/2604.02311"
       ],
       "last_verified": "2026-05-11"
+    },
+    {
+      "rank": 69,
+      "name": "conduition",
+      "affiliation": "Independent pseudonymous cypherpunk",
+      "role": "Bitcoin developer and BIP-361 technical reviewer",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 2,
+      "notable": true,
+      "summary": "Pseudonymous Bitcoin developer who materially shaped the BIP-361 legacy-signature sunset discussion in April 2026. In review of PR #1895, conduition said the severe CRQC perspective is one they personally agree with, but argued consensus-level restrictions must preserve rescue paths for authentic owners rather than simply lock EC spends. Follow-up PR #2146 was merged with corrections clarifying that Phase B should tighten verification conditions while still allowing commit/reveal or STARK-based rescue protocols. Scores as proactive because the work advances concrete post-quantum migration mechanics while keeping activation and confiscation risk technically bounded.",
+      "key_source": "https://github.com/bitcoin/bips/pull/2146",
+      "sources": [
+        "https://github.com/bitcoin/bips/pull/1895#discussion_r3083313838",
+        "https://github.com/bitcoin/bips/pull/1895#discussion_r3083374901",
+        "https://github.com/bitcoin/bips/pull/1895#discussion_r3101174312",
+        "https://github.com/bitcoin/bips/pull/2146",
+        "https://github.com/bitcoin/bips/pull/2146#discussion_r3107148766",
+        "https://github.com/conduition"
+      ],
+      "last_verified": "2026-05-13"
     }
   ]
 }
