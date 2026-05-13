@@ -278,6 +278,48 @@
         "contributor": "@1feems"
       },
       {
+        "date": "2026-05-13",
+        "developer": "Wladimir J. van der Laan",
+        "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "Michael Ford",
+        "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "Hennadii Stepanov",
+        "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "Alex Morcos",
+        "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no personal quantum/PQC statements; score 1 confirmed",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "Eric Lombrozo",
+        "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "Johnson Lau",
+        "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
         "date": "2026-05-14",
         "developer": "Ava Chow",
         "change": "last_verified updated to 2026-05-14 — May 14 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103. No quantum/PQC statements found in 2026-05-10 to 2026-05-14 window. Score unchanged at 1.",
@@ -335,10 +377,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk; retired from Bitcoin development 2022",
+      "summary": "May 2026 sweep found no public quantum/PQC statements in Google Groups bitcoindev, Delving Bitcoin, or BIP-360 PR threads; retired from Bitcoin development in 2022.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 3,
@@ -378,10 +420,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk; focused on build systems and release management",
+      "summary": "May 2026 sweep found no public quantum/PQC statements in Google Groups bitcoindev, Delving Bitcoin, or BIP-360 PR threads; focus remains build systems and release management.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 6,
@@ -500,10 +542,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk; focused on build system/GUI",
+      "summary": "May 2026 sweep found no public quantum/PQC statements in Google Groups bitcoindev, Delving Bitcoin, or BIP-360 PR threads; focus remains build system/GUI.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 13,
@@ -535,10 +577,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No personal statements; org published quantum report (Shikhelman May 2025)",
+      "summary": "May 2026 sweep found no personal quantum/PQC statements in Google Groups bitcoindev, Delving Bitcoin, or BIP-360 PR threads; Chaincode published Shikhelman quantum report, but no personal stance located.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 15,
@@ -630,10 +672,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk; less active recently",
+      "summary": "May 2026 sweep found no public quantum/PQC statements in Google Groups bitcoindev, Delving Bitcoin, or BIP-360 PR threads; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 21,
@@ -643,10 +685,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk; less active recently",
+      "summary": "May 2026 sweep found no public quantum/PQC statements in Google Groups bitcoindev, Delving Bitcoin, or BIP-360 PR threads; less active recently.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 22,
