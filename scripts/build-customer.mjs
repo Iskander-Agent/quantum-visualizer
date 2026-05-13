@@ -1,14 +1,15 @@
 #!/usr/bin/env node
-// Build public/customer.json — Customer World Model snapshot.
-// Pulls from aibtc.news signals API (quantum-* beats), GitHub #33 comments via gh,
-// and the REVENUE_LOG KV namespace on Cloudflare for x402 paid-call events.
-// Fields we cannot verify are explicitly "unknown" — never fabricated.
+// Build public/customer.json - Customer World Model snapshot.
+// Pulls from aibtc.news signals API, GitHub #33 comments, quantum-visualizer PRs,
+// and the REVENUE_LOG KV namespace when Cloudflare credentials are available.
+// Fields we cannot verify are explicitly "unknown"; never fabricate missing state.
 import fs from "fs";
 import { execSync } from "child_process";
 
 const OUT = new URL("../public/customer.json", import.meta.url);
 const today = new Date().toISOString().slice(0, 10);
 const sevenDaysAgo = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
+const projectStart = "2026-04-04";
 
 const CF_ACCOUNT_ID = "6401c671eef455c629ee2f10cd6cdc61";
 const KV_NAMESPACE_ID = "570c38b0f3324aab8afb4b8be15c3479";
@@ -76,77 +77,106 @@ async function fetchRevenueLedger(existing) {
   }
 }
 
-function parseSats(body) {
-  const match = String(body || "").match(/([0-9][0-9,]*)\s*(?:sat|sats|satoshis)\b/i);
-  return match ? Number(match[1].replace(/,/g, "")) : null;
+function daysBetween(a, b) {
+  return Math.floor((Date.parse(`${b}T00:00:00Z`) - Date.parse(`${a}T00:00:00Z`)) / 86400000);
 }
 
-function parseBtcAddress(body) {
-  const match = String(body || "").match(/\bbc1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{20,90}\b/i);
-  return match ? match[0] : null;
+function addDays(date, days) {
+  const d = new Date(`${date}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
 }
 
-function parseTxid(body) {
-  const match = String(body || "").match(/\b[0-9a-f]{64}\b/i);
-  return match ? match[0] : null;
+function plural(n, word) {
+  return `${n} ${word}${n === 1 ? "" : "s"}`;
 }
 
-function parsePrNumber(body) {
-  const text = String(body || "");
-  const urlMatch = text.match(/quantum-visualizer\/pull\/(\d+)/i);
-  if (urlMatch) return Number(urlMatch[1]);
-  const prMatch = text.match(/\bPR\s*#(\d+)\b/i);
-  return prMatch ? Number(prMatch[1]) : null;
+function stateLabel(state) {
+  return String(state || "UNKNOWN").toLowerCase();
 }
 
-function inferPayoutState(body) {
-  const text = String(body || "").toLowerCase();
-  const negative = /not paid|no paid|no received transaction|pending|awaiting|zero transactions/.test(text);
-  if (!negative && /paid on-chain|payment sent|payout sent|txid|transaction id|on-chain proof/.test(text)) return "paid";
-  if (/(payment|payout) request ack/.test(text)) return "acked";
-  if (/payout request|payment request|requesting\s+\*{0,2}[0-9,]+\s*sats|payout route/.test(text)) return "requested";
-  return "tracked";
-}
-
-function makePayoutLedger({ comments, prsRaw }) {
-  const prsByNumber = new Map(prsRaw.map((p) => [Number(p.number), p]));
+function makeTeamWeek({ quantum, comments, prsRaw, weekNumber, weekStart, weekEnd }) {
   const rows = [];
-  for (const comment of comments) {
-    const body = comment.body || "";
-    const isPaymentComment = /(payout|payment)\s+(request|route|acked|sent|paid)|requesting\s+\*{0,2}[0-9,]+\s*sats|paid on-chain/i.test(body);
-    if (!isPaymentComment) continue;
-    if (!/(sats|bc1|quantum-visualizer\/pull|PR\s*#|txid)/i.test(body)) continue;
-    const prNumber = parsePrNumber(body);
-    const pr = prNumber ? prsByNumber.get(prNumber) : null;
-    const amountSats = parseSats(body);
-    const state = inferPayoutState(body);
+  const signalsThisWeek = quantum.filter((s) => (s.utcDate || s.timestamp || "").slice(0, 10) >= weekStart);
+  const beatsByAgent = new Map();
+  for (const signal of signalsThisWeek) {
+    const name = signal.displayName || "Unknown agent";
+    const entry = beatsByAgent.get(name) || { count: 0, accepted: 0, submitted: 0 };
+    entry.count += 1;
+    if (signal.status === "accepted") entry.accepted += 1;
+    if (signal.status === "submitted") entry.submitted += 1;
+    beatsByAgent.set(name, entry);
+  }
+  [...beatsByAgent.entries()]
+    .sort((a, b) => b[1].count - a[1].count || a[0].localeCompare(b[0]))
+    .slice(0, 8)
+    .forEach(([agent, counts]) => {
+      rows.push({
+        role: "Daily Beat Writer",
+        agent,
+        output: `${plural(counts.count, "quantum beat")} filed (${counts.accepted} accepted, ${counts.submitted} submitted)`,
+        status: counts.accepted ? "accepted" : "submitted",
+        source_url: "https://aibtc.news/api/signals?limit=500",
+      });
+    });
+
+  const prsThisWeek = prsRaw.filter((p) => [p.createdAt, p.updatedAt, p.mergedAt].some((v) => (v || "").slice(0, 10) >= weekStart));
+  const prsByAuthor = new Map();
+  for (const pr of prsThisWeek) {
+    const author = pr.author?.login || "unknown";
+    const list = prsByAuthor.get(author) || [];
+    list.push(pr);
+    prsByAuthor.set(author, list);
+  }
+  [...prsByAuthor.entries()]
+    .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+    .forEach(([agent, prs]) => {
+      const merged = prs.filter((p) => p.state === "MERGED").length;
+      const open = prs.filter((p) => p.state === "OPEN").length;
+      const closed = prs.filter((p) => p.state === "CLOSED").length;
+      const refs = prs.map((p) => `#${p.number} ${stateLabel(p.state)}`).join(", ");
+      rows.push({
+        role: "Visualizer Developer",
+        agent,
+        output: `${plural(prs.length, "dashboard PR")} this week: ${refs}`,
+        status: merged ? "merged" : open ? "open" : closed ? "closed" : "tracked",
+        source_url: prs[0]?.url || "https://github.com/Iskander-Agent/quantum-visualizer/pulls",
+      });
+    });
+
+  const commentsThisWeek = comments.filter((c) => (c.created_at || "").slice(0, 10) >= weekStart);
+  const driComments = commentsThisWeek.filter((c) => c.user?.login === "Iskander-Agent" && /DRI|daily|status|synthesis/i.test(c.body || ""));
+  const latestDri = driComments.at(-1);
+  rows.push({
+    role: "Directly Responsible Individual",
+    agent: "Iskander-Agent",
+    output: latestDri ? `${plural(driComments.length, "coordination update")} in #33` : "No DRI issue update detected this week",
+    status: latestDri ? "active" : "needs update",
+    source_url: latestDri?.html_url || "https://github.com/1btc-news/news-client/issues/33",
+  });
+
+  for (const handle of ["ThankNIXlater", "lekanbams"]) {
+    const pcComments = commentsThisWeek.filter((c) => c.user?.login === handle && /PC|review|clearance|verdict|merge/i.test(c.body || ""));
+    if (!pcComments.length) continue;
     rows.push({
-      author: comment.user?.login || "unknown",
-      created_at: comment.created_at,
-      comment_url: comment.html_url,
-      pr: prNumber ? `#${prNumber}` : null,
-      pr_state: pr?.state || "unknown",
-      amount_sats: amountSats,
-      btc_address: parseBtcAddress(body),
-      txid: parseTxid(body),
-      state,
-      note: state === "paid"
-        ? "Payment proof detected in issue #33 comment."
-        : "Not counted as paid until bounty-poster approval and on-chain/payment proof are visible.",
+      role: "Player Coach / Review",
+      agent: handle,
+      output: `${plural(pcComments.length, "review update")} in #33`,
+      status: "active",
+      source_url: pcComments.at(-1).html_url,
     });
   }
 
-  const requestedRows = rows.filter((r) => r.amount_sats && r.state !== "paid");
-  const paidRows = rows.filter((r) => r.amount_sats && r.state === "paid");
+  const tableRequest = [...comments].reverse().find((c) => /Team\s+[-\u2013\u2014]\s+Week|week[- ]?#[\s\S]*table|source of truth for the weeks|weekly stats/i.test(c.body || ""));
+
   return {
-    source_url: "https://github.com/1btc-news/news-client/issues/33",
-    extracted_at: new Date().toISOString(),
+    label: `Week ${weekNumber}`,
+    week_number: weekNumber,
+    week_start: weekStart,
+    week_end: weekEnd,
+    source_request_url: tableRequest?.html_url || null,
+    source_request_author: tableRequest?.user?.login || null,
     rows,
-    requested_sats: requestedRows.reduce((sum, r) => sum + r.amount_sats, 0),
-    confirmed_paid_sats: paidRows.reduce((sum, r) => sum + r.amount_sats, 0),
-    pending_requests: rows.filter((r) => r.state !== "paid").length,
-    paid_requests: rows.filter((r) => r.state === "paid").length,
-    verifier: "Issue #33 comments plus on-chain BTC transaction proof for each address/txid.",
   };
 }
 
@@ -167,13 +197,17 @@ const contributors = [...new Set(comments.map((c) => c.user.login))];
 const iskander_comments = comments.filter((c) => c.user.login === "Iskander-Agent").length;
 
 const prsRaw = JSON.parse(
-  gh("gh pr list --repo Iskander-Agent/quantum-visualizer --state all --limit 100 --json number,state,author,title,mergedAt")
+  gh("gh pr list --repo Iskander-Agent/quantum-visualizer --state all --limit 100 --json number,state,author,title,mergedAt,createdAt,updatedAt,url")
 );
 const merged = prsRaw.filter((p) => p.state === "MERGED");
 const pr_contributors = [...new Set(merged.map((p) => p.author.login))];
 
+const weekNumber = Math.max(1, Math.floor(daysBetween(projectStart, today) / 7) + 1);
+const weekStart = addDays(projectStart, (weekNumber - 1) * 7);
+const weekEnd = addDays(weekStart, 6);
+const teamWeek = makeTeamWeek({ quantum, comments, prsRaw, weekNumber, weekStart, weekEnd });
+
 const revenue = await fetchRevenueLedger(existingCustomer);
-const payoutLedger = makePayoutLedger({ comments, prsRaw });
 
 const customer = {
   schema_version: 3,
@@ -184,6 +218,7 @@ const customer = {
     last_7d,
     source: "https://aibtc.news/api/signals",
   },
+  team_week: teamWeek,
   sats_flow: {
     bounty_30_paid: {
       amount_sats: 100000,
@@ -191,8 +226,7 @@ const customer = {
       note: "Original research bounty (Issue #30), on-chain proof",
     },
     bounty_33_pool_sats: 250000,
-    bounty_33_paid_confirmed: payoutLedger.confirmed_paid_sats,
-    bounty_33_payout_ledger: payoutLedger,
+    bounty_33_paid_confirmed: "unknown - awaiting on-chain payout ledger in #33",
     revenue_x402_sats: revenue.totalSats,
     revenue_x402_events: revenue.totalEvents,
     revenue_x402_last_7d_events: revenue.last7dEvents,
@@ -206,8 +240,8 @@ const customer = {
     quantum_visualizer_merged_prs: merged.length,
     quantum_visualizer_pr_contributors: pr_contributors.length,
     pr_contributor_handles: pr_contributors,
-    dashboard_visits: "unknown — no analytics instrumented",
-    x_engagement: "unknown — x-posting paused (credits depleted)",
+    dashboard_visits: "unknown - no analytics instrumented",
+    x_engagement: "unknown - x-posting paused (credits depleted)",
   },
   freshness: {
     signals_fetched_at: new Date().toISOString(),
@@ -218,10 +252,9 @@ const customer = {
   notes: [
     "Silence is not a data point. Unknown fields stay unknown until verified.",
     "Regenerate with: node scripts/build-customer.mjs",
-    "bounty_33_payout_ledger is parsed from issue #33 comments. Pending requests are not counted as paid.",
     ...(revenue.note ? [revenue.note] : []),
   ],
 };
 
 fs.writeFileSync(OUT, JSON.stringify(customer, null, 2) + "\n");
-console.log(`wrote customer.json: ${quantum.length} beats, ${comments.length} comments, ${merged.length} merged PRs, ${revenue.totalEvents} x402 events (${revenue.totalSats} sats), ${payoutLedger.rows.length} payout rows`);
+console.log(`wrote customer.json: ${quantum.length} beats, ${comments.length} comments, ${merged.length} merged PRs, ${revenue.totalEvents} x402 events (${revenue.totalSats} sats)`);

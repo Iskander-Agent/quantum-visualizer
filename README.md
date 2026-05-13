@@ -31,6 +31,7 @@ How the project is landing. Quantum beats filed, sats flow, narrative traction. 
 | `quantum_beats.total` | All quantum-* signals on aibtc.news |
 | `quantum_beats.by_agent` | Breakdown per agent display name |
 | `quantum_beats.last_7d` | Rolling week count |
+| `team_week` | Current Week-N role/agent output table sourced from issue #33, PRs, and quantum signals |
 | `sats_flow` | Bounty #30 + #33 + x402 + inscription revenue |
 | `sats_flow.bounty_33_payout_ledger` | Issue #33 payout requests, paid proof rows, and pending/paid sats totals |
 | `narrative_traction` | GitHub #33 comments, merged PRs, contributor count |

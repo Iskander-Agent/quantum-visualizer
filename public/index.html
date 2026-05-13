@@ -78,44 +78,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .s2 .stat-num{color:var(--blue)}.s2 .stat-bar-fill{background:var(--blue)}
 .s1 .stat-num{color:var(--gray)}.s1 .stat-bar-fill{background:var(--gray)}
 
-/* Affiliation readiness */
-.affiliation-section{padding:2.5rem 0;border-bottom:1px solid var(--border)}
-.affiliation-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
-.affiliation-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.affiliation-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:720px;line-height:1.6}
-.affiliation-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
-.affiliation-metric{background:var(--bg);padding:1rem;text-align:center;min-width:0}
-.affiliation-num{font-family:'JetBrains Mono',monospace;font-size:1.35rem;font-weight:800;letter-spacing:0;color:var(--accent)}
-.affiliation-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem}
-.affiliation-table-wrap{padding:1.25rem;background:var(--bg-elevated);overflow-x:auto;-webkit-overflow-scrolling:touch}
-.affiliation-table{min-width:760px}
-.affiliation-table tbody tr{cursor:pointer}
-.affiliation-table tbody tr.is-active td{background:var(--bg-hover)}
-.affiliation-org{font-weight:700;white-space:nowrap}
-.affiliation-devs{color:var(--text-secondary);font-size:0.78rem;line-height:1.5;max-width:360px}
-.affiliation-score{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.95rem;white-space:nowrap}
-.affiliation-score.high{color:var(--red)}
-.affiliation-score.medium{color:var(--orange)}
-.affiliation-score.low{color:var(--blue)}
-.affiliation-score.none{color:var(--gray)}
-.affiliation-small{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--text-secondary);white-space:nowrap}
-@media(max-width:760px){
-  .affiliation-head{align-items:flex-start}
-  .affiliation-summary{grid-template-columns:1fr 1fr}
-  .affiliation-table-wrap{padding:0;background:var(--bg-elevated);overflow-x:visible}
-  .affiliation-table{min-width:0}
-  .affiliation-table thead{display:none}
-  .affiliation-table,.affiliation-table tbody,.affiliation-table tr,.affiliation-table td{display:block;width:100%}
-  .affiliation-table tbody tr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.65rem 0.75rem;padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
-  .affiliation-table tbody tr:last-child{border-bottom:none}
-  .affiliation-table tbody tr.is-active{background:var(--bg-hover)}
-  .affiliation-table td{padding:0;border-bottom:0}
-  .affiliation-table td::before{content:attr(data-label);display:block;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.18rem}
-  .affiliation-table td:first-child,.affiliation-table td:last-child{grid-column:1/-1}
-  .affiliation-org{white-space:normal}
-  .affiliation-devs{max-width:none}
-}
-
 /* Chart section */
 .chart-section{padding:2.5rem 0}
 .chart-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
@@ -207,26 +169,27 @@ tr:hover td{background:var(--bg-elevated)}
 .freshness-chip span{font-family:'JetBrains Mono',monospace;color:var(--text-muted);font-size:0.68rem}
 @media(max-width:760px){.freshness-body{grid-template-columns:1fr}.freshness-kpis{grid-template-columns:1fr 1fr}.freshness-item{grid-template-columns:1fr}}
 
-/* Payout ledger */
-.payout-section{padding:2.5rem 0;border-top:1px solid var(--border)}
-.payout-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
-.payout-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.payout-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:720px;line-height:1.6}
-.payout-body{padding:1.25rem;background:var(--bg)}
-.payout-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1rem}
-.payout-kpi{background:var(--bg-elevated);padding:0.9rem;min-width:0}
-.payout-num{font-family:'JetBrains Mono',monospace;font-size:1.15rem;font-weight:800;letter-spacing:0}
-.payout-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem}
-.payout-table-wrap{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:auto;-webkit-overflow-scrolling:touch}
-.payout-table{min-width:760px;font-size:0.82rem}
-.payout-table td{background:var(--bg)}
-.payout-status{display:inline-flex;align-items:center;justify-content:center;min-width:4.5rem;padding:0.25rem 0.45rem;border:1px solid var(--border);border-radius:100px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);white-space:nowrap}
-.payout-status.status-paid{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.1);color:#22c55e}
-.payout-status.status-requested,.payout-status.status-acked{border-color:rgba(247,147,26,0.28);background:rgba(247,147,26,0.08);color:var(--accent)}
-.payout-link{font-size:0.75rem;color:var(--accent);text-decoration:none;font-weight:500;white-space:nowrap}
-.payout-link:hover{text-decoration:underline}
-.payout-mono{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-secondary);word-break:break-all}
-@media(max-width:760px){.payout-kpis{grid-template-columns:1fr}.payout-body{padding:0.75rem}}
+/* Team week */
+.team-section{padding:2.5rem 0;border-top:1px solid var(--border)}
+.team-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
+.team-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.team-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:680px;line-height:1.6}
+.team-body{padding:1.25rem;background:var(--bg)}
+.team-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1rem}
+.team-kpi{background:var(--bg-elevated);padding:0.9rem;min-width:0}
+.team-kpi-num{font-family:'JetBrains Mono',monospace;font-size:1.15rem;font-weight:800;letter-spacing:0}
+.team-kpi-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem}
+.team-table-wrap{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:auto;-webkit-overflow-scrolling:touch}
+.team-table{min-width:760px;font-size:0.82rem}
+.team-table td{background:var(--bg)}
+.team-output{color:var(--text-secondary);line-height:1.5}
+.team-status{display:inline-flex;align-items:center;justify-content:center;min-width:4.5rem;padding:0.25rem 0.45rem;border:1px solid var(--border);border-radius:100px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);white-space:nowrap}
+.team-status.status-accepted,.team-status.status-merged,.team-status.status-active{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.1);color:#22c55e}
+.team-status.status-open,.team-status.status-submitted{border-color:rgba(247,147,26,0.28);background:rgba(247,147,26,0.08);color:var(--accent)}
+.team-status.status-needs-update{border-color:rgba(220,38,38,0.25);background:var(--red-bg);color:var(--red)}
+.team-source{font-size:0.75rem;color:var(--accent);text-decoration:none;font-weight:500;white-space:nowrap}
+.team-source:hover{text-decoration:underline}
+@media(max-width:760px){.team-kpis{grid-template-columns:1fr}.team-body{padding:0.75rem}}
 
 /* API section */
 .api-section{padding:2rem 0;border-top:1px solid var(--border)}
@@ -354,37 +317,6 @@ tbody tr.is-active td{background:var(--bg-hover)}
 </div>
 </section>
 
-<!-- Affiliation Readiness -->
-<section class="affiliation-section">
-<div class="container">
-<div class="affiliation-panel" id="affiliation-panel">
-<div class="affiliation-head">
-<div>
-<h2 class="section-title">Affiliation Readiness Matrix</h2>
-<p class="affiliation-sub">Institution-level view of quantum urgency concentration, public-position coverage, and silent seats across the developer map.</p>
-</div>
-<span class="section-count" id="affiliation-count"></span>
-</div>
-<div class="affiliation-summary" id="affiliation-summary"></div>
-<div class="affiliation-table-wrap">
-<table class="affiliation-table">
-<thead>
-<tr>
-<th>Affiliation</th>
-<th style="width:5rem">Devs</th>
-<th style="width:6rem">Avg Score</th>
-<th style="width:5rem">Voiced</th>
-<th style="width:5rem">Silent</th>
-<th>Priority Names</th>
-</tr>
-</thead>
-<tbody id="affiliation-body"></tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-
 <!-- Chart -->
 <section class="chart-section">
 <div class="container">
@@ -500,32 +432,32 @@ tbody tr.is-active td{background:var(--bg-hover)}
 </div>
 </section>
 
-<!-- Payout Ledger -->
-<section class="payout-section">
+<!-- Team Week -->
+<section class="team-section">
 <div class="container">
-<div class="payout-panel" id="payout-panel">
-<div class="payout-head">
+<div class="team-panel" id="team-panel">
+<div class="team-head">
 <div>
-<h2 class="section-title">Payout Ledger</h2>
-<p class="payout-sub">Customer world model view of bounty #33 payout requests and payment proof. Pending requests stay separate from paid sats until an issue comment or on-chain proof verifies payment.</p>
+<h2 class="section-title">Team Week</h2>
+<p class="team-sub">Customer world model view of current-week output by role, agent, status, and source. This makes the weekly table inspectable without following the full issue thread.</p>
 </div>
-<span class="section-count" id="payout-asof"></span>
+<span class="section-count" id="team-week-range"></span>
 </div>
-<div class="payout-body">
-<div class="payout-kpis" id="payout-kpis"></div>
-<div class="payout-table-wrap">
-<table class="payout-table">
+<div class="team-body">
+<div class="team-kpis" id="team-kpis"></div>
+<div class="team-table-wrap">
+<table class="team-table">
 <thead>
 <tr>
-<th>Comment</th>
-<th>PR</th>
-<th>Amount</th>
+<th>Role</th>
+<th>Agent</th>
+<th>Week Output</th>
 <th>Status</th>
-<th>Verifier</th>
+<th>Source</th>
 </tr>
 </thead>
-<tbody id="payout-ledger-body">
-<tr><td colspan="5" class="empty">Loading payout ledger...</td></tr>
+<tbody id="team-week-body">
+<tr><td colspan="5" class="empty">Loading team week...</td></tr>
 </tbody>
 </table>
 </div>
@@ -765,54 +697,53 @@ updatesEl.innerHTML=updates.length
 
 renderFreshnessAudit();
 
-function formatSats(value){
-if(value==null||value===''||Number.isNaN(Number(value)))return '--';
-return Number(value).toLocaleString()+' sats';
+function statusClass(value){
+return 'status-'+String(value||'unknown').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 }
 
-function payoutStatusClass(value){
-return 'status-'+String(value||'tracked').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-}
-
-function renderPayoutLedger(customer){
-const body=document.getElementById('payout-ledger-body');
-const kpis=document.getElementById('payout-kpis');
-const asof=document.getElementById('payout-asof');
-if(!body||!kpis||!asof)return;
-const ledger=customer&&customer.sats_flow&&customer.sats_flow.bounty_33_payout_ledger;
-if(!ledger||!Array.isArray(ledger.rows)){
-asof.textContent='Customer model unavailable';
-kpis.innerHTML='<div class="payout-kpi"><div class="payout-num">--</div><div class="payout-label">requested</div></div><div class="payout-kpi"><div class="payout-num">--</div><div class="payout-label">paid</div></div><div class="payout-kpi"><div class="payout-num">--</div><div class="payout-label">pending</div></div>';
-body.innerHTML='<tr><td colspan="5" class="empty">Payout ledger data is not available in /customer.json.</td></tr>';
+function renderTeamWeek(customer){
+const body=document.getElementById('team-week-body');
+const range=document.getElementById('team-week-range');
+const kpis=document.getElementById('team-kpis');
+if(!body||!range||!kpis)return;
+const team=customer&&customer.team_week;
+if(!team||!Array.isArray(team.rows)){
+range.textContent='Customer model unavailable';
+kpis.innerHTML='<div class="team-kpi"><div class="team-kpi-num">--</div><div class="team-kpi-label">week</div></div><div class="team-kpi"><div class="team-kpi-num">--</div><div class="team-kpi-label">rows</div></div><div class="team-kpi"><div class="team-kpi-num">--</div><div class="team-kpi-label">source</div></div>';
+body.innerHTML='<tr><td colspan="5" class="empty">Team week data is not available in /customer.json.</td></tr>';
 return;
 }
-asof.textContent=ledger.extracted_at?'Extracted '+String(ledger.extracted_at).slice(0,10):'Issue #33';
+const rows=team.rows;
+const activeRows=rows.filter(r=>!String(r.status||'').match(/closed|needs update/i)).length;
+range.textContent=`${team.week_start||''} to ${team.week_end||''}`.trim();
+const requestSource=team.source_request_url
+?`<a class="team-source" href="${escapeHtml(team.source_request_url)}" target="_blank" rel="noopener">${escapeHtml(team.source_request_author||'request')}</a>`
+:'tracked';
 kpis.innerHTML=[
-{num:formatSats(ledger.requested_sats),label:'requested'},
-{num:formatSats(ledger.confirmed_paid_sats),label:'confirmed paid'},
-{num:ledger.pending_requests||0,label:'pending rows'}
-].map(k=>`<div class="payout-kpi"><div class="payout-num">${escapeHtml(k.num)}</div><div class="payout-label">${escapeHtml(k.label)}</div></div>`).join('');
-const rows=ledger.rows.slice().reverse();
+{num:team.label||('Week '+(team.week_number||'')),label:'current week'},
+{num:rows.length,label:'tracked rows'},
+{num:activeRows,label:'active rows'}
+].map(k=>`<div class="team-kpi"><div class="team-kpi-num">${escapeHtml(k.num)}</div><div class="team-kpi-label">${escapeHtml(k.label)}</div></div>`).join('');
 body.innerHTML=rows.length
-?rows.map(r=>{
-const verifier=r.txid
-?`<div class="payout-mono">${escapeHtml(r.txid)}</div>`
-:r.btc_address?`<div class="payout-mono">${escapeHtml(r.btc_address)}</div>`:'<span style="color:var(--text-muted)">awaiting proof</span>';
-return `<tr>
-<td><a class="payout-link" href="${escapeHtml(r.comment_url)}" target="_blank" rel="noopener">${escapeHtml(r.author||'comment')}</a><div class="td-affil">${escapeHtml((r.created_at||'').slice(0,10))}</div></td>
-<td>${r.pr?escapeHtml(r.pr):'<span style="color:var(--text-muted)">--</span>'}<div class="td-affil">${escapeHtml(r.pr_state||'unknown')}</div></td>
-<td class="td-name">${escapeHtml(formatSats(r.amount_sats))}</td>
-<td><span class="payout-status ${payoutStatusClass(r.state)}">${escapeHtml(r.state||'tracked')}</span></td>
-<td>${verifier}</td>
-</tr>`;
-}).join('')
-:'<tr><td colspan="5" class="empty">No payout request or payment proof comments found in issue #33.</td></tr>';
+?rows.map(r=>`<tr>
+<td class="td-affil">${escapeHtml(r.role)}</td>
+<td class="td-name">${escapeHtml(r.agent)}</td>
+<td class="team-output">${escapeHtml(r.output)}</td>
+<td><span class="team-status ${statusClass(r.status)}">${escapeHtml(r.status||'tracked')}</span></td>
+<td>${r.source_url?`<a class="team-source" href="${escapeHtml(r.source_url)}" target="_blank" rel="noopener">Open</a>`:'<span style="color:var(--text-muted)">--</span>'}</td>
+</tr>`).join('')
+:'<tr><td colspan="5" class="empty">No current-week team output recorded.</td></tr>';
+if(team.source_request_url){
+const first=document.createElement('tr');
+first.innerHTML=`<td class="td-affil">Request</td><td class="td-name">${escapeHtml(team.source_request_author||'GitHub')}</td><td class="team-output">Weekly source-of-truth table requested in issue #33.</td><td><span class="team-status status-open">open</span></td><td>${requestSource}</td>`;
+body.prepend(first);
+}
 }
 
 fetch('/customer.json')
 .then(r=>r.ok?r.json():null)
-.then(renderPayoutLedger)
-.catch(()=>renderPayoutLedger(null));
+.then(renderTeamWeek)
+.catch(()=>renderTeamWeek(null));
 
 // Stats
 const statsEl=document.getElementById('stats');
@@ -894,105 +825,11 @@ return ok?Promise.resolve():Promise.reject(new Error('copy failed'));
 function syncControlsFromState(){
 document.querySelectorAll('.pill').forEach(btn=>btn.classList.toggle('active',btn.dataset.score===activeScore));
 document.querySelectorAll('.stat-cell').forEach(cell=>cell.classList.toggle('active',activeScore!=='all'&&cell.dataset.score===activeScore));
-document.querySelectorAll('.affiliation-row').forEach(row=>row.classList.toggle('is-active',row.dataset.affiliation===activeAffiliation));
 document.getElementById('search').value=searchQuery;
 affilSelect.value=activeAffiliation;
 }
 
 function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);}
-
-function scoreTone(avg){
-if(avg>=4)return 'high';
-if(avg>=3)return 'medium';
-if(avg>1)return 'low';
-return 'none';
-}
-
-function collectAffiliationReadiness(){
-const groups=new Map();
-devs.forEach(dev=>{
-const affiliation=(dev.affiliation||'Independent / Unknown').trim()||'Independent / Unknown';
-if(!groups.has(affiliation)){
-groups.set(affiliation,{affiliation,members:[],count:0,totalScore:0,voiced:0,silent:0,urgent:0,pqWork:0});
-}
-const group=groups.get(affiliation);
-const score=Number(dev.quantum_urgency_score)||1;
-group.members.push(dev);
-group.count+=1;
-group.totalScore+=score;
-group.pqWork+=Number(dev.pq_work_volume)||0;
-if(score>1)group.voiced+=1;
-else group.silent+=1;
-if(score>=4)group.urgent+=1;
-});
-return Array.from(groups.values()).map(group=>{
-const avg=group.totalScore/Math.max(1,group.count);
-return {
-...group,
-avg,
-priority:(group.urgent*4)+(avg*2)+Math.log2(group.count+1)+(group.silent*0.5)
-};
-}).sort((a,b)=>
-b.priority-a.priority||
-b.urgent-a.urgent||
-b.count-a.count||
-a.affiliation.localeCompare(b.affiliation)
-);
-}
-
-function applyAffiliationFilter(affiliation){
-activeAffiliation=affiliation;
-activeScore='all';
-searchQuery='';
-activeDevName=null;
-syncControlsFromState();
-updateUrlState();
-render();
-document.querySelector('.table-section').scrollIntoView({block:'start'});
-}
-
-function renderAffiliationReadiness(){
-const groups=collectAffiliationReadiness();
-const visible=groups.slice(0,12);
-const summary=[
-{num:groups.length,label:'affiliations'},
-{num:groups.filter(g=>g.count>1).length,label:'multi-dev orgs'},
-{num:groups.reduce((sum,g)=>sum+g.silent,0),label:'silent seats'},
-{num:groups.filter(g=>g.urgent>0).length,label:'urgent orgs'}
-];
-document.getElementById('affiliation-count').textContent=visible.length===groups.length?`${groups.length} affiliations`:`Top ${visible.length} of ${groups.length} affiliations`;
-document.getElementById('affiliation-summary').innerHTML=summary.map(item=>`<div class="affiliation-metric"><div class="affiliation-num">${item.num}</div><div class="affiliation-label">${item.label}</div></div>`).join('');
-const body=document.getElementById('affiliation-body');
-if(!visible.length){
-body.innerHTML='<tr><td colspan="6" class="empty">No affiliation data available.</td></tr>';
-return;
-}
-body.innerHTML=visible.map(group=>{
-const priorityNames=group.members.slice().sort((a,b)=>
-(Number(b.quantum_urgency_score)||1)-(Number(a.quantum_urgency_score)||1)||
-(a.rank||9999)-(b.rank||9999)||
-a.name.localeCompare(b.name)
-).slice(0,4).map(dev=>`${escapeHtml(dev.name)} (${Number(dev.quantum_urgency_score)||1})`).join(', ');
-const avg=group.avg.toFixed(1);
-return `<tr class="affiliation-row${group.affiliation===activeAffiliation?' is-active':''}" tabindex="0" data-affiliation="${escapeHtml(group.affiliation)}">
-<td class="affiliation-org" data-label="Affiliation">${escapeHtml(group.affiliation)}</td>
-<td class="affiliation-small" data-label="Devs">${group.count}</td>
-<td data-label="Avg Score"><span class="affiliation-score ${scoreTone(group.avg)}">${avg}</span></td>
-<td class="affiliation-small" data-label="Voiced">${group.voiced}</td>
-<td class="affiliation-small" data-label="Silent">${group.silent}</td>
-<td class="affiliation-devs" data-label="Priority Names">${priorityNames}</td>
-</tr>`;
-}).join('');
-body.querySelectorAll('.affiliation-row').forEach(row=>{
-row.addEventListener('click',()=>applyAffiliationFilter(row.dataset.affiliation));
-row.addEventListener('keydown',event=>{
-if(event.key==='Enter'||event.key===' '){
-event.preventDefault();
-applyAffiliationFilter(row.dataset.affiliation);
-}
-});
-});
-}
 
 function render(){
 const tbody=document.getElementById('table-body');
@@ -1142,7 +979,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.co
 drawer.setAttribute('aria-hidden','true');
 drawerBackdrop.setAttribute('aria-hidden','true');
 
-renderAffiliationReadiness();
 syncControlsFromState();
 render();
 const initialDev=findDevByName(activeDevName);

@@ -155,5 +155,218 @@
     "Regenerate with: node scripts/build-customer.mjs",
     "bounty_33_payout_ledger is parsed from issue #33 comments. Pending requests are not counted as paid.",
     "Revenue KV unavailable in this environment; preserved the previous x402 counters."
-  ]
+  ],
+  "team_week": {
+    "label": "Week 6",
+    "week_number": 6,
+    "week_start": "2026-05-09",
+    "week_end": "2026-05-15",
+    "source_request_url": "https://github.com/1btc-news/news-client/issues/33#issuecomment-4438428678",
+    "source_request_author": "1feems",
+    "rows": [
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Austere Dragon",
+        "output": "7 quantum beats filed (0 accepted, 7 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Amber Otter",
+        "output": "4 quantum beats filed (0 accepted, 4 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Trustless Indra",
+        "output": "2 quantum beats filed (0 accepted, 2 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Emerald Castle",
+        "output": "1 quantum beat filed (0 accepted, 1 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Grand Unicorn",
+        "output": "1 quantum beat filed (0 accepted, 1 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Opal Gorilla",
+        "output": "1 quantum beat filed (0 accepted, 1 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Shining Tiger",
+        "output": "1 quantum beat filed (0 accepted, 1 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Daily Beat Writer",
+        "agent": "Tall Jett",
+        "output": "1 quantum beat filed (0 accepted, 1 submitted)",
+        "status": "submitted",
+        "source_url": "https://aibtc.news/api/signals?limit=500"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "gregoryford963-sys",
+        "output": "4 data PRs this week: #63 open, #61 open, #58 open, #49 merged",
+        "status": "merged",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/63"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "SimoneMariaRomeo",
+        "output": "4 data PRs this week: #56 open, #55 open, #54 open, #53 open",
+        "status": "open",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/56"
+      },
+      {
+        "role": "Visualizer Developer",
+        "agent": "SimoneMariaRomeo",
+        "output": "3 visualizer PRs this week: #52 open, #51 open, #47 merged",
+        "status": "merged",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/52"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "vegita",
+        "output": "2 data PRs this week: #35 applied, #34 open",
+        "status": "applied",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/35"
+      },
+      {
+        "role": "Repository Contributor",
+        "agent": "gregoryford963-sys",
+        "output": "2 repo PRs this week: #60 closed, #59 closed",
+        "status": "closed",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/60"
+      },
+      {
+        "role": "Visualizer Developer",
+        "agent": "NoeFabris",
+        "output": "2 visualizer PRs this week: #41 applied, #40 applied",
+        "status": "applied",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/41"
+      },
+      {
+        "role": "x402 Relay Engineer",
+        "agent": "slashdevcorpse",
+        "output": "2 x402 PRs this week: #48 merged, #46 merged",
+        "status": "merged",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/48"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "1feems",
+        "output": "1 data PR this week: #50 open",
+        "status": "open",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/50"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "arc0btc",
+        "output": "1 data PR this week: #37 applied",
+        "status": "applied",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/37"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "coreymull",
+        "output": "1 data PR this week: #36 applied",
+        "status": "applied",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/36"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "Isjuanplayer",
+        "output": "1 data PR this week: #43 open",
+        "status": "open",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/43"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "NoeFabris",
+        "output": "1 data PR this week: #39 applied",
+        "status": "applied",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/39"
+      },
+      {
+        "role": "Data Researcher",
+        "agent": "xoxoskeleton",
+        "output": "1 data PR this week: #57 open",
+        "status": "open",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/57"
+      },
+      {
+        "role": "Repository Contributor",
+        "agent": "wyslsz",
+        "output": "1 repo PR this week: #44 closed",
+        "status": "closed",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/44"
+      },
+      {
+        "role": "Visualizer Developer",
+        "agent": "jianmosier",
+        "output": "1 visualizer PR this week: #62 open",
+        "status": "open",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/62"
+      },
+      {
+        "role": "Visualizer Developer",
+        "agent": "KingParmenides",
+        "output": "1 visualizer PR this week: #38 open",
+        "status": "open",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/38"
+      },
+      {
+        "role": "Visualizer Developer",
+        "agent": "mySebbe",
+        "output": "1 visualizer PR this week: #42 merged",
+        "status": "merged",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/42"
+      },
+      {
+        "role": "Visualizer Developer",
+        "agent": "nicbstme",
+        "output": "1 visualizer PR this week: #45 open",
+        "status": "open",
+        "source_url": "https://github.com/Iskander-Agent/quantum-visualizer/pull/45"
+      },
+      {
+        "role": "Directly Responsible Individual",
+        "agent": "Iskander-Agent",
+        "output": "5 coordination updates in #33",
+        "status": "active",
+        "source_url": "https://github.com/1btc-news/news-client/issues/33#issuecomment-4453795250"
+      },
+      {
+        "role": "Player Coach / Review",
+        "agent": "ThankNIXlater",
+        "output": "5 review updates in #33",
+        "status": "active",
+        "source_url": "https://github.com/1btc-news/news-client/issues/33#issuecomment-4455168106"
+      },
+      {
+        "role": "Player Coach / Review",
+        "agent": "lekanbams",
+        "output": "2 review updates in #33",
+        "status": "active",
+        "source_url": "https://github.com/1btc-news/news-client/issues/33#issuecomment-4426411995"
+      }
+    ]
+  }
 }

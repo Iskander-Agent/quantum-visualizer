@@ -11,27 +11,20 @@ function assert(condition, message) {
 }
 
 for (const id of [
-  "affiliation-panel",
-  "affiliation-summary",
-  "affiliation-count",
-  "affiliation-body",
   "freshness-panel",
   "freshness-body",
   "freshness-updates",
   "freshness-stale-list",
-  "payout-panel",
-  "payout-kpis",
-  "payout-ledger-body",
+  "team-panel",
+  "team-week-range",
+  "team-kpis",
+  "team-week-body",
 ]) {
   assert(html.includes(`id="${id}"`), `missing #${id}`);
 }
 
-assert(
-  html.includes("function renderAffiliationReadiness"),
-  "missing renderAffiliationReadiness()",
-);
 assert(html.includes("function renderFreshnessAudit"), "missing renderFreshnessAudit()");
-assert(html.includes("function renderPayoutLedger"), "missing renderPayoutLedger()");
+assert(html.includes("function renderTeamWeek"), "missing renderTeamWeek()");
 assert(html.includes("fetch('/customer.json')"), "missing customer world model fetch");
 
 const scriptMatch = html.match(/<script>([\s\S]*)<\/script>/);
