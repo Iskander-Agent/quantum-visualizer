@@ -5,7 +5,7 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "3.3",
+    "version": "3.4",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
     "total_assessed": 71,
     "ranked": 50,
@@ -13,9 +13,9 @@
     "score_distribution": {
       "5_urgent": 7,
       "4_proactive": 20,
-      "3_cautious": 9,
+      "3_cautious": 10,
       "2_dismissive": 9,
-      "1_no_known_view": 26
+      "1_no_known_view": 25
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -348,6 +348,20 @@
         "contributor": "@SimoneMariaRomeo"
       },
       {
+        "date": "2026-05-13",
+        "developer": "Steve Lee",
+        "change": "score 1→3 — Presidio Bitcoin Quantum Readiness release ties him to report talk-through and release-day quantum-Bitcoin discussion; no standalone activation advocacy found",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
+        "date": "2026-05-13",
+        "developer": "score-1 long-tail sweep",
+        "change": "confirmed null-result status for Bryan Bishop, John Newbery, Sebastian Falbesoner, Niklas Gögge, Marco Falke, Carla Kirk-Cohen, Lisa Neigut, Ben Price, and Matias Furszyfer",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
         "date": "2026-05-14",
         "developer": "Tadge Dryja",
         "change": "new entry — score 4 (Proactive), pq_work_volume 2; Fawkescoin commit/reveal soft fork + Lifeboat contingency proposals on bitcoin-dev mailing list — rank 70",
@@ -369,7 +383,7 @@
         "contributor": "@vultuk"
       }
     ],
-    "last_updated": "2026-05-21",
+    "last_updated": "2026-05-22",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -813,10 +827,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No quantum statements found across gnusha.org and diyhpl.us transcript archives",
+      "summary": "May 2026 sweep found no quantum-risk or post-quantum migration position across bitcoin-dev/gnusha, Delving Bitcoin, the diyhpl.us transcript archive, GitHub, and public web; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 28,
@@ -848,10 +862,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
+      "summary": "May 2026 sweep found no quantum-risk or post-quantum migration position across Brink/public web, Bitcoin Core GitHub, bitcoin-dev/gnusha, and Delving Bitcoin; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 30,
@@ -871,13 +885,18 @@
       "name": "Steve Lee",
       "affiliation": "Spiral (Block)",
       "role": "Lead, Bitcoin Development Funding",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": [],
-      "last_verified": "2026-04-10"
+      "summary": "Presidio Bitcoin's Apr 2026 Quantum Readiness release identifies Steve Lee, Spiral lead and Presidio Bitcoin co-founder, in a talk-through with the report authors and a PBJ release-day discussion of recent quantum-Bitcoin developments and proposals. Treat as active engagement with readiness research, but no standalone activation advocacy found; score 3 rather than proactive.",
+      "key_source": "https://presidiobitcoin.substack.com/p/bitcoins-quantum-readiness",
+      "sources": [
+        "https://presidiobitcoin.substack.com/p/bitcoins-quantum-readiness",
+        "https://github.com/presidiobtc/bitcoin-quantum",
+        "https://www.youtube.com/watch?v=aEi1BeyjTfw",
+        "https://www.youtube.com/watch?v=MQxlJQpWo1A&t=1608s"
+      ],
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 32,
@@ -887,10 +906,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "Working on FROST (quantum-tangential) but no quantum position statements",
+      "summary": "Works on FROST and cryptographic engineering adjacent to future signature work, but a May 2026 sweep found no explicit quantum-risk or post-quantum migration position across bitcoin-dev/gnusha, Delving Bitcoin, GitHub, and public web; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 33,
@@ -927,14 +946,14 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 1,
       "notable": false,
-      "summary": "Focuses on Bitcoin Core security through full-system fuzzing and P2P infrastructure hardening. Developer of the Fuzzamoto framework and serves as a mentor for security-focused Brink interns. No public statements found regarding quantum risk or post-quantum cryptography migration.",
+      "summary": "Focuses on Bitcoin Core security through full-system fuzzing and P2P infrastructure hardening. Developer of the Fuzzamoto framework and mentor for security-focused Brink interns. May 2026 sweep found no public quantum-risk or post-quantum migration position; score 1 confirmed.",
       "key_source": "https://bitcoinmagazine.com/print/the-core-issue-keeping-bitcoin-core-secure",
       "sources": [
         "https://bitcoinmagazine.com/print/the-core-issue-keeping-bitcoin-core-secure",
         "https://brink.dev/programs",
         "https://github.com/dergoegge/fuzzamoto"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 35,
@@ -944,10 +963,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
+      "summary": "May 2026 sweep found no quantum-risk or post-quantum migration position across bitcoin-dev/gnusha, Delving Bitcoin, GitHub, and public web; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 36,
@@ -1096,10 +1115,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
+      "summary": "May 2026 sweep found no quantum-risk or post-quantum migration position across Lightning/BOLT spec activity, bitcoin-dev/gnusha, Delving Bitcoin, GitHub, and public web; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 46,
@@ -1124,10 +1143,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
+      "summary": "May 2026 sweep found no quantum-risk or post-quantum migration position across Base58/Bitcoin++ public material, Lightning public activity, bitcoin-dev/gnusha, Delving Bitcoin, GitHub, and public web; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 48,
@@ -1137,10 +1156,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
+      "summary": "May 2026 sweep found no quantum-risk or post-quantum migration position across OpenSats/public funding material, bitcoin-dev/gnusha, Delving Bitcoin, GitHub, and public web; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 49,
@@ -1163,10 +1182,10 @@
       "quantum_urgency_score": 1,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
+      "summary": "May 2026 sweep found no quantum-risk or post-quantum migration position across Chaincode Labs/public profile material, Bitcoin Core GitHub, bitcoin-dev/gnusha, Delving Bitcoin, and public web; score 1 confirmed.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 51,
