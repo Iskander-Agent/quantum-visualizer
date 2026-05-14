@@ -7,13 +7,13 @@
     "agent_bns": "iskander-ai.btc",
     "version": "3.0",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 68,
+    "total_assessed": 70,
     "ranked": 50,
-    "notable_additions": 18,
+    "notable_additions": 19,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 18,
-      "3_cautious": 8,
+      "4_proactive": 19,
+      "3_cautious": 9,
       "2_dismissive": 8,
       "1_no_known_view": 27
     },
@@ -269,6 +269,20 @@
         "change": "score 3→4 — May 2026 bitcoin-dev post proposes immediate post-quantum BIP-324 transport upgrade path using ML-KEM/hybrid KEM designs",
         "pr": "#39",
         "contributor": "@NoeFabris"
+      },
+      {
+        "date": "2026-05-14",
+        "developer": "Tadge Dryja",
+        "change": "new entry — score 4 (Proactive), pq_work_volume 2; Fawkescoin commit/reveal soft fork + Lifeboat contingency proposals on bitcoin-dev mailing list — rank 70",
+        "pr": "#61",
+        "contributor": "@gregoryford963-sys"
+      },
+      {
+        "date": "2026-05-14",
+        "developer": "Jeremy Rubin",
+        "change": "new entry — score 3 (Cautious), pq_work_volume 1; OP_CAT + Lamport signature scheme for quantum-resistant Bitcoin transactions — rank 71",
+        "pr": "#61",
+        "contributor": "@gregoryford963-sys"
       }
     ],
     "last_updated": "2026-05-11",
@@ -1360,6 +1374,38 @@
         "https://arxiv.org/abs/2604.02311"
       ],
       "last_verified": "2026-05-11"
+    },
+    {
+      "rank": 70,
+      "name": "Tadge Dryja",
+      "affiliation": "MIT DCI (Massachusetts Institute of Technology Digital Currency Initiative)",
+      "role": "Lightning Network co-inventor, Bitcoin researcher",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 2,
+      "notable": true,
+      "summary": "Proposed a post-quantum commit/reveal soft fork on the bitcoin-dev mailing list (May 28, 2025), framing it as a minimal emergency contingency triggered only when quantum capability is proven. Dryja's \"Fawkescoin variant\" separates transaction broadcasting into a commit phase (hash only) and a reveal phase, preventing a quantum-capable adversary from front-running mempool transactions. He explicitly defers mandatory activation until a 'proof of quantum computer' event, acknowledging deep community uncertainty about QC timelines: 'Since people disagree on how likely QCs are to arrive ... it's hard to get consensus on changes to bitcoin.' A second proposal, 'Lifeboat,' extends the concept without requiring a soft fork. Treats quantum as a real but probability-uncertain threat warranting concrete contingency design now.",
+      "key_source": "https://mailing-list.bitcoindevs.xyz/bitcoindev/cc2f8908-f6fa-45aa-93d7-6f926f9ba627n@googlegroups.com/",
+      "sources": [
+        "https://mailing-list.bitcoindevs.xyz/bitcoindev/cc2f8908-f6fa-45aa-93d7-6f926f9ba627n@googlegroups.com/",
+        "https://www.youtube.com/watch?v=4bzOwYPf1yo"
+      ],
+      "last_verified": "2026-05-14"
+    },
+    {
+      "rank": 71,
+      "name": "Jeremy Rubin",
+      "affiliation": "Independent; former MIT DCI; Bitcoin researcher",
+      "role": "Bitcoin researcher, BIP-119 (OP_CTV) author",
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 1,
+      "notable": false,
+      "summary": "Proposed a concrete quantum-proofing technique for Bitcoin using OP_CAT and Lamport signatures in a 2021 blog post. Rubin's scheme has the ECDSA signature itself signed by a Lamport (quantum-safe) signature, so even if a quantum computer derives the ECDSA private key it cannot malleate the transaction content. Notes OP_CAT was in Bitcoin until 2010. Frames quantum resistance as achievable at the script layer without consensus changes requiring new signature algorithms. Tone is exploratory and technically constructive rather than urgent; treats quantum as a real long-horizon risk worth engineering solutions for now. His 2026 MIT Bitcoin Expo framing of BIP-110 migration philosophy adds further context on how Bitcoin should handle cryptographic transitions.",
+      "key_source": "https://rubin.io/blog/2021/07/06/quantum-bitcoin/",
+      "sources": [
+        "https://rubin.io/blog/2021/07/06/quantum-bitcoin/",
+        "https://mitbitcoinexpo.org/blog/quantum-migration-arguments"
+      ],
+      "last_verified": "2026-05-14"
     }
   ]
 }
