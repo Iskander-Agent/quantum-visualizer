@@ -95,6 +95,36 @@ function stateLabel(state) {
   return String(state || "UNKNOWN").toLowerCase();
 }
 
+const APPLIED_CLOSED_PR_NUMBERS = new Set([35, 36, 37, 39, 40, 41]);
+
+function prFiles(pr) {
+  return (pr.files || []).map((file) => (typeof file === "string" ? file : file.path)).filter(Boolean);
+}
+
+function classifyPrRole(pr) {
+  const files = prFiles(pr);
+  if (files.length && files.every((file) => file === "data.json" || file === "public/data.json")) return "Data Researcher";
+  if (files.some((file) => file === "public/index.html" || file.startsWith("scripts/") || file === "public/customer.json")) {
+    return "Visualizer Developer";
+  }
+  if (files.some((file) => file.startsWith("src/"))) return "x402 Relay Engineer";
+  return "Repository Contributor";
+}
+
+function prStatusLabel(pr) {
+  if (pr.state === "MERGED" || pr.mergedAt) return "merged";
+  if (pr.state === "OPEN") return "open";
+  if (APPLIED_CLOSED_PR_NUMBERS.has(pr.number)) return "applied";
+  return stateLabel(pr.state);
+}
+
+function prOutputLabel(role) {
+  if (role === "Data Researcher") return "data PR";
+  if (role === "Visualizer Developer") return "visualizer PR";
+  if (role === "x402 Relay Engineer") return "x402 PR";
+  return "repo PR";
+}
+
 function makeTeamWeek({ quantum, comments, prsRaw, weekNumber, weekStart, weekEnd }) {
   const rows = [];
   const signalsThisWeek = quantum.filter((s) => (s.utcDate || s.timestamp || "").slice(0, 10) >= weekStart);
@@ -121,25 +151,29 @@ function makeTeamWeek({ quantum, comments, prsRaw, weekNumber, weekStart, weekEn
     });
 
   const prsThisWeek = prsRaw.filter((p) => [p.createdAt, p.updatedAt, p.mergedAt].some((v) => (v || "").slice(0, 10) >= weekStart));
-  const prsByAuthor = new Map();
+  const prsByRoleAuthor = new Map();
   for (const pr of prsThisWeek) {
+    const role = classifyPrRole(pr);
     const author = pr.author?.login || "unknown";
-    const list = prsByAuthor.get(author) || [];
+    const key = `${role}\t${author}`;
+    const list = prsByRoleAuthor.get(key) || [];
     list.push(pr);
-    prsByAuthor.set(author, list);
+    prsByRoleAuthor.set(key, list);
   }
-  [...prsByAuthor.entries()]
+  [...prsByRoleAuthor.entries()]
     .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
-    .forEach(([agent, prs]) => {
-      const merged = prs.filter((p) => p.state === "MERGED").length;
+    .forEach(([key, prs]) => {
+      const [role, agent] = key.split("\t");
+      const merged = prs.filter((p) => prStatusLabel(p) === "merged").length;
+      const applied = prs.filter((p) => prStatusLabel(p) === "applied").length;
       const open = prs.filter((p) => p.state === "OPEN").length;
-      const closed = prs.filter((p) => p.state === "CLOSED").length;
-      const refs = prs.map((p) => `#${p.number} ${stateLabel(p.state)}`).join(", ");
+      const closed = prs.filter((p) => prStatusLabel(p) === "closed").length;
+      const refs = prs.map((p) => `#${p.number} ${prStatusLabel(p)}`).join(", ");
       rows.push({
-        role: "Visualizer Developer",
+        role,
         agent,
-        output: `${plural(prs.length, "dashboard PR")} this week: ${refs}`,
-        status: merged ? "merged" : open ? "open" : closed ? "closed" : "tracked",
+        output: `${plural(prs.length, prOutputLabel(role))} this week: ${refs}`,
+        status: merged ? "merged" : applied ? "applied" : open ? "open" : closed ? "closed" : "tracked",
         source_url: prs[0]?.url || "https://github.com/Iskander-Agent/quantum-visualizer/pulls",
       });
     });
@@ -197,7 +231,7 @@ const contributors = [...new Set(comments.map((c) => c.user.login))];
 const iskander_comments = comments.filter((c) => c.user.login === "Iskander-Agent").length;
 
 const prsRaw = JSON.parse(
-  gh("gh pr list --repo Iskander-Agent/quantum-visualizer --state all --limit 100 --json number,state,author,title,mergedAt,createdAt,updatedAt,url")
+  gh("gh pr list --repo Iskander-Agent/quantum-visualizer --state all --limit 100 --json number,state,author,title,mergedAt,createdAt,updatedAt,url,files")
 );
 const merged = prsRaw.filter((p) => p.state === "MERGED");
 const pr_contributors = [...new Set(merged.map((p) => p.author.login))];
