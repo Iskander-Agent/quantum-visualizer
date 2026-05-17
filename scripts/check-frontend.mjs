@@ -22,6 +22,9 @@ for (const id of [
   "payout-panel",
   "payout-kpis",
   "payout-ledger-body",
+  "pr-queue-panel",
+  "pr-queue-kpis",
+  "pr-queue-body",
 ]) {
   assert(html.includes(`id="${id}"`), `missing #${id}`);
 }
@@ -32,7 +35,9 @@ assert(
 );
 assert(html.includes("function renderFreshnessAudit"), "missing renderFreshnessAudit()");
 assert(html.includes("function renderPayoutLedger"), "missing renderPayoutLedger()");
+assert(html.includes("function renderPrWorkQueue"), "missing renderPrWorkQueue()");
 assert(html.includes("fetch('/customer.json')"), "missing customer world model fetch");
+assert(!html.includes("${data.length}"), "readiness panel must use metadata total, not object.length");
 
 const scriptMatch = html.match(/<script>([\s\S]*)<\/script>/);
 assert(scriptMatch, "missing inline script block");

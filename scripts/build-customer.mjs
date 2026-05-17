@@ -150,6 +150,70 @@ function makePayoutLedger({ comments, prsRaw }) {
   };
 }
 
+function classifyPr(pr) {
+  const mergeable = String(pr.mergeable || "UNKNOWN").toUpperCase();
+  const reviewDecision = String(pr.reviewDecision || "").toUpperCase();
+  if (pr.isDraft) return { bucket: "draft", next_action: "finish draft, then mark ready for review" };
+  if (reviewDecision === "CHANGES_REQUESTED") return { bucket: "author-action", next_action: "address requested changes" };
+  if (mergeable === "CONFLICTING") return { bucket: "needs-rebase", next_action: "rebase branch onto current main" };
+  if (reviewDecision === "APPROVED" && mergeable === "MERGEABLE") return { bucket: "merge-ready", next_action: "DRI can merge after sequencing" };
+  if (mergeable === "MERGEABLE") return { bucket: "review", next_action: "PC/DRI review needed" };
+  return { bucket: "triage", next_action: "check mergeability and review state" };
+}
+
+function makePrWorkQueue(prsRaw) {
+  const open = prsRaw
+    .filter((pr) => pr.state === "OPEN")
+    .map((pr) => {
+      const action = classifyPr(pr);
+      return {
+        number: pr.number,
+        title: pr.title,
+        author: pr.author?.login || "unknown",
+        url: pr.url,
+        head_ref: pr.headRefName,
+        updated_at: pr.updatedAt,
+        mergeable: pr.mergeable || "UNKNOWN",
+        review_decision: pr.reviewDecision || "",
+        is_draft: !!pr.isDraft,
+        changed_files: pr.changedFiles || 0,
+        additions: pr.additions || 0,
+        deletions: pr.deletions || 0,
+        bucket: action.bucket,
+        next_action: action.next_action,
+      };
+    })
+    .sort((a, b) => {
+      const order = {
+        "merge-ready": 0,
+        review: 1,
+        "needs-rebase": 2,
+        "author-action": 3,
+        draft: 4,
+        triage: 5,
+      };
+      return (order[a.bucket] ?? 9) - (order[b.bucket] ?? 9) || Number(b.number) - Number(a.number);
+    });
+
+  const countByBucket = open.reduce((acc, pr) => {
+    acc[pr.bucket] = (acc[pr.bucket] || 0) + 1;
+    return acc;
+  }, {});
+
+  return {
+    source_url: "https://github.com/Iskander-Agent/quantum-visualizer/pulls",
+    extracted_at: new Date().toISOString(),
+    open_count: open.length,
+    mergeable_count: open.filter((pr) => pr.mergeable === "MERGEABLE").length,
+    conflicting_count: open.filter((pr) => pr.mergeable === "CONFLICTING").length,
+    needs_review_count: open.filter((pr) => pr.bucket === "review").length,
+    merge_ready_count: open.filter((pr) => pr.bucket === "merge-ready").length,
+    bucket_counts: countByBucket,
+    rows: open,
+    next_action: open[0]?.next_action || "No open PRs to triage",
+  };
+}
+
 const existingCustomer = readExistingCustomer();
 const signalsRes = await fetchJSON("https://aibtc.news/api/signals?limit=500");
 const allSignals = signalsRes.signals || signalsRes;
@@ -167,13 +231,14 @@ const contributors = [...new Set(comments.map((c) => c.user.login))];
 const iskander_comments = comments.filter((c) => c.user.login === "Iskander-Agent").length;
 
 const prsRaw = JSON.parse(
-  gh("gh pr list --repo Iskander-Agent/quantum-visualizer --state all --limit 100 --json number,state,author,title,mergedAt")
+  gh("gh pr list --repo Iskander-Agent/quantum-visualizer --state all --limit 100 --json number,state,author,title,mergedAt,url,isDraft,reviewDecision,mergeable,updatedAt,headRefName,changedFiles,additions,deletions")
 );
 const merged = prsRaw.filter((p) => p.state === "MERGED");
 const pr_contributors = [...new Set(merged.map((p) => p.author.login))];
 
 const revenue = await fetchRevenueLedger(existingCustomer);
 const payoutLedger = makePayoutLedger({ comments, prsRaw });
+const prWorkQueue = makePrWorkQueue(prsRaw);
 
 const customer = {
   schema_version: 3,
@@ -206,6 +271,7 @@ const customer = {
     quantum_visualizer_merged_prs: merged.length,
     quantum_visualizer_pr_contributors: pr_contributors.length,
     pr_contributor_handles: pr_contributors,
+    pr_work_queue: prWorkQueue,
     dashboard_visits: "unknown — no analytics instrumented",
     x_engagement: "unknown — x-posting paused (credits depleted)",
   },
@@ -219,9 +285,10 @@ const customer = {
     "Silence is not a data point. Unknown fields stay unknown until verified.",
     "Regenerate with: node scripts/build-customer.mjs",
     "bounty_33_payout_ledger is parsed from issue #33 comments. Pending requests are not counted as paid.",
+    "narrative_traction.pr_work_queue is parsed from current quantum-visualizer PR state and is an operational queue, not a payout ledger.",
     ...(revenue.note ? [revenue.note] : []),
   ],
 };
 
 fs.writeFileSync(OUT, JSON.stringify(customer, null, 2) + "\n");
-console.log(`wrote customer.json: ${quantum.length} beats, ${comments.length} comments, ${merged.length} merged PRs, ${revenue.totalEvents} x402 events (${revenue.totalSats} sats), ${payoutLedger.rows.length} payout rows`);
+console.log(`wrote customer.json: ${quantum.length} beats, ${comments.length} comments, ${merged.length} merged PRs, ${prWorkQueue.open_count} open PRs, ${revenue.totalEvents} x402 events (${revenue.totalSats} sats), ${payoutLedger.rows.length} payout rows`);

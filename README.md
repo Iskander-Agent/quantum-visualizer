@@ -33,6 +33,7 @@ How the project is landing. Quantum beats filed, sats flow, narrative traction. 
 | `quantum_beats.last_7d` | Rolling week count |
 | `sats_flow` | Bounty #30 + #33 + x402 + inscription revenue |
 | `sats_flow.bounty_33_payout_ledger` | Issue #33 payout requests, paid proof rows, and pending/paid sats totals |
+| `narrative_traction.pr_work_queue` | Current quantum-visualizer PR queue, grouped by merge-ready, review, rebase, and author-action status |
 | `narrative_traction` | GitHub #33 comments, merged PRs, contributor count |
 | `freshness` | Fetch timestamps + next refresh target |
 
