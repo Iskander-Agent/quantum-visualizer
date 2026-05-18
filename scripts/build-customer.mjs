@@ -20,7 +20,16 @@ async function fetchJSON(url, opts = {}) {
 }
 
 function gh(cmd) {
-  return execSync(cmd, { encoding: "utf8", maxBuffer: 50 * 1024 * 1024 });
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      return execSync(cmd, { encoding: "utf8", maxBuffer: 50 * 1024 * 1024 });
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) execSync(`sleep ${attempt}`);
+    }
+  }
+  throw lastError;
 }
 
 function readExistingCustomer() {
@@ -29,6 +38,19 @@ function readExistingCustomer() {
   } catch {
     return null;
   }
+}
+
+function readBaseCustomer() {
+  try {
+    return JSON.parse(gh("git show origin/main:public/customer.json"));
+  } catch {
+    return null;
+  }
+}
+
+function sumObjectValues(value) {
+  if (!value || typeof value !== "object") return 0;
+  return Object.values(value).reduce((sum, count) => sum + (Number(count) || 0), 0);
 }
 
 function readEnv(key) {
@@ -215,6 +237,7 @@ function makePrWorkQueue(prsRaw) {
 }
 
 const existingCustomer = readExistingCustomer();
+const baseCustomer = readBaseCustomer();
 const signalsRes = await fetchJSON("https://aibtc.news/api/signals?limit=500");
 const allSignals = signalsRes.signals || signalsRes;
 const quantum = allSignals.filter((s) => (s.beatSlug || "").includes("quantum"));
@@ -222,7 +245,24 @@ const quantum = allSignals.filter((s) => (s.beatSlug || "").includes("quantum"))
 const by_agent = {};
 for (const s of quantum) by_agent[s.displayName] = (by_agent[s.displayName] || 0) + 1;
 
-const last_7d = quantum.filter((s) => (s.utcDate || s.timestamp || "").slice(0, 10) >= sevenDaysAgo).length;
+const last7dSignals = quantum.filter((s) => (s.utcDate || s.timestamp || "").slice(0, 10) >= sevenDaysAgo);
+const last_7d = last7dSignals.length;
+const last_7d_by_agent = {};
+for (const s of last7dSignals) last_7d_by_agent[s.displayName] = (last_7d_by_agent[s.displayName] || 0) + 1;
+const existingQuantumTotal = Math.max(
+  Number(existingCustomer?.quantum_beats?.total) || 0,
+  Number(baseCustomer?.quantum_beats?.total) || 0
+);
+const total = Math.max(quantum.length, existingQuantumTotal);
+const isPreservingCumulativeTotal = total > quantum.length;
+const cumulativeByAgentCandidates = [
+  existingCustomer?.quantum_beats?.by_agent,
+  baseCustomer?.quantum_beats?.by_agent,
+  by_agent,
+].filter(Boolean);
+const cumulativeByAgent = isPreservingCumulativeTotal
+  ? cumulativeByAgentCandidates.sort((a, b) => sumObjectValues(b) - sumObjectValues(a))[0]
+  : by_agent;
 
 const comments = JSON.parse(
   gh("gh api repos/1btc-news/news-client/issues/33/comments --paginate")
@@ -244,10 +284,14 @@ const customer = {
   schema_version: 3,
   as_of: today,
   quantum_beats: {
-    total: quantum.length,
-    by_agent,
+    total,
+    by_agent: cumulativeByAgent,
     last_7d,
+    last_7d_by_agent,
     source: "https://aibtc.news/api/signals",
+    total_source: isPreservingCumulativeTotal
+      ? "preserved cumulative floor from prior verified snapshot because current signal response is lower than the historical total"
+      : "current aibtc.news signal response",
   },
   sats_flow: {
     bounty_30_paid: {
@@ -286,9 +330,10 @@ const customer = {
     "Regenerate with: node scripts/build-customer.mjs",
     "bounty_33_payout_ledger is parsed from issue #33 comments. Pending requests are not counted as paid.",
     "narrative_traction.pr_work_queue is parsed from current quantum-visualizer PR state and is an operational queue, not a payout ledger.",
+    ...(isPreservingCumulativeTotal ? ["quantum_beats.total is cumulative and must not decrease when the signals API returns a rolling or partial window; last_7d records the current-window count."] : []),
     ...(revenue.note ? [revenue.note] : []),
   ],
 };
 
 fs.writeFileSync(OUT, JSON.stringify(customer, null, 2) + "\n");
-console.log(`wrote customer.json: ${quantum.length} beats, ${comments.length} comments, ${merged.length} merged PRs, ${prWorkQueue.open_count} open PRs, ${revenue.totalEvents} x402 events (${revenue.totalSats} sats), ${payoutLedger.rows.length} payout rows`);
+console.log(`wrote customer.json: ${total} cumulative beats (${quantum.length} current response, ${last_7d} last 7d), ${comments.length} comments, ${merged.length} merged PRs, ${prWorkQueue.open_count} open PRs, ${revenue.totalEvents} x402 events (${revenue.totalSats} sats), ${payoutLedger.rows.length} payout rows`);
