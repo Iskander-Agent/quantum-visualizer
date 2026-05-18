@@ -22,6 +22,28 @@ What the project is. Developer power map, scores, sources, per-developer freshne
 | `developers[].quantum_urgency_score` | 1-5 urgency rubric |
 | `developers[].sources[]` | Verifiable primary sources |
 
+### Company History — `/api/world/company/history`
+
+Versioned update-history view over `metadata.update_history`, grouped by update date so agents can query what changed without downloading the full developer map.
+
+| Query | Meaning |
+|---|---|
+| `since=YYYY-MM-DD` | Return entries on or after a date |
+| `until=YYYY-MM-DD` | Return entries on or before a date |
+| `developer=NAME` | Fuzzy-match a developer name |
+| `limit=N` | Return the latest N matching entries, capped at 500 |
+
+Date bucket shortcut: `/api/world/company/history/YYYY-MM-DD`.
+
+Response fields:
+
+| Field | Meaning |
+|---|---|
+| `schema` | `company.history.v1` |
+| `snapshot` | Current map version, `last_updated`, assessed count, and total history entries |
+| `versions[]` | Per-date buckets: `version_id`, date, entry count, developers, PRs, contributors |
+| `history[]` | Chronological update entries with stable `sequence` numbers |
+
 ### Customer World Model — `/api/world/customer`
 
 How the project is landing. Quantum beats filed, sats flow, narrative traction. Unknown fields stay `"unknown"` — silence is not a data point.
@@ -36,7 +58,7 @@ How the project is landing. Quantum beats filed, sats flow, narrative traction. 
 | `narrative_traction` | GitHub #33 comments, merged PRs, contributor count |
 | `freshness` | Fetch timestamps + next refresh target |
 
-Both endpoints: `Cache-Control: public, max-age=300`, CORS `*`.
+World model endpoints: `Cache-Control: public, max-age=300`, CORS `*`.
 
 ## Scaling the data
 
