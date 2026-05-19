@@ -1022,7 +1022,16 @@
       "sources": [
         "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html"
       ],
-      "last_verified": "2026-05-11"
+      "last_verified": "2026-05-14",
+      "update_history": [
+        {
+          "date": "2026-05-14",
+          "score_before": 3,
+          "score_after": 3,
+          "source": "null-result sweep",
+          "note": "May 14 2026 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103. No new quantum/PQC statements found in 2026-05-11 to 2026-05-14 window. Score unchanged."
+        }
+      ]
     },
     {
       "rank": 45,
@@ -1050,7 +1059,16 @@
       "sources": [
         "https://freicoin.substack.com/p/why-im-against-taproot"
       ],
-      "last_verified": "2026-05-11"
+      "last_verified": "2026-05-14",
+      "update_history": [
+        {
+          "date": "2026-05-14",
+          "score_before": 3,
+          "score_after": 3,
+          "source": "null-result sweep",
+          "note": "May 14 2026 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103. No new quantum/PQC statements found in 2026-05-11 to 2026-05-14 window. Score unchanged."
+        }
+      ]
     },
     {
       "rank": 47,
@@ -1089,7 +1107,16 @@
       "summary": "No public statements on quantum risk. May 2026 sweep of bitcoin-dev (gnusha.org), Delving Bitcoin (b10c.me), and BIP activity found no quantum-adjacent statements. Focus confirmed as Bitcoin Core dev, P2P network monitoring, and mining pool analysis.",
       "key_source": null,
       "sources": [],
-      "last_verified": "2026-05-11"
+      "last_verified": "2026-05-14",
+      "update_history": [
+        {
+          "date": "2026-05-14",
+          "score_before": 1,
+          "score_after": 1,
+          "source": "null-result sweep",
+          "note": "May 14 2026 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin (b10c.me), GitHub BIP-360 activity. No new quantum/PQC statements found in 2026-05-11 to 2026-05-14 window. Focus remains Bitcoin Core dev, P2P monitoring, mining analysis. Score unchanged."
+        }
+      ]
     },
     {
       "rank": 50,
