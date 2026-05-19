@@ -304,9 +304,16 @@
         "change": "pq_work_volume 7->8; Apr 2026 BIP-360 review clarified future leaf-version upgrade behavior on bitcoin/bips#2103, score remains 5",
         "pr": null,
         "contributor": "@SimoneMariaRomeo"
+      },
+      {
+        "date": "2026-05-19",
+        "developer": "Ethan Heilman",
+        "change": "pq_work_volume 8->9; add Apr 30 2026 Bitcoin Core PR comment showing quantum-computer progress redirected OP_CAT work back to quantum mitigation",
+        "pr": "#69",
+        "contributor": "@Sikkra"
       }
     ],
-    "last_updated": "2026-05-16",
+    "last_updated": "2026-05-19",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -578,17 +585,18 @@
       "affiliation": "Iceberg Quantum",
       "role": "Researcher, BIP-360 co-author",
       "quantum_urgency_score": 5,
-      "pq_work_volume": 8,
+      "pq_work_volume": 9,
       "notable": false,
-      "summary": "Most urgent advocate; co-author BIP-360 and BIP-347; 'near future' urgency; proposed STARK compression; estimates 7-year migration timeline; Apr 2026 BIP-360 review argued P2MR should preserve P2TR future-leaf-version upgrade behavior.",
+      "summary": "Most urgent advocate; co-author BIP-360 and BIP-347; 'near future' urgency; proposed STARK compression; estimates 7-year migration timeline; Apr 2026 BIP-360 review argued P2MR should preserve P2TR future-leaf-version upgrade behavior. On Apr 30, 2026 he publicly paused OP_CAT implementation work because unexpected quantum-computer progress required shifting attention back to Bitcoin quantum mitigation.",
       "key_source": "https://cointelegraph.com/magazine/bitcoin-7-years-upgrade-post-quantum-bip-360-co-author/",
       "sources": [
         "https://cointelegraph.com/magazine/bitcoin-7-years-upgrade-post-quantum-bip-360-co-author/",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
         "https://github.com/bitcoin/bips/blob/master/bip-0347.mediawiki",
-        "https://github.com/bitcoin/bips/pull/2103#issuecomment-4353743142"
+        "https://github.com/bitcoin/bips/pull/2103#issuecomment-4353743142",
+        "https://github.com/bitcoin/bitcoin/pull/29247#issuecomment-4353114242"
       ],
-      "last_verified": "2026-05-13"
+      "last_verified": "2026-05-19"
     },
     {
       "rank": 18,
