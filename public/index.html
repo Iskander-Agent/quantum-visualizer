@@ -705,7 +705,7 @@ indexEl.innerHTML=`
 <div class="index-info">
 <div class="index-level">Bitcoin Quantum Readiness<span class="index-level-tag" style="background:${levelBg[comp.current_level]||'var(--red-bg)'};color:${levelColors[comp.current_level]||'var(--red)'}">${comp.current_level}</span></div>
 <div style="display:flex;gap:2rem;margin:1rem 0;flex-wrap:wrap">
-<div><span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:800;color:var(--orange)">${voiced.score}</span><span style="font-size:0.8rem;color:var(--text-muted)"> / 100 voiced urgency<br><span style="font-size:0.7rem;color:var(--text-muted)">(among developers who voiced a position)</span></span><br><span style="font-size:0.75rem;color:var(--text-muted)">${voiced.voices_count} of ${data.length} developers have voiced positions</span></div>
+<div><span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:800;color:var(--orange)">${voiced.score}</span><span style="font-size:0.8rem;color:var(--text-muted)"> / 100 voiced urgency<br><span style="font-size:0.7rem;color:var(--text-muted)">(among developers who voiced a position)</span></span><br><span style="font-size:0.75rem;color:var(--text-muted)">${voiced.voices_count} of ${total} developers have voiced positions</span></div>
 <div><span style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:800;color:var(--red)">${coverage.score}%</span><span style="font-size:0.8rem;color:var(--text-muted)"> coverage</span><br><span style="font-size:0.75rem;color:var(--text-muted)">${coverage.silent} of ${coverage.total} developers have said nothing</span></div>
 </div>
 <p class="index-explain">${comp.formula}</p>
@@ -1200,10 +1200,11 @@ function drawChart() {
 
   // Ranked devs only (not notable)
   const ranked = devs.filter(d => !d.notable && d.rank >= 1);
+  const rankMax = Math.max(...ranked.map(d => d.rank), 1);
   bubbles = [];
 
   ranked.forEach(dev => {
-    const x = padL + ((dev.rank - 1) / (total - 1)) * plotW;
+    const x = padL + ((dev.rank - 1) / Math.max(rankMax - 1, 1)) * plotW;
     const y = padT + plotH - ((dev.quantum_urgency_score - 1) / 4) * plotH;
     const vol = dev.pq_work_volume || 0;
     const r = Math.max(6, Math.min(18, 6 + vol * 2.5));
