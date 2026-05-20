@@ -5,14 +5,14 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "3.2",
+    "version": "3.3",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
     "total_assessed": 71,
     "ranked": 50,
-    "notable_additions": 19,
+    "notable_additions": 20,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 19,
+      "4_proactive": 20,
       "3_cautious": 9,
       "2_dismissive": 8,
       "1_no_known_view": 27
@@ -362,7 +362,7 @@
         "contributor": "@gregoryford963-sys"
       }
     ],
-    "last_updated": "2026-05-16",
+    "last_updated": "2026-05-20",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
