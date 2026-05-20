@@ -5,7 +5,7 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "3.3",
+    "version": "3.4",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
     "total_assessed": 71,
     "ranked": 50,
@@ -14,8 +14,8 @@
       "5_urgent": 7,
       "4_proactive": 20,
       "3_cautious": 9,
-      "2_dismissive": 9,
-      "1_no_known_view": 26
+      "2_dismissive": 10,
+      "1_no_known_view": 25
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -362,6 +362,13 @@
         "contributor": "@gregoryford963-sys"
       },
       {
+        "date": "2026-05-13",
+        "developer": "Mike Schmidt",
+        "change": "score 1 to 2; Bitcoin Optech #393 documents proportional, research-aware quantum concern during P2MR/BIP360 discussion",
+        "pr": null,
+        "contributor": "@SimoneMariaRomeo"
+      },
+      {
         "date": "2026-05-21",
         "developer": "Anthony Towns",
         "change": "score 1→2 — Optech #331 transcript documents Winternitz/Merkle post-quantum signature work as a BTC Lisp motivating example; records work product without treating it as migration advocacy",
@@ -369,7 +376,7 @@
         "contributor": "@vultuk"
       }
     ],
-    "last_updated": "2026-05-21",
+    "last_updated": "2026-05-22",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -858,13 +865,15 @@
       "name": "Mike Schmidt",
       "affiliation": "Brink (co-founder)",
       "role": "Co-Founder & Executive Director",
-      "quantum_urgency_score": 1,
+      "quantum_urgency_score": 2,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": [],
-      "last_verified": "2026-04-10"
+      "summary": "In Bitcoin Optech Podcast #393, joined the P2MR/BIP360 quantum-resistance discussion and agreed with a proportional, research-aware stance: Bitcoin quantum concern should scale with visible quantum-computing progress rather than urgent rollout pressure.",
+      "key_source": "https://bitcoinops.org/en/podcast/2026/02/24/",
+      "sources": [
+        "https://bitcoinops.org/en/podcast/2026/02/24/"
+      ],
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 31,
