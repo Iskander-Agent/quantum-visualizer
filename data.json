@@ -14,8 +14,8 @@
       "5_urgent": 7,
       "4_proactive": 20,
       "3_cautious": 9,
-      "2_dismissive": 8,
-      "1_no_known_view": 27
+      "2_dismissive": 9,
+      "1_no_known_view": 26
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -360,9 +360,16 @@
         "change": "new entry — score 3 (Cautious), pq_work_volume 1; OP_CAT + Lamport signature scheme for quantum-resistant Bitcoin transactions — rank 71",
         "pr": "#64",
         "contributor": "@gregoryford963-sys"
+      },
+      {
+        "date": "2026-05-21",
+        "developer": "Anthony Towns",
+        "change": "score 1→2 — Optech #331 transcript documents Winternitz/Merkle post-quantum signature work as a BTC Lisp motivating example; records work product without treating it as migration advocacy",
+        "pr": null,
+        "contributor": "@vultuk"
       }
     ],
-    "last_updated": "2026-05-20",
+    "last_updated": "2026-05-21",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -416,15 +423,16 @@
       "name": "Anthony Towns",
       "affiliation": "MIT DCI (Independent Contractor)",
       "role": "BIP Author, Protocol Developer",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 2,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "No standalone quantum position; co-authored Taproot but no personal advocacy",
-      "key_source": null,
+      "summary": "Discussed Winternitz/Merkle post-quantum signatures on Bitcoin Optech #331 as a motivating example for BTC Lisp: loops and structured data make hash-based signature verification smaller and easier to debug. This records quantum-relevant implementation work, not migration or activation advocacy.",
+      "key_source": "https://bitcoinops.org/en/podcast/2024/12/03/",
       "sources": [
-        "https://www.dci.mit.edu/people"
+        "https://www.dci.mit.edu/people",
+        "https://bitcoinops.org/en/podcast/2024/12/03/"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-05-21"
     },
     {
       "rank": 5,
