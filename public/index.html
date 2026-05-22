@@ -228,6 +228,30 @@ tr:hover td{background:var(--bg-elevated)}
 .payout-mono{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-secondary);word-break:break-all}
 @media(max-width:760px){.payout-kpis{grid-template-columns:1fr}.payout-body{padding:0.75rem}}
 
+/* PR work queue */
+.pr-queue-section{padding:2.5rem 0;border-top:1px solid var(--border)}
+.pr-queue-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
+.pr-queue-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.pr-queue-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:760px;line-height:1.6}
+.pr-queue-body{padding:1.25rem;background:var(--bg)}
+.pr-queue-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1rem}
+.pr-queue-kpi{background:var(--bg-elevated);padding:0.9rem;min-width:0}
+.pr-queue-num{font-family:'JetBrains Mono',monospace;font-size:1.15rem;font-weight:800;letter-spacing:0}
+.pr-queue-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem}
+.pr-queue-table-wrap{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:auto;-webkit-overflow-scrolling:touch}
+.pr-queue-table{min-width:820px;font-size:0.82rem}
+.pr-queue-table td{background:var(--bg)}
+.pr-link{font-size:0.78rem;color:var(--accent);text-decoration:none;font-weight:700;white-space:nowrap}
+.pr-link:hover{text-decoration:underline}
+.pr-title{font-weight:600;line-height:1.45}
+.pr-badge{display:inline-flex;align-items:center;justify-content:center;min-width:5.8rem;padding:0.25rem 0.45rem;border:1px solid var(--border);border-radius:100px;font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);white-space:nowrap}
+.pr-badge.bucket-merge-ready{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.1);color:#22c55e}
+.pr-badge.bucket-review{border-color:rgba(247,147,26,0.28);background:rgba(247,147,26,0.08);color:var(--accent)}
+.pr-badge.bucket-needs-rebase,.pr-badge.bucket-author-action{border-color:rgba(220,38,38,0.25);background:rgba(220,38,38,0.08);color:var(--red)}
+.pr-badge.bucket-draft,.pr-badge.bucket-triage{border-color:rgba(82,82,91,0.25);background:var(--gray-bg);color:var(--text-muted)}
+.pr-action{color:var(--text-secondary);line-height:1.5}
+@media(max-width:760px){.pr-queue-kpis{grid-template-columns:1fr 1fr}.pr-queue-body{padding:0.75rem}}
+
 /* API section */
 .api-section{padding:2rem 0;border-top:1px solid var(--border)}
 .api-card{display:flex;align-items:center;justify-content:space-between;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem;flex-wrap:wrap;gap:0.75rem}
@@ -534,6 +558,40 @@ tbody tr.is-active td{background:var(--bg-hover)}
 </div>
 </section>
 
+<!-- PR Work Queue -->
+<section class="pr-queue-section">
+<div class="container">
+<div class="pr-queue-panel" id="pr-queue-panel">
+<div class="pr-queue-head">
+<div>
+<h2 class="section-title">PR Work Queue</h2>
+<p class="pr-queue-sub">Customer world model view of the open contributor queue: what is ready for DRI sequencing, what needs review, and what is blocked by rebase or author action.</p>
+</div>
+<span class="section-count" id="pr-queue-asof"></span>
+</div>
+<div class="pr-queue-body">
+<div class="pr-queue-kpis" id="pr-queue-kpis"></div>
+<div class="pr-queue-table-wrap">
+<table class="pr-queue-table">
+<thead>
+<tr>
+<th>PR</th>
+<th>Title</th>
+<th>Status</th>
+<th>Diff</th>
+<th>Next Action</th>
+</tr>
+</thead>
+<tbody id="pr-queue-body">
+<tr><td colspan="5" class="empty">Loading PR work queue...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- Methodology -->
 <section class="method-section">
 <div class="container">
@@ -809,10 +867,64 @@ return `<tr>
 :'<tr><td colspan="5" class="empty">No payout request or payment proof comments found in issue #33.</td></tr>';
 }
 
+function formatDiff(row){
+const additions=Number(row.additions)||0;
+const deletions=Number(row.deletions)||0;
+const files=Number(row.changed_files)||0;
+return `+${additions} / -${deletions} · ${files} files`;
+}
+
+function bucketLabel(bucket){
+const labels={
+'merge-ready':'merge ready',
+review:'review',
+'needs-rebase':'needs rebase',
+'author-action':'author action',
+draft:'draft',
+triage:'triage'
+};
+return labels[bucket]||String(bucket||'triage');
+}
+
+function renderPrWorkQueue(customer){
+const body=document.getElementById('pr-queue-body');
+const kpis=document.getElementById('pr-queue-kpis');
+const asof=document.getElementById('pr-queue-asof');
+if(!body||!kpis||!asof)return;
+const queue=customer&&customer.narrative_traction&&customer.narrative_traction.pr_work_queue;
+if(!queue||!Array.isArray(queue.rows)){
+asof.textContent='Customer model unavailable';
+kpis.innerHTML='<div class="pr-queue-kpi"><div class="pr-queue-num">--</div><div class="pr-queue-label">open</div></div><div class="pr-queue-kpi"><div class="pr-queue-num">--</div><div class="pr-queue-label">mergeable</div></div><div class="pr-queue-kpi"><div class="pr-queue-num">--</div><div class="pr-queue-label">conflicts</div></div><div class="pr-queue-kpi"><div class="pr-queue-num">--</div><div class="pr-queue-label">review</div></div>';
+body.innerHTML='<tr><td colspan="5" class="empty">PR work queue data is not available in /customer.json.</td></tr>';
+return;
+}
+asof.textContent=queue.extracted_at?'Extracted '+String(queue.extracted_at).slice(0,10):'Current PRs';
+kpis.innerHTML=[
+{num:queue.open_count||0,label:'open'},
+{num:queue.mergeable_count||0,label:'mergeable'},
+{num:queue.conflicting_count||0,label:'conflicts'},
+{num:queue.needs_review_count||0,label:'needs review'}
+].map(k=>`<div class="pr-queue-kpi"><div class="pr-queue-num">${escapeHtml(k.num)}</div><div class="pr-queue-label">${escapeHtml(k.label)}</div></div>`).join('');
+body.innerHTML=queue.rows.length
+?queue.rows.slice(0,12).map(row=>`<tr>
+<td><a class="pr-link" href="${escapeHtml(row.url)}" target="_blank" rel="noopener">#${escapeHtml(row.number)}</a><div class="td-affil">${escapeHtml(row.author||'unknown')}</div></td>
+<td><div class="pr-title">${escapeHtml(row.title||'Untitled PR')}</div><div class="td-affil">${escapeHtml((row.updated_at||'').slice(0,10))}</div></td>
+<td><span class="pr-badge bucket-${escapeHtml(row.bucket||'triage')}">${escapeHtml(bucketLabel(row.bucket))}</span><div class="td-affil">${escapeHtml(row.mergeable||'UNKNOWN')}</div></td>
+<td class="payout-mono">${escapeHtml(formatDiff(row))}</td>
+<td class="pr-action">${escapeHtml(row.next_action||'triage')}</td>
+</tr>`).join('')
+:'<tr><td colspan="5" class="empty">No open PRs in the contributor queue.</td></tr>';
+}
+
+function renderCustomerWorld(customer){
+renderPayoutLedger(customer);
+renderPrWorkQueue(customer);
+}
+
 fetch('/customer.json')
 .then(r=>r.ok?r.json():null)
-.then(renderPayoutLedger)
-.catch(()=>renderPayoutLedger(null));
+.then(renderCustomerWorld)
+.catch(()=>renderCustomerWorld(null));
 
 // Stats
 const statsEl=document.getElementById('stats');
