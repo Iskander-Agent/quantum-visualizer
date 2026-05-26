@@ -274,6 +274,58 @@ function sinceSlice(data: any, sinceDate: string) {
   };
 }
 
+function daysBetween(date: unknown, asOf: string): number | null {
+  if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+  const start = Date.parse(`${date}T00:00:00Z`);
+  const end = Date.parse(`${asOf}T00:00:00Z`);
+  if (Number.isNaN(start) || Number.isNaN(end)) return null;
+  return Math.max(0, Math.round((end - start) / 86400000));
+}
+
+function companyFreshnessSlice(data: any) {
+  const asOf = data.metadata?.last_updated || data.metadata?.date || new Date().toISOString().slice(0, 10);
+  const developers = Array.isArray(data.developers) ? data.developers : [];
+  const total = Math.max(1, Number(data.metadata?.total_assessed) || developers.length || 1);
+  const staleThresholdDays = 30;
+  const verified = developers.filter((d: any) => /^\d{4}-\d{2}-\d{2}$/.test(d.last_verified || ""));
+  const sourced = developers.filter((d: any) => Array.isArray(d.sources) && d.sources.length > 0);
+  const stale = developers
+    .map((d: any) => ({
+      name: d.name,
+      rank: d.rank ?? null,
+      affiliation: d.affiliation || null,
+      score: d.quantum_urgency_score ?? null,
+      last_verified: d.last_verified || null,
+      age_days: daysBetween(d.last_verified, asOf),
+      key_source: d.key_source || null,
+    }))
+    .filter((d: any) => d.age_days === null || d.age_days > staleThresholdDays)
+    .sort((a: any, b: any) => (b.age_days ?? 9999) - (a.age_days ?? 9999));
+  const history = Array.isArray(data.metadata?.update_history) ? data.metadata.update_history : [];
+
+  return {
+    schema: "company.freshness.v1",
+    as_of: asOf,
+    stale_threshold_days: staleThresholdDays,
+    totals: {
+      developers: developers.length,
+      verified: verified.length,
+      verified_percent: Math.round((verified.length / total) * 100),
+      sourced: sourced.length,
+      sourced_percent: Math.round((sourced.length / total) * 100),
+      stale: stale.length,
+    },
+    stale_developers: stale.slice(0, 25),
+    recent_updates: history.slice().reverse().slice(0, 10),
+    next_actions: stale.slice(0, 5).map((d: any) => ({
+      developer: d.name,
+      action: d.age_days === null
+        ? "Add a last_verified date after checking primary sources."
+        : `Re-verify primary sources; last check is ${d.age_days} days old.`,
+    })),
+  };
+}
+
 async function handlePremium(req: Request, env: any, slug: string, sliceFn: (data: any) => any | null): Promise<Response> {
   const description = "Quantum Visualizer premium slice: " + slug;
   const sigHeader = req.headers.get("payment-signature");
@@ -425,6 +477,7 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
       "/api/world/premium/index-breakdown": "Quantum Readiness Index w/ voiced + silent dev lists",
       "/api/world/premium/dev/{name}": "Single dev profile by fuzzy name match",
       "/api/world/premium/since/{YYYY-MM-DD}": "Update history entries since date",
+      "/api/world/company/freshness": "Free operational freshness audit for the company world model",
     },
     schemes: [
       {
@@ -451,7 +504,7 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
     notes: [
       "Replay protection: each settled txid is single-use.",
       "All sats settle to a dedicated service wallet — separate from any operator's main wallet.",
-      "Free, no-payment endpoints: /api/world/company, /api/world/customer, /api/world/premium/doctor.",
+      "Free, no-payment endpoints: /api/world/company, /api/world/company/freshness, /api/world/customer, /api/world/premium/doctor.",
     ],
   };
 
@@ -471,6 +524,10 @@ export default {
     const p = url.pathname;
 
     if (p === "/api/world/company") return proxyJson(env, request, "/data.json");
+    if (p === "/api/world/company/freshness") {
+      const data = await loadData(env, request);
+      return jsonResponse(companyFreshnessSlice(data), 300);
+    }
     if (p === "/api/world/customer") return proxyJson(env, request, "/customer.json");
     if (p === "/api/world/premium/doctor") return handleDoctor(request, env);
 
@@ -517,6 +574,17 @@ export default {
     });
   },
 };
+
+function jsonResponse(body: unknown, maxAgeSeconds: number): Response {
+  return new Response(JSON.stringify(body, null, 2), {
+    status: 200,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": `public, max-age=${maxAgeSeconds}`,
+      "access-control-allow-origin": "*",
+    },
+  });
+}
 
 async function proxyJson(env: any, request: Request, assetPath: string): Promise<Response> {
   const assetUrl = new URL(assetPath, request.url);
