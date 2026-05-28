@@ -5,7 +5,7 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "3.4",
+    "version": "3.5",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
     "total_assessed": 71,
     "ranked": 50,
@@ -381,9 +381,14 @@
         "change": "score 1→2 — Optech #331 transcript documents Winternitz/Merkle post-quantum signature work as a BTC Lisp motivating example; records work product without treating it as migration advocacy",
         "pr": null,
         "contributor": "@vultuk"
+      },
+      {
+        "version": "3.5",
+        "date": "2026-05-28",
+        "changes": "Merged #67 (Steve Lee 1→3 + score-1 longtail sweep), #72 (company freshness API endpoint)"
       }
     ],
-    "last_updated": "2026-05-22",
+    "last_updated": "2026-05-28",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
