@@ -22,6 +22,10 @@ What the project is. Developer power map, scores, sources, per-developer freshne
 | `developers[].quantum_urgency_score` | 1-5 urgency rubric |
 | `developers[].sources[]` | Verifiable primary sources |
 
+### Company Freshness Audit — `/api/world/company/freshness`
+
+Operational backlog for agents. Returns verification coverage, source coverage, entries older than 30 days, recent update history, and the next developers to re-check. This mirrors the dashboard freshness panel as JSON so player-coaches and external agents can query the next data-maintenance work without scraping HTML.
+
 ### Customer World Model — `/api/world/customer`
 
 How the project is landing. Quantum beats filed, sats flow, narrative traction. Unknown fields stay `"unknown"` — silence is not a data point.
@@ -38,7 +42,7 @@ How the project is landing. Quantum beats filed, sats flow, narrative traction. 
 | `narrative_traction` | GitHub #33 comments, merged PRs, contributor count |
 | `freshness` | Fetch timestamps + next refresh target |
 
-Both endpoints: `Cache-Control: public, max-age=300`, CORS `*`.
+All free world-model endpoints: `Cache-Control: public, max-age=300`, CORS `*`.
 
 ## Scaling the data
 
