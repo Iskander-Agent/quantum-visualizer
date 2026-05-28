@@ -14,8 +14,8 @@
       "5_urgent": 7,
       "4_proactive": 20,
       "3_cautious": 10,
-      "2_dismissive": 9,
-      "1_no_known_view": 25
+      "2_dismissive": 10,
+      "1_no_known_view": 24
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -383,9 +383,11 @@
         "contributor": "@vultuk"
       },
       {
-        "version": "3.5",
         "date": "2026-05-28",
-        "changes": "Merged #67 (Steve Lee 1→3 + score-1 longtail sweep), #72 (company freshness API endpoint)"
+        "developer": "Mike Schmidt",
+        "change": "score 1→2 — Bitcoin Optech Podcast #393, joined P2MR/BIP360 discussion with proportional research-aware quantum stance",
+        "pr": 70,
+        "contributor": "@op-simoneromeo"
       }
     ],
     "last_updated": "2026-05-28",
@@ -877,13 +879,15 @@
       "name": "Mike Schmidt",
       "affiliation": "Brink (co-founder)",
       "role": "Co-Founder & Executive Director",
-      "quantum_urgency_score": 1,
+      "quantum_urgency_score": 2,
       "pq_work_volume": 0,
       "notable": false,
-      "summary": "No public statements on quantum risk",
-      "key_source": null,
-      "sources": [],
-      "last_verified": "2026-04-10"
+      "summary": "In Bitcoin Optech Podcast #393, joined the P2MR/BIP360 quantum-resistance discussion and agreed with a proportional, research-aware stance: Bitcoin quantum concern should scale with visible quantum-computing progress rather than urgent rollout pressure.",
+      "key_source": "https://bitcoinops.org/en/podcast/2026/02/24/",
+      "sources": [
+        "https://bitcoinops.org/en/podcast/2026/02/24/"
+      ],
+      "last_verified": "2026-05-13"
     },
     {
       "rank": 31,

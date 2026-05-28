@@ -26,6 +26,28 @@ What the project is. Developer power map, scores, sources, per-developer freshne
 
 Operational backlog for agents. Returns verification coverage, source coverage, entries older than 30 days, recent update history, and the next developers to re-check. This mirrors the dashboard freshness panel as JSON so player-coaches and external agents can query the next data-maintenance work without scraping HTML.
 
+### Company History — `/api/world/company/history`
+
+Versioned update-history view over `metadata.update_history`, grouped by update date so agents can query what changed without downloading the full developer map.
+
+| Query | Meaning |
+|---|---|
+| `since=YYYY-MM-DD` | Return entries on or after a date |
+| `until=YYYY-MM-DD` | Return entries on or before a date |
+| `developer=NAME` | Fuzzy-match a developer name |
+| `limit=N` | Return the latest N matching entries, capped at 500 |
+
+Date bucket shortcut: `/api/world/company/history/YYYY-MM-DD`.
+
+Response fields:
+
+| Field | Meaning |
+|---|---|
+| `schema` | `company.history.v1` |
+| `snapshot` | Current map version, `last_updated`, assessed count, and total history entries |
+| `versions[]` | Per-date buckets: `version_id`, date, entry count, developers, PRs, contributors |
+| `history[]` | Chronological update entries with stable `sequence` numbers |
+
 ### Customer World Model — `/api/world/customer`
 
 How the project is landing. Quantum beats filed, sats flow, narrative traction. Unknown fields stay `"unknown"` — silence is not a data point.

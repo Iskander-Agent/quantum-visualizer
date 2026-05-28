@@ -274,6 +274,114 @@ function sinceSlice(data: any, sinceDate: string) {
   };
 }
 
+function isIsoDate(value: string | null): value is string {
+  return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function normalizeSearchValue(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+function parseHistoryLimit(value: string | null): number {
+  const fallback = 100;
+  if (!value) return fallback;
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed) || parsed <= 0) return fallback;
+  return Math.min(parsed, 500);
+}
+
+function summarizeHistoryVersions(history: any[]) {
+  const byDate = new Map<string, any>();
+  for (const entry of history) {
+    const date = String(entry.date || "unknown");
+    const version = byDate.get(date) || {
+      version_id: `history-${date}`,
+      date,
+      entry_count: 0,
+      developers: new Set<string>(),
+      prs: new Set<string>(),
+      contributors: new Set<string>(),
+    };
+    version.entry_count++;
+    if (entry.developer) version.developers.add(entry.developer);
+    if (entry.pr) version.prs.add(entry.pr);
+    if (entry.contributor) version.contributors.add(entry.contributor);
+    byDate.set(date, version);
+  }
+
+  return [...byDate.values()].map((version) => ({
+    version_id: version.version_id,
+    date: version.date,
+    entry_count: version.entry_count,
+    developers: [...version.developers],
+    prs: [...version.prs],
+    contributors: [...version.contributors],
+  }));
+}
+
+async function handleCompanyHistory(req: Request, env: any, versionDate?: string): Promise<Response> {
+  const data = await loadData(env, req);
+  const url = new URL(req.url);
+  const since = url.searchParams.get("since");
+  const until = url.searchParams.get("until");
+  const developer = url.searchParams.get("developer")?.trim() || "";
+  const requestedVersion = versionDate || url.searchParams.get("version");
+
+  if (since && !isIsoDate(since)) {
+    return jsonResponse({ error: "invalid_since", hint: "Use YYYY-MM-DD." }, 400, "no-store");
+  }
+  if (until && !isIsoDate(until)) {
+    return jsonResponse({ error: "invalid_until", hint: "Use YYYY-MM-DD." }, 400, "no-store");
+  }
+  if (requestedVersion && !isIsoDate(requestedVersion)) {
+    return jsonResponse({ error: "invalid_version", hint: "Use /api/world/company/history/YYYY-MM-DD." }, 400, "no-store");
+  }
+
+  const rawHistory = Array.isArray(data.metadata?.update_history) ? data.metadata.update_history : [];
+  const developerNeedle = developer ? normalizeSearchValue(developer) : "";
+  let filtered = rawHistory.map((entry: any, index: number) => ({
+    sequence: index + 1,
+    ...entry,
+  }));
+
+  if (requestedVersion) filtered = filtered.filter((entry: any) => entry.date === requestedVersion);
+  if (since) filtered = filtered.filter((entry: any) => entry.date >= since);
+  if (until) filtered = filtered.filter((entry: any) => entry.date <= until);
+  if (developerNeedle) {
+    filtered = filtered.filter((entry: any) => normalizeSearchValue(String(entry.developer || "")).includes(developerNeedle));
+  }
+
+  const limit = parseHistoryLimit(url.searchParams.get("limit"));
+  const history = filtered.slice(Math.max(filtered.length - limit, 0));
+  const versions = summarizeHistoryVersions(filtered);
+  const latestEntry = rawHistory[rawHistory.length - 1] || null;
+
+  return jsonResponse({
+    schema: "company.history.v1",
+    as_of: data.metadata?.last_updated || data.metadata?.date || null,
+    snapshot: {
+      version: data.metadata?.version || null,
+      date: data.metadata?.date || null,
+      last_updated: data.metadata?.last_updated || null,
+      total_assessed: data.metadata?.total_assessed || null,
+      latest_update_date: latestEntry?.date || null,
+      total_history_entries: rawHistory.length,
+    },
+    filters: {
+      version: requestedVersion || null,
+      since: since || null,
+      until: until || null,
+      developer: developer || null,
+      limit,
+    },
+    count: history.length,
+    filtered_count: filtered.length,
+    order: "chronological",
+    versions,
+    history,
+  });
+}
+
 function daysBetween(date: unknown, asOf: string): number | null {
   if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
   const start = Date.parse(`${date}T00:00:00Z`);
@@ -478,6 +586,8 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
       "/api/world/premium/dev/{name}": "Single dev profile by fuzzy name match",
       "/api/world/premium/since/{YYYY-MM-DD}": "Update history entries since date",
       "/api/world/company/freshness": "Free operational freshness audit for the company world model",
+      "/api/world/company/history": "Free versioned update-history view (supports since/until/developer/limit filters)",
+      "/api/world/company/history/{YYYY-MM-DD}": "Update entries for a specific date",
     },
     schemes: [
       {
@@ -504,7 +614,7 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
     notes: [
       "Replay protection: each settled txid is single-use.",
       "All sats settle to a dedicated service wallet — separate from any operator's main wallet.",
-      "Free, no-payment endpoints: /api/world/company, /api/world/company/freshness, /api/world/customer, /api/world/premium/doctor.",
+      "Free, no-payment endpoints: /api/world/company, /api/world/company/freshness, /api/world/company/history, /api/world/customer, /api/world/premium/doctor.",
     ],
   };
 
@@ -526,8 +636,11 @@ export default {
     if (p === "/api/world/company") return proxyJson(env, request, "/data.json");
     if (p === "/api/world/company/freshness") {
       const data = await loadData(env, request);
-      return jsonResponse(companyFreshnessSlice(data), 300);
+      return jsonResponse(companyFreshnessSlice(data));
     }
+    if (p === "/api/world/company/history") return handleCompanyHistory(request, env);
+    const companyHistoryMatch = p.match(/^\/api\/world\/company\/history\/(\d{4}-\d{2}-\d{2})$/);
+    if (companyHistoryMatch) return handleCompanyHistory(request, env, companyHistoryMatch[1]);
     if (p === "/api/world/customer") return proxyJson(env, request, "/customer.json");
     if (p === "/api/world/premium/doctor") return handleDoctor(request, env);
 
@@ -575,12 +688,12 @@ export default {
   },
 };
 
-function jsonResponse(body: unknown, maxAgeSeconds: number): Response {
-  return new Response(JSON.stringify(body, null, 2), {
-    status: 200,
+function jsonResponse(body: unknown, status = 200, cacheControl = "public, max-age=300"): Response {
+  return new Response(JSON.stringify(body), {
+    status,
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "cache-control": `public, max-age=${maxAgeSeconds}`,
+      "cache-control": cacheControl,
       "access-control-allow-origin": "*",
     },
   });
