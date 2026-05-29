@@ -388,6 +388,13 @@
         "change": "score 1→2 — Bitcoin Optech Podcast #393, joined P2MR/BIP360 discussion with proportional research-aware quantum stance",
         "pr": 70,
         "contributor": "@op-simoneromeo"
+      },
+      {
+        "date": "2026-04-30",
+        "developer": "Ethan Heilman",
+        "change": "pq_work_volume 8->9; Apr 30 2026 comment on bitcoin/bitcoin#29247 (BIP-347/OP_CAT): paused OP_CAT work to redirect attention to Bitcoin quantum mitigation due to unexpected quantum progress",
+        "pr": "#69",
+        "contributor": "@gregoryford963-sys"
       }
     ],
     "last_updated": "2026-05-28",
@@ -663,17 +670,18 @@
       "affiliation": "Iceberg Quantum",
       "role": "Researcher, BIP-360 co-author",
       "quantum_urgency_score": 5,
-      "pq_work_volume": 8,
+      "pq_work_volume": 9,
       "notable": false,
-      "summary": "Most urgent advocate; co-author BIP-360 and BIP-347; 'near future' urgency; proposed STARK compression; estimates 7-year migration timeline; Apr 2026 BIP-360 review argued P2MR should preserve P2TR future-leaf-version upgrade behavior.",
+      "summary": "Most urgent advocate; co-author BIP-360 and BIP-347; 'near future' urgency; proposed STARK compression; estimates 7-year migration timeline; Apr 2026 BIP-360 review argued P2MR should preserve P2TR future-leaf-version upgrade behavior; Apr 30 2026: paused OP_CAT/BIP-347 work to redirect attention to Bitcoin quantum mitigation due to unexpected quantum progress.",
       "key_source": "https://cointelegraph.com/magazine/bitcoin-7-years-upgrade-post-quantum-bip-360-co-author/",
       "sources": [
         "https://cointelegraph.com/magazine/bitcoin-7-years-upgrade-post-quantum-bip-360-co-author/",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
         "https://github.com/bitcoin/bips/blob/master/bip-0347.mediawiki",
-        "https://github.com/bitcoin/bips/pull/2103#issuecomment-4353743142"
+        "https://github.com/bitcoin/bips/pull/2103#issuecomment-4353743142",
+        "https://github.com/bitcoin/bitcoin/pull/29247#issuecomment-4353114242"
       ],
-      "last_verified": "2026-05-13"
+      "last_verified": "2026-04-30"
     },
     {
       "rank": 18,
