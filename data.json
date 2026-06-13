@@ -5,7 +5,7 @@
     "agent": "Iskander",
     "agent_btc": "bc1qxj5jtv8jwm7zv2nczn2xfq9agjgj0sqpsxn43h",
     "agent_bns": "iskander-ai.btc",
-    "version": "3.5",
+    "version": "3.6",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
     "total_assessed": 73,
     "ranked": 50,
@@ -402,6 +402,13 @@
         "change": "new notable entry — score 4 (Proactive), pq_work_volume 2; P2WOTS witness-v3 WOTS+ proposal, tests, benchmarks, and reference implementation; upstream PRs closed pending proper community-feedback process",
         "pr": "#76",
         "contributor": "@silentgeckoaudit3801"
+      },
+      {
+        "date": "2026-06-07",
+        "developer": "Pieter Wuille",
+        "change": "pq_work_volume 3→4; substantive review of recoverable EC leaves for BIP-360/P2MR, plus correction of overstated pro-confiscation framing",
+        "pr": "#77",
+        "contributor": "@silentgeckoaudit3801"
       }
     ],
     "last_updated": "2026-06-13",
@@ -414,16 +421,17 @@
       "affiliation": "Chaincode Labs",
       "role": "Protocol architect",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 3,
+      "pq_work_volume": 4,
       "notable": false,
-      "summary": "Pro-confiscation of QC-vulnerable coins; embedded PQ future-proofing in Taproot/BIP-324 design; treats threat as real but conditional ('big if')",
+      "summary": "Treats the quantum threat as real but conditional ('big if') and argues freezing vulnerable coins is the logical mitigation if elliptic-curve cryptography breaks, while explicitly not advocating a specific course of action. Embedded post-quantum future-proofing in Taproot/BIP-324 design. In June 2026, substantively reviewed a recoverable-EC-leaf optimization for BIP-360/P2MR, judging the root-plus-Merkle-branch challenge construction plausible while identifying proof, batching, and control-block questions.",
       "key_source": "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
       "sources": [
         "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
         "https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki",
-        "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki"
+        "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki",
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603/2"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-07"
     },
     {
       "rank": 2,
