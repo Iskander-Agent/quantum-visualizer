@@ -416,6 +416,13 @@
         "change": "pq_work_volume 4->5; added Quantum Attack Game Theory and Delving follow-up on CRQC key-theft scenarios, market attacks, fee griefing, and fee-sniping/reorg incentives; score remains 4",
         "pr": "#78",
         "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-06",
+        "developer": "conduition",
+        "change": "pq_work_volume 2->4; added isogeny-PQC wallet/key-tweaking analysis and BoP-2 hybrid-signature review; score remains 4",
+        "pr": "#79",
+        "contributor": "@caydyan"
       }
     ],
     "last_updated": "2026-06-13",
@@ -1601,11 +1608,11 @@
       "rank": 72,
       "name": "conduition",
       "affiliation": "Independent pseudonymous cypherpunk",
-      "role": "Bitcoin developer and BIP-361 technical reviewer",
+      "role": "Bitcoin developer and post-quantum technical reviewer",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 2,
+      "pq_work_volume": 4,
       "notable": true,
-      "summary": "Pseudonymous Bitcoin developer who materially shaped the BIP-361 legacy-signature sunset discussion in April 2026. In review of PR #1895, conduition agreed with the severe CRQC perspective but argued consensus-level restrictions must preserve rescue paths for authentic owners rather than simply lock EC spends. Follow-up PR #2146 was merged with corrections clarifying that Phase B should tighten verification conditions while still allowing commit/reveal or STARK-based rescue protocols. Scores as proactive because the work advances concrete post-quantum migration mechanics while keeping activation and confiscation risk technically bounded.",
+      "summary": "Pseudonymous Bitcoin developer who materially shaped the BIP-361 legacy-signature sunset discussion in April 2026. In review of PR #1895, conduition agreed with the severe CRQC perspective but argued consensus-level restrictions must preserve rescue paths for authentic owners rather than simply lock EC spends. Follow-up PR #2146 was merged with corrections clarifying that Phase B should tighten verification conditions while still allowing commit/reveal or STARK-based rescue protocols. Also published a March 2026 isogeny-PQC analysis for Bitcoin wallet/key-tweaking primitives and joined the May-June 2026 BoP-2 hybrid-signature thread, surfacing SUF, malleability, related-key, and EC+PQC witness-size tradeoffs. Scores as proactive because the work advances concrete post-quantum migration mechanics while keeping activation and confiscation risk technically bounded.",
       "key_source": "https://github.com/bitcoin/bips/pull/2146",
       "sources": [
         "https://github.com/bitcoin/bips/pull/1895#discussion_r3083313838",
@@ -1613,9 +1620,11 @@
         "https://github.com/bitcoin/bips/pull/1895#discussion_r3101174312",
         "https://github.com/bitcoin/bips/pull/2146",
         "https://github.com/bitcoin/bips/pull/2146#discussion_r3107148766",
+        "https://delvingbitcoin.org/t/compact-isogeny-pqc-can-replace-hd-wallets-key-tweaking-silent-payments/2324",
+        "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514",
         "https://github.com/conduition"
       ],
-      "last_verified": "2026-05-13",
+      "last_verified": "2026-06-06",
       "contributor": "@xoxoskeleton"
     },
     {
