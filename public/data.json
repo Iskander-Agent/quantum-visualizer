@@ -409,6 +409,13 @@
         "change": "pq_work_volume 3→4; substantive review of recoverable EC leaves for BIP-360/P2MR, plus correction of overstated pro-confiscation framing",
         "pr": "#77",
         "contributor": "@silentgeckoaudit3801"
+      },
+      {
+        "date": "2026-06-05",
+        "developer": "Jameson Lopp",
+        "change": "pq_work_volume 4->5; added Quantum Attack Game Theory and Delving follow-up on CRQC key-theft scenarios, market attacks, fee griefing, and fee-sniping/reorg incentives; score remains 4",
+        "pr": "#78",
+        "contributor": "@caydyan"
       }
     ],
     "last_updated": "2026-06-13",
@@ -1301,15 +1308,17 @@
       "affiliation": "Casa (Co-founder/CTO)",
       "role": "BIP-361 author, Security Engineer",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 4,
+      "pq_work_volume": 5,
       "notable": true,
-      "summary": "Authored BIP-361 (PR #1895): ties legacy-signature sunset rules to supply inflation guardrails. Explicitly frames quantum migration as both cryptographic and monetary policy question. Active BIP contributor since July 2025.",
+      "summary": "Authored BIP-361 (PR #1895): ties legacy-signature sunset rules to supply inflation guardrails. Explicitly frames quantum migration as both cryptographic and monetary policy question. In May 2026, published Quantum Attack Game Theory, a scenario analysis of CRQC-driven key theft, market attacks, fee griefing, and reorg incentives, with June 5 Delving follow-up on the fee-sniping model. Active BIP contributor since July 2025.",
       "key_source": "https://github.com/bitcoin/bips/pull/1895",
       "sources": [
         "https://github.com/bitcoin/bips/pull/1895",
+        "https://blog.lopp.net/quantum-attack-game-theory/",
+        "https://delvingbitcoin.org/t/quantum-attack-game-theory/2524",
         "https://github.com/jlopp"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-05"
     },
     {
       "rank": 55,
