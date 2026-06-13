@@ -43,14 +43,14 @@
         "date": "2026-04-04",
         "developer": "Neha Narula",
         "change": "score 1→3 (MIT DCI quantum research posture)",
-        "pr": "#77",
+        "pr": null,
         "contributor": "Iskander-Agent"
       },
       {
         "date": "2026-04-04",
         "developer": "baseline seed",
         "change": "50 ranked developers imported from Issue #30 research",
-        "pr": "#77",
+        "pr": null,
         "contributor": "Iskander-Agent"
       },
       {
@@ -141,7 +141,7 @@
         "date": "2026-04-19",
         "developer": "Adam Gibson (waxwing / AdamISZ)",
         "change": "new entry — score 2 (aware, dismissive of urgency-based action); JoinMarket creator; bitcoin-dev Algorithm Agility thread Apr 2026",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@lekanbams"
       },
       {
@@ -218,7 +218,7 @@
         "date": "2026-05-11",
         "developer": "baseline freshness backfill",
         "change": "added last_verified to 55 baseline entries and enforced data file sync",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@mySebbe"
       },
       {
@@ -281,84 +281,84 @@
         "date": "2026-05-13",
         "developer": "Wladimir J. van der Laan",
         "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "Michael Ford",
         "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "Hennadii Stepanov",
         "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "Alex Morcos",
         "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no personal quantum/PQC statements; score 1 confirmed",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "Eric Lombrozo",
         "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "Johnson Lau",
         "change": "add last_verified 2026-05-13 -- May 2026 sweep of Google Groups bitcoindev, Delving Bitcoin, and BIP-360 PRs #2102/#2103 found no quantum/PQC statements; score 1 confirmed",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-14",
         "developer": "Ava Chow",
         "change": "last_verified updated to 2026-05-14 — May 14 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103. No quantum/PQC statements found in 2026-05-10 to 2026-05-14 window. Score unchanged at 1.",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@gregoryford963-sys"
       },
       {
         "date": "2026-05-14",
         "developer": "Jon Atack",
         "change": "last_verified updated to 2026-05-14 — May 14 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103. No quantum/PQC statements found in 2026-05-10 to 2026-05-14 window. Score unchanged at 1.",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@gregoryford963-sys"
       },
       {
         "date": "2026-05-13",
         "developer": "Mark Erhardt (Murch)",
         "change": "pq_work_volume 1->2; May 2026 sweep records BIP-360 test-vector triage on bitcoin/bips#2102, score remains 2",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "Ethan Heilman",
         "change": "pq_work_volume 7->8; Apr 2026 BIP-360 review clarified future leaf-version upgrade behavior on bitcoin/bips#2103, score remains 5",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "Steve Lee",
         "change": "score 1→3 — Presidio Bitcoin Quantum Readiness release ties him to report talk-through and release-day quantum-Bitcoin discussion; no standalone activation advocacy found",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
         "date": "2026-05-13",
         "developer": "score-1 long-tail sweep",
         "change": "confirmed null-result status for Bryan Bishop, John Newbery, Sebastian Falbesoner, Niklas Gögge, Marco Falke, Carla Kirk-Cohen, Lisa Neigut, Ben Price, and Matias Furszyfer",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@SimoneMariaRomeo"
       },
       {
@@ -379,7 +379,7 @@
         "date": "2026-05-21",
         "developer": "Anthony Towns",
         "change": "score 1→2 — Optech #331 transcript documents Winternitz/Merkle post-quantum signature work as a BTC Lisp motivating example; records work product without treating it as migration advocacy",
-        "pr": "#77",
+        "pr": null,
         "contributor": "@vultuk"
       },
       {
