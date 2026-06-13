@@ -430,6 +430,13 @@
         "change": "pq_work_volume 1->2; added BoP-2 hybrid Schnorr+PQC signature discussion; score remains 2",
         "pr": "#80",
         "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-13",
+        "developer": "Mike Schmidt",
+        "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
+        "pr": "#81",
+        "contributor": "@0xjc65eth"
       }
     ],
     "last_updated": "2026-06-13",
@@ -924,14 +931,14 @@
       "affiliation": "Brink (co-founder)",
       "role": "Co-Founder & Executive Director",
       "quantum_urgency_score": 2,
-      "pq_work_volume": 0,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "In Bitcoin Optech Podcast #393, joined the P2MR/BIP360 quantum-resistance discussion and agreed with a proportional, research-aware stance: Bitcoin quantum concern should scale with visible quantum-computing progress rather than urgent rollout pressure.",
+      "summary": "In Bitcoin Optech Podcast #393, joined the P2MR/BIP360 quantum-resistance discussion and agreed with a proportional, research-aware stance: Bitcoin quantum concern should scale with visible quantum-computing progress rather than urgent rollout pressure. Treat as awareness and technical-context engagement, not migration advocacy.",
       "key_source": "https://bitcoinops.org/en/podcast/2026/02/24/",
       "sources": [
         "https://bitcoinops.org/en/podcast/2026/02/24/"
       ],
-      "last_verified": "2026-05-13"
+      "last_verified": "2026-06-13"
     },
     {
       "rank": 31,
