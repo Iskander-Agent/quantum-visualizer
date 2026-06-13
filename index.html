@@ -367,11 +367,43 @@ const dist=data.metadata.score_distribution;
 const total=data.metadata.total_assessed;
 const qri=data.metadata.quantum_readiness_index;
 
+function levelForScore(value){
+if(value<20)return 'Asleep';
+if(value<40)return 'Sleepwalking';
+if(value<60)return 'Awakening';
+if(value<80)return 'Mobilizing';
+return 'Ready';
+}
+
+function normalizeReadiness(raw){
+if(raw&&typeof raw==='object'&&raw.composite_readiness&&raw.voiced_urgency&&raw.coverage)return raw;
+const silent=dist['1_no_known_view']||0;
+const voicedCount=Math.max(0,total-silent);
+const weighted=(dist['5_urgent']||0)*5+(dist['4_proactive']||0)*4+(dist['3_cautious']||0)*3+(dist['2_dismissive']||0)*2;
+const voicedScore=voicedCount?Math.round(weighted/(voicedCount*5)*100):0;
+const coverageScore=total?Math.round(voicedCount/total*100):0;
+let compositeScore=Math.round(voicedScore*coverageScore/100);
+if(typeof raw==='number'&&Number.isFinite(raw))compositeScore=Math.round(raw<=1?raw*100:raw);
+const currentLevel=levelForScore(compositeScore);
+return {
+composite_readiness:{
+score:compositeScore,
+current_level:currentLevel,
+formula:typeof raw==='number'
+?'Index loaded from metadata. Voiced urgency and coverage panels are derived from the current score distribution.'
+:'Voiced urgency multiplied by coverage. Derived from the current score distribution because no structured index object was present.'
+},
+voiced_urgency:{score:voicedScore,voices_count:voicedCount},
+coverage:{score:coverageScore,silent,total}
+};
+}
+
 // Readiness Index
 const indexEl=document.getElementById('index-card');
-const comp=qri.composite_readiness;
-const voiced=qri.voiced_urgency;
-const coverage=qri.coverage;
+const normalizedQri=normalizeReadiness(qri);
+const comp=normalizedQri.composite_readiness;
+const voiced=normalizedQri.voiced_urgency;
+const coverage=normalizedQri.coverage;
 const score=comp.score;
 const circumference=2*Math.PI*65;
 const offset=circumference-(score/100)*circumference;
