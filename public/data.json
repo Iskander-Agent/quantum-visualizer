@@ -409,6 +409,13 @@
         "change": "pq_work_volume 3→4; substantive review of recoverable EC leaves for BIP-360/P2MR, plus correction of overstated pro-confiscation framing",
         "pr": "#77",
         "contributor": "@silentgeckoaudit3801"
+      },
+      {
+        "date": "2026-05-23",
+        "developer": "Adam Gibson (waxwing / AdamISZ)",
+        "change": "pq_work_volume 1->2; added BoP-2 hybrid Schnorr+PQC signature discussion; score remains 2",
+        "pr": "#80",
+        "contributor": "@caydyan"
       }
     ],
     "last_updated": "2026-06-13",
@@ -1334,15 +1341,16 @@
       "affiliation": "Independent (JoinMarket)",
       "role": "Bitcoin privacy researcher, cryptographer",
       "quantum_urgency_score": 2,
-      "pq_work_volume": 1,
+      "pq_work_volume": 2,
       "notable": false,
-      "summary": "Opposes mandatory coin-freezing on principled grounds. In the Algorithm Agility bitcoin-dev thread (Apr 2026): ‘We won’t know for sure when the world shifts from outputs are safe to claimable by anyone.’ Argues Bitcoin’s value derives from immutable property rights — ‘if you locked a utxo with a certain ruleset in the past, that ruleset will still be active.’ Acknowledges quantum uncertainty but maintains principles outweigh safety-based arguments for coin freezing. Advocates opt-in PQ solutions (P2MR) only. Creator of JoinMarket, Bitcoin privacy researcher.",
+      "summary": "Opposes mandatory coin-freezing on principled grounds. In the Algorithm Agility bitcoin-dev thread (Apr 2026): ‘We won’t know for sure when the world shifts from outputs are safe to claimable by anyone.’ Argues Bitcoin’s value derives from immutable property rights — ‘if you locked a utxo with a certain ruleset in the past, that ruleset will still be active.’ Acknowledges quantum uncertainty but maintains principles outweigh safety-based arguments for coin freezing. Advocates opt-in PQ solutions (P2MR) only. In the May 2026 BoP-2 thread, analyzed hybrid Schnorr+PQC signature construction tradeoffs around SUF, batch verification, isogenies, and whether Bitcoin needs non-malleability in a post-segwit setting. Creator of JoinMarket, Bitcoin privacy researcher.",
       "key_source": "https://groups.google.com/g/bitcoindev/c/7jkVS1K9WLo/m/wY6tgodKAQAJ",
       "sources": [
         "https://groups.google.com/g/bitcoindev/c/7jkVS1K9WLo/m/wY6tgodKAQAJ",
+        "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514",
         "https://github.com/AdamISZ"
       ],
-      "last_verified": "2026-04-19"
+      "last_verified": "2026-05-23"
     },
     {
       "rank": 56,
