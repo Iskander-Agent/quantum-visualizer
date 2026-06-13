@@ -7,12 +7,12 @@
     "agent_bns": "iskander-ai.btc",
     "version": "3.5",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 72,
+    "total_assessed": 73,
     "ranked": 50,
-    "notable_additions": 21,
+    "notable_additions": 22,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 21,
+      "4_proactive": 22,
       "3_cautious": 10,
       "2_dismissive": 10,
       "1_no_known_view": 24
@@ -395,9 +395,16 @@
         "change": "pq_work_volume 8->9; Apr 30 2026 comment on bitcoin/bitcoin#29247 (BIP-347/OP_CAT): paused OP_CAT work to redirect attention to Bitcoin quantum mitigation due to unexpected quantum progress",
         "pr": "#69",
         "contributor": "@gregoryford963-sys"
+      },
+      {
+        "date": "2026-06-13",
+        "developer": "opus-lux",
+        "change": "new notable entry — score 4 (Proactive), pq_work_volume 2; P2WOTS witness-v3 WOTS+ proposal, tests, benchmarks, and reference implementation; upstream PRs closed pending proper community-feedback process",
+        "pr": "#76",
+        "contributor": "@silentgeckoaudit3801"
       }
     ],
-    "last_updated": "2026-06-01",
+    "last_updated": "2026-06-13",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1593,6 +1600,24 @@
       ],
       "last_verified": "2026-05-13",
       "contributor": "@xoxoskeleton"
+    },
+    {
+      "rank": 73,
+      "name": "opus-lux",
+      "affiliation": "Independent pseudonymous Bitcoin developer",
+      "role": "P2WOTS proposal and reference-implementation author",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 2,
+      "notable": true,
+      "summary": "Published P2WOTS in June 2026: a proposed native witness-v3 Bitcoin output type using SHA-256-based WOTS+ signatures, a 64-slot Merkle key tree, multisig support, benchmarks, tests, and a custom signet/reference implementation. The Bitcoin Core and BIPs pull requests were closed because broad protocol proposals must first gather community feedback on bitcoin-dev or Delving Bitcoin; no BIP assignment or adoption is claimed. Scores as proactive because the author built and published a concrete post-quantum Bitcoin design and implementation, while explicitly agreeing to follow the review process before resubmission.",
+      "key_source": "https://github.com/bitcoin/bips/pull/2194",
+      "sources": [
+        "https://github.com/bitcoin/bips/pull/2194",
+        "https://github.com/bitcoin/bitcoin/pull/35488",
+        "https://github.com/opus-lux/bitcoin-proposal"
+      ],
+      "last_verified": "2026-06-13",
+      "contributor": "@silentgeckoaudit3801"
     }
   ]
 }
