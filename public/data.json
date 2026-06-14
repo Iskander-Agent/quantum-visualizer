@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Hunter Beast",
+        "change": "pq_work_volume 5->6; Hourglass V2 co-authorship adds a concrete soft-fork proposal for rate-limiting legacy P2PK liquidation under quantum-key-recovery scenarios",
+        "pr": "#94",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -732,16 +739,19 @@
       "affiliation": "Independent",
       "role": "BIP-360 co-author, Quantum researcher",
       "quantum_urgency_score": 5,
-      "pq_work_volume": 5,
+      "pq_work_volume": 6,
       "notable": false,
-      "summary": "Original BIP-360 champion; multiple BIP iterations since 2024; 'ready in event of quantum emergency'",
+      "summary": "Original BIP-360 champion with multiple BIP iterations since 2024 and a 'ready in event of quantum emergency' posture. In February 2026, co-authored Hourglass V2 with Michael Casey, a draft consensus soft-fork proposal that rate-limits legacy P2PK liquidation to one spend and at most 1 BTC net outflow per block. The proposal targets a quantum-key-recovery failure mode for exposed public-key outputs without outright freezing or burning them, trading fast liquidation risk for a long, visible migration window.",
       "key_source": "https://github.com/bitcoin/bips/pull/1670",
       "sources": [
         "https://github.com/bitcoin/bips/pull/1670",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
-        "https://delvingbitcoin.org/t/proposing-a-p2qrh-bip-towards-a-quantum-resistant-soft-fork/956"
+        "https://delvingbitcoin.org/t/proposing-a-p2qrh-bip-towards-a-quantum-resistant-soft-fork/956",
+        "https://delvingbitcoin.org/t/hourglass-v2-update/2246",
+        "https://groups.google.com/g/bitcoindev/c/0E1UyyQIUA0",
+        "https://bitcoinops.org/en/podcast/2026/03/10/"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 19,
