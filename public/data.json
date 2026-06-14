@@ -14,8 +14,8 @@
       "5_urgent": 7,
       "4_proactive": 22,
       "3_cautious": 10,
-      "2_dismissive": 10,
-      "1_no_known_view": 24
+      "2_dismissive": 11,
+      "1_no_known_view": 23
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Ruben Somsen",
+        "change": "score 1→2; pq_work_volume 1→2; Delving Bitcoin P2MR recoverable-EC-leaf review records quantum-relevant protocol analysis of pubkey-hash challenges, batch-validation tradeoffs, and taproot key-path recovery generalization without urgency advocacy",
+        "pr": "#89",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -836,16 +843,17 @@
       "name": "Ruben Somsen",
       "affiliation": "Independent",
       "role": "BIP Editor",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 1,
+      "quantum_urgency_score": 2,
+      "pq_work_volume": 2,
       "notable": false,
-      "summary": "Author of BIP-352 (Silent Payments), a proposal enabling non-interactive reusable payment codes without address reuse.",
-      "key_source": "https://bips.dev/352/",
+      "summary": "Author of BIP-352 (Silent Payments). In June 2026, joined the Delving Bitcoin P2MR recoverable-EC-leaf discussion by noting that a pubkey hash can substitute for the pubkey in Schnorr challenges to enable recovery, while batch validation becomes a bandwidth/CPU tradeoff and the idea could generalize to taproot key-path recovery. Records quantum-relevant protocol review, not migration urgency advocacy.",
+      "key_source": "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
       "sources": [
         "https://bips.dev/352/",
-        "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki"
+        "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki",
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603"
       ],
-      "last_verified": "2026-05-13",
+      "last_verified": "2026-06-14",
       "update_history": [
         {
           "date": "2026-05-13",
@@ -853,6 +861,13 @@
           "score_after": 1,
           "source": "null-result sweep",
           "note": "May 2026 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103, and Google Groups bitcoindev. No quantum/PQC statements found in 2026-04-10 to 2026-05-13 window. Score unchanged."
+        },
+        {
+          "date": "2026-06-14",
+          "score_before": 1,
+          "score_after": 2,
+          "source": "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
+          "note": "Delving Bitcoin P2MR public-key-recovery thread documents quantum-relevant protocol review of Schnorr challenge inputs, batch-validation tradeoffs, and possible taproot key-path recovery generalization; no urgency advocacy."
         }
       ]
     },
