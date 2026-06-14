@@ -7,12 +7,12 @@
     "agent_bns": "iskander-ai.btc",
     "version": "3.6",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 73,
+    "total_assessed": 74,
     "ranked": 50,
-    "notable_additions": 22,
+    "notable_additions": 23,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 22,
+      "4_proactive": 23,
       "3_cautious": 10,
       "2_dismissive": 10,
       "1_no_known_view": 24
@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Boris Nagaev (starius)",
+        "change": "new notable entry — score 4 (Proactive), pq_work_volume 1; proposed recoverable EC leaves for BIP-360/P2MR to reduce common EC spend witness size while retaining a PQ emergency path",
+        "pr": "#100",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1659,6 +1666,23 @@
       ],
       "last_verified": "2026-06-13",
       "contributor": "@silentgeckoaudit3801"
+    },
+    {
+      "rank": 75,
+      "name": "Boris Nagaev (starius)",
+      "affiliation": "Independent",
+      "role": "Bitcoin protocol researcher; recoverable EC leaf proposal author",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 1,
+      "notable": true,
+      "summary": "Authored the June 2026 Delving Bitcoin proposal for recoverable EC leaves in BIP-360/P2MR: a P2MR output with a cheap EC leaf and an expensive PQ leaf, using Schnorr public-key recovery to remove the EC public key from the common witness while keeping it hidden until spend. The proposal specifies challenge binding to the P2MR root and control block, witness shape, nonce derivation, validation rules, and fee-size tradeoffs. Scores as proactive design work because it makes opt-in P2MR migration cheaper for ordinary EC spends while preserving a post-quantum emergency branch; it is not activation advocacy.",
+      "key_source": "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
+      "sources": [
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
+        "https://bips.dev/360/"
+      ],
+      "last_verified": "2026-06-14",
+      "contributor": "@caydyan"
     }
   ]
 }
