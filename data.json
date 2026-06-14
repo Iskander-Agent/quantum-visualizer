@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Olaoluwa Osuntokun",
+        "change": "pq_work_volume 3→4; Delving Bitcoin Post Quantum Lightning analysis maps BOLT 11/12, 8, 7, 4, and channel-layer migration pressure across ML-KEM, ML-DSA, and SLH-DSA choices",
+        "pr": "#92",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -862,11 +869,12 @@
       "affiliation": "Lightning Labs (CTO)",
       "role": "BIP Editor, Lightning Lead",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 3,
+      "pq_work_volume": 4,
       "notable": false,
-      "summary": "Escalated from research-engaged to proactive in May 2026 bitcoin-dev discussion by proposing a post-quantum path for BIP-324 transport encryption. Argues Bitcoin P2P transport is also quantum-vulnerable because BIP-324 uses ECDH, describes harvest-now-decrypt-later risk for encrypted peer traffic, and calls PQ BIP-324 a lower-hanging target worth pursuing immediately. Explores pure ML-KEM, hybrid ECDH+ML-KEM, classical-then-PQ upgrade, and obfuscated KEM tradeoffs; follow-up rejects TLS 1.3 as a poor fit for Bitcoin Core dependency, secp256k1, authentication, and oblivious-handshake constraints.",
-      "key_source": "https://gnusha.org/pi/bitcoindev/CAO3Pvs9U3prZJiDs0Ns7LSA07R8hM-GQou_FcTZZz-JUQpUYHw@mail.gmail.com/",
+      "summary": "Escalated from research-engaged to proactive in May 2026 bitcoin-dev discussion by proposing a post-quantum path for BIP-324 transport encryption. Extended that work into Lightning with a Delving Bitcoin layer-by-layer migration analysis: BOLT 11/12 invoices need a new format for PQ signatures, BOLT 8 needs PQ or hybrid Noise/KEM handling, BOLT 7 gossip favors ML-DSA over limited-use SLH-DSA for high-churn updates, BOLT 4 onion routing loses ECC blinding compactness, and channel scripts should move away from RIPEMD-160 payment hashes under quantum assumptions. Score stays 4 because this is concrete protocol-preparation work, not immediate activation advocacy.",
+      "key_source": "https://delvingbitcoin.org/t/post-quantum-lightning-layer-by-layer/2479",
       "sources": [
+        "https://delvingbitcoin.org/t/post-quantum-lightning-layer-by-layer/2479",
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
         "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
@@ -875,7 +883,16 @@
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs8i=pLP30nRh_iyjSRJXne19wNezmQmo=JAk8+E4uJPhg@mail.gmail.com/",
         "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki"
       ],
-      "last_verified": "2026-05-11"
+      "last_verified": "2026-06-14",
+      "update_history": [
+        {
+          "date": "2026-06-14",
+          "score_before": 4,
+          "score_after": 4,
+          "source": "https://delvingbitcoin.org/t/post-quantum-lightning-layer-by-layer/2479",
+          "note": "Delving Bitcoin post maps post-quantum migration pressure across Lightning layers: invoices, encrypted transport, gossip authentication, onion routing, channel scripts, and hash choices. pq_work_volume 3→4; score remains 4 because the source is concrete preparation analysis rather than immediate activation advocacy."
+        }
+      ]
     },
     {
       "rank": 27,
