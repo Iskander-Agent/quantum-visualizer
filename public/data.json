@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Pieter Wuille",
+        "change": "pq_work_volume 4->5; Bird of Prey 2 thread records concrete hybrid Schnorr+PQC signature analysis, including SUF/malleability, batch-verification tradeoffs, and longer-term hybrid EC+PQC opcode considerations; score remains 4",
+        "pr": "#87",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -449,17 +456,18 @@
       "affiliation": "Chaincode Labs",
       "role": "Protocol architect",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 4,
+      "pq_work_volume": 5,
       "notable": false,
-      "summary": "Treats the quantum threat as real but conditional ('big if') and argues freezing vulnerable coins is the logical mitigation if elliptic-curve cryptography breaks, while explicitly not advocating a specific course of action. Embedded post-quantum future-proofing in Taproot/BIP-324 design. In June 2026, substantively reviewed a recoverable-EC-leaf optimization for BIP-360/P2MR, judging the root-plus-Merkle-branch challenge construction plausible while identifying proof, batching, and control-block questions.",
-      "key_source": "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
+      "summary": "Treats the quantum threat as real but conditional ('big if') and argues freezing vulnerable coins is the logical mitigation if elliptic-curve cryptography breaks, while explicitly not advocating a specific course of action. Embedded post-quantum future-proofing in Taproot/BIP-324 design. In June 2026, substantively reviewed a recoverable-EC-leaf optimization for BIP-360/P2MR, judging the root-plus-Merkle-branch challenge construction plausible while identifying proof, batching, and control-block questions. In the Bird of Prey 2 thread, analyzed hybrid Schnorr+PQC signature construction, SUF/malleability and batch-verification tradeoffs, and said the approach is a good basis if Bitcoin ever considers hybrid EC+PQC schemes for newer post-quantum assumptions.",
+      "key_source": "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514",
       "sources": [
         "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
         "https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki",
         "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki",
-        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603/2"
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603/2",
+        "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514"
       ],
-      "last_verified": "2026-06-07"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 2,
