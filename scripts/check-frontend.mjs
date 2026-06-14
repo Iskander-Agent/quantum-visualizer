@@ -25,6 +25,7 @@ for (const id of [
   "pr-queue-panel",
   "pr-queue-kpis",
   "pr-queue-body",
+  "mobile-scorecards",
 ]) {
   assert(html.includes(`id="${id}"`), `missing #${id}`);
 }
@@ -36,6 +37,9 @@ assert(
 assert(html.includes("function renderFreshnessAudit"), "missing renderFreshnessAudit()");
 assert(html.includes("function renderPayoutLedger"), "missing renderPayoutLedger()");
 assert(html.includes("function renderPrWorkQueue"), "missing renderPrWorkQueue()");
+assert(html.includes("function renderMobileScorecards"), "missing renderMobileScorecards()");
+assert(html.includes(".table-wrap{display:none}"), "mobile breakpoint should replace the wide scorecard table");
+assert(html.includes("openDrawer(dev);"), "mobile scorecards should open the existing detail drawer");
 assert(html.includes("fetch('/customer.json')"), "missing customer world model fetch");
 assert(!html.includes("${data.length}"), "readiness panel must use metadata total, not object.length");
 

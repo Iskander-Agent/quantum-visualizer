@@ -164,6 +164,17 @@ tr:hover td{background:var(--bg-elevated)}
 .td-name{font-weight:600;white-space:nowrap}
 .td-affil{color:var(--text-secondary);font-size:0.8rem;white-space:nowrap}
 .td-summary{color:var(--text-secondary);font-size:0.8rem;line-height:1.5;max-width:360px}
+.mobile-scorecards{display:none}
+.mobile-scorecard{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-elevated);padding:1rem;cursor:pointer;transition:border-color 0.15s,background 0.15s}
+.mobile-scorecard:focus,.mobile-scorecard:hover{outline:none;border-color:var(--border-light);background:var(--bg-hover)}
+.mobile-scorecard.is-active{border-color:rgba(247,147,26,0.45);background:rgba(247,147,26,0.08)}
+.mobile-scorecard-head{display:grid;grid-template-columns:1fr auto;gap:0.8rem;align-items:start}
+.mobile-scorecard-name{font-weight:700;font-size:0.95rem;line-height:1.35}
+.mobile-scorecard-meta{margin-top:0.35rem;font-size:0.72rem;color:var(--text-muted);line-height:1.5}
+.mobile-scorecard-summary{margin-top:0.75rem;color:var(--text-secondary);font-size:0.8rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.mobile-scorecard-actions{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-top:0.85rem;font-size:0.72rem;color:var(--text-muted)}
+.mobile-scorecard-source{color:var(--accent);text-decoration:none;font-weight:700;white-space:nowrap}
+.mobile-scorecard-source:hover{text-decoration:underline}
 
 /* Score badge */
 .badge{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:var(--radius-xs);font-weight:700;font-size:0.8rem;font-family:'JetBrains Mono',monospace}
@@ -284,6 +295,8 @@ tr:hover td{background:var(--bg-elevated)}
   .hero-meta{gap:0.75rem}
   th,td{padding:0.5rem 0.6rem}
   .td-summary{max-width:200px;font-size:0.75rem}
+  .table-wrap{display:none}
+  .mobile-scorecards{display:flex;flex-direction:column;gap:0.75rem}
   .method-grid{grid-template-columns:1fr}
   .scorecard-actions{justify-content:flex-start;width:100%}
 }
@@ -495,6 +508,7 @@ tbody tr.is-active td{background:var(--bg-hover)}
 </table>
 </div>
 </div>
+<div class="mobile-scorecards" id="mobile-scorecards"></div>
 </div>
 </section>
 
@@ -1108,7 +1122,9 @@ applyAffiliationFilter(row.dataset.affiliation);
 
 function render(){
 const tbody=document.getElementById('table-body');
+const cards=document.getElementById('mobile-scorecards');
 tbody.innerHTML='';
+cards.innerHTML='';
 const q=searchQuery.toLowerCase();
 const filtered=devs.filter(dev=>{
 const scoreMatch=activeScore==='all'||dev.quantum_urgency_score===parseInt(activeScore);
@@ -1119,6 +1135,7 @@ return scoreMatch&&affilMatch&&textMatch;
 document.getElementById('showing-count').textContent=`Showing ${filtered.length} of ${total}`;
 if(!filtered.length){
 tbody.innerHTML='<tr><td colspan="6" class="empty">No developers match your filters.</td></tr>';
+cards.innerHTML='<div class="empty">No developers match your filters.</div>';
 return;
 }
 const frag=document.createDocumentFragment();
@@ -1138,6 +1155,40 @@ tr.addEventListener('click',()=>openDrawer(dev));
 frag.appendChild(tr);
 });
 tbody.appendChild(frag);
+renderMobileScorecards(filtered);
+}
+
+function renderMobileScorecards(filtered){
+const cards=document.getElementById('mobile-scorecards');
+const frag=document.createDocumentFragment();
+filtered.forEach(dev=>{
+const card=document.createElement('article');
+const notable=dev.notable?'<span class="notable-tag">notable</span>':'';
+const rank=dev.notable?'Notable contributor':`Influence rank #${dev.rank}`;
+const work=Number(dev.pq_work_volume)||0;
+const src=dev.key_source?`<a href="${escapeHtml(dev.key_source)}" class="mobile-scorecard-source" target="_blank" rel="noopener">Source</a>`:'<span>Source unavailable</span>';
+card.className='mobile-scorecard'+(activeDevName===dev.name?' is-active':'');
+card.tabIndex=0;
+card.innerHTML=`<div class="mobile-scorecard-head">
+<div>
+<div class="mobile-scorecard-name">${escapeHtml(dev.name)}${notable}</div>
+<div class="mobile-scorecard-meta">${escapeHtml(rank)} · ${escapeHtml(dev.affiliation||'Independent')} · ${work} PQ ${work===1?'artifact':'artifacts'}</div>
+</div>
+<span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span>
+</div>
+<div class="mobile-scorecard-summary">${escapeHtml(dev.summary||'No public quantum position identified.')}</div>
+<div class="mobile-scorecard-actions"><span>${dev.last_verified?'Verified '+escapeHtml(dev.last_verified):'Verification pending'}</span>${src}</div>`;
+card.querySelectorAll('a').forEach(link=>link.addEventListener('click',event=>event.stopPropagation()));
+card.addEventListener('click',()=>openDrawer(dev));
+card.addEventListener('keydown',event=>{
+if(event.key==='Enter'||event.key===' '){
+event.preventDefault();
+openDrawer(dev);
+}
+});
+frag.appendChild(card);
+});
+cards.appendChild(frag);
 }
 
 // Filter clicks (pills)
