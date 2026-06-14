@@ -409,9 +409,16 @@
         "change": "pq_work_volume 3→4; substantive review of recoverable EC leaves for BIP-360/P2MR, plus correction of overstated pro-confiscation framing",
         "pr": "#77",
         "contributor": "@silentgeckoaudit3801"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Mike Schmidt",
+        "change": "pq_work_volume 0->1; normalize existing Optech #393 P2MR/BIP360 quantum-resistance discussion evidence into work-volume accounting",
+        "pr": null,
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -903,14 +910,14 @@
       "affiliation": "Brink (co-founder)",
       "role": "Co-Founder & Executive Director",
       "quantum_urgency_score": 2,
-      "pq_work_volume": 0,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "In Bitcoin Optech Podcast #393, joined the P2MR/BIP360 quantum-resistance discussion and agreed with a proportional, research-aware stance: Bitcoin quantum concern should scale with visible quantum-computing progress rather than urgent rollout pressure.",
+      "summary": "In Bitcoin Optech Podcast #393, joined the P2MR/BIP360 quantum-resistance discussion and agreed with a proportional, research-aware stance: Bitcoin quantum concern should scale with visible quantum-computing progress rather than urgent rollout pressure. This records a quantum-relevant Optech discussion contribution, not standalone migration advocacy.",
       "key_source": "https://bitcoinops.org/en/podcast/2026/02/24/",
       "sources": [
         "https://bitcoinops.org/en/podcast/2026/02/24/"
       ],
-      "last_verified": "2026-05-13"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 31,
