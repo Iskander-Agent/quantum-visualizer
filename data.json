@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Jonas Nick",
+        "change": "pq_work_volume 6→7; May 2026 Blockstream Research OP_CHECKSHRINCS post sketches a concrete hash-based signature opcode path for post-quantum Bitcoin",
+        "pr": "#86",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -540,18 +547,19 @@
       "affiliation": "Blockstream Research",
       "role": "Cryptographer",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 6,
+      "pq_work_volume": 7,
       "notable": false,
-      "summary": "Most technically active PQ researcher; building SHRINCS (324-byte PQ sigs) and SHRIMPS (multi-device); BIP-360 reviewer; published ePrint paper; presenting at OPNEXT Apr 2026",
-      "key_source": "https://delvingbitcoin.org/t/shrimps-2-5-kb-post-quantum-signatures-across-multiple-stateful-devices/2355",
+      "summary": "Most technically active PQ researcher; building SHRINCS, SHRIMPS, and OP_CHECKSHRINCS hash-based signature paths for post-quantum Bitcoin. BIP-360 reviewer; published the hash-based signatures ePrint paper; May 2026 Blockstream Research post sketches concrete Taproot/P2MR deployment options and failure modes.",
+      "key_source": "https://blog.blockstream.com/op_checkshrincs-a-hash-based-signature-opcode-for-post-quantum-bitcoin/",
       "sources": [
+        "https://blog.blockstream.com/op_checkshrincs-a-hash-based-signature-opcode-for-post-quantum-bitcoin/",
         "https://delvingbitcoin.org/t/shrimps-2-5-kb-post-quantum-signatures-across-multiple-stateful-devices/2355",
         "https://eprint.iacr.org/2025/2203",
         "https://x.com/n1ckler/status/2038695067754328095",
         "https://delvingbitcoin.org/t/shrincs",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 8,
