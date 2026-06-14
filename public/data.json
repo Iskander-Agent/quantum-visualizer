@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Mark Erhardt (Murch)",
+        "change": "pq_work_volume 2→3; Delving Bitcoin P2WOTS review records concrete witness-version allocation and one-time-signature wallet constraints, including address reuse, multi-user transactions, and replacement spends; score remains 2",
+        "pr": "#88",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -696,16 +703,17 @@
       "affiliation": "Chaincode Labs",
       "role": "BIP Editor, Research Engineer",
       "quantum_urgency_score": 2,
-      "pq_work_volume": 2,
+      "pq_work_volume": 3,
       "notable": false,
-      "summary": "Dismissive on CRQC timing ('make fun of me if we see a CRQC in less than 20 years'), but actively triaged BIP-360 test-vector PRs in Feb-Apr 2026 as BIP editor by routing review to authors and tracking v2 follow-up.",
-      "key_source": "https://x.com/murchandamus/status/1989417359988462015",
+      "summary": "Dismissive on CRQC timing ('make fun of me if we see a CRQC in less than 20 years'), but actively triaged BIP-360 test-vector PRs and reviewed P2WOTS on Delving Bitcoin by flagging witness-version allocation conflict plus one-time-signature limits for address reuse, multi-user transactions, and replacement spends.",
+      "key_source": "https://delvingbitcoin.org/t/p2wots-post-quantum-utxo-winternitz-signatures/2530",
       "sources": [
         "https://x.com/murchandamus/status/1989417359988462015",
         "https://github.com/bitcoin/bips/pull/2102#issuecomment-3917291624",
-        "https://github.com/bitcoin/bips/pull/2102#issuecomment-4292734608"
+        "https://github.com/bitcoin/bips/pull/2102#issuecomment-4292734608",
+        "https://delvingbitcoin.org/t/p2wots-post-quantum-utxo-winternitz-signatures/2530"
       ],
-      "last_verified": "2026-05-13"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 17,
