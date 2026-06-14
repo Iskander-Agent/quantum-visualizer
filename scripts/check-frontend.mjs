@@ -25,6 +25,12 @@ for (const id of [
   "pr-queue-panel",
   "pr-queue-kpis",
   "pr-queue-body",
+  "compare-panel",
+  "compare-count",
+  "compare-add-select",
+  "compare-slots",
+  "compare-table-head",
+  "compare-table-body",
 ]) {
   assert(html.includes(`id="${id}"`), `missing #${id}`);
 }
@@ -36,6 +42,9 @@ assert(
 assert(html.includes("function renderFreshnessAudit"), "missing renderFreshnessAudit()");
 assert(html.includes("function renderPayoutLedger"), "missing renderPayoutLedger()");
 assert(html.includes("function renderPrWorkQueue"), "missing renderPrWorkQueue()");
+assert(html.includes("function renderCompareView"), "missing renderCompareView()");
+assert(html.includes("function toggleCompareDev"), "missing toggleCompareDev()");
+assert(html.includes("params.append('compare',name)"), "compare selections must be URL-shareable");
 assert(html.includes("fetch('/customer.json')"), "missing customer world model fetch");
 assert(!html.includes("${data.length}"), "readiness panel must use metadata total, not object.length");
 

@@ -151,6 +151,33 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .view-link-button:hover{border-color:rgba(247,147,26,0.45);background:rgba(247,147,26,0.14);color:#fbbf24}
 .copy-status{min-width:3.5rem;font-size:0.72rem;color:var(--text-muted)}
 
+/* Compare view */
+.compare-panel{margin-bottom:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
+.compare-head{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.compare-title{font-size:0.9rem;font-weight:700;letter-spacing:-0.01em}
+.compare-count{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-muted);margin-top:0.15rem}
+.compare-actions{display:flex;align-items:center;gap:0.55rem;flex-wrap:wrap}
+.compare-select{width:min(280px,100%);padding:0.5rem 0.75rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:0.8rem;font-family:'Inter',sans-serif;outline:none;cursor:pointer}
+.compare-select:focus{border-color:var(--accent)}
+.compare-select option{background:var(--bg-elevated);color:var(--text)}
+.compare-slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--border)}
+.compare-slot{background:var(--bg);padding:0.85rem 1rem;min-width:0;position:relative}
+.compare-empty{grid-column:1/-1;padding:1rem 1.25rem;background:var(--bg);color:var(--text-muted);font-size:0.82rem}
+.compare-slot-head{display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem}
+.compare-name{font-weight:700;font-size:0.88rem;line-height:1.35}
+.compare-meta{font-size:0.72rem;color:var(--text-muted);line-height:1.55;margin-top:0.35rem}
+.compare-summary{font-size:0.76rem;color:var(--text-secondary);line-height:1.55;margin-top:0.65rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.compare-remove{width:1.65rem;height:1.65rem;border-radius:var(--radius-xs);border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;font-size:1rem;line-height:1;flex-shrink:0}
+.compare-remove:hover{background:var(--bg-hover);color:var(--text);border-color:var(--border-light)}
+.compare-table-wrap{padding:1rem;background:var(--bg);overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--border)}
+.compare-table{min-width:720px;font-size:0.82rem}
+.compare-table th:first-child,.compare-table td:first-child{width:9rem;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;font-size:0.68rem}
+.compare-table td{background:var(--bg)}
+.compare-row-btn{margin-top:0.35rem;padding:0.24rem 0.45rem;border:1px solid var(--border);border-radius:var(--radius-xs);background:transparent;color:var(--text-muted);cursor:pointer;font-size:0.66rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;font-family:'Inter',sans-serif;transition:all 0.15s;white-space:nowrap}
+.compare-row-btn:hover:not(:disabled){border-color:rgba(247,147,26,0.35);color:var(--accent);background:rgba(247,147,26,0.08)}
+.compare-row-btn.is-active{border-color:rgba(247,147,26,0.35);color:var(--accent);background:rgba(247,147,26,0.08)}
+.compare-row-btn:disabled{opacity:0.45;cursor:not-allowed}
+
 /* Table */
 .table-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -463,6 +490,29 @@ tbody tr.is-active td{background:var(--bg-hover)}
 <div class="filters" id="filters"></div>
 <button type="button" class="view-link-button" id="copy-view" title="Copy the current filters and selected developer as a shareable link">Copy view</button>
 <span class="copy-status" id="copy-status" aria-live="polite"></span>
+</div>
+</div>
+<div class="compare-panel" id="compare-panel">
+<div class="compare-head">
+<div>
+<h3 class="compare-title">Compare Developers</h3>
+<div class="compare-count" id="compare-count"></div>
+</div>
+<div class="compare-actions">
+<select class="compare-select" id="compare-add-select" aria-label="Add developer to compare">
+<option value="">Add developer</option>
+</select>
+<button type="button" class="view-link-button" id="clear-compare">Clear</button>
+</div>
+</div>
+<div class="compare-slots" id="compare-slots"></div>
+<div class="compare-table-wrap" id="compare-table-wrap">
+<table class="compare-table">
+<thead>
+<tr id="compare-table-head"></tr>
+</thead>
+<tbody id="compare-table-body"></tbody>
+</table>
 </div>
 </div>
 <div class="filter-row">
@@ -978,11 +1028,120 @@ const needle=String(name).toLowerCase();
 return devs.find(d=>d.name&&d.name.toLowerCase()===needle)||null;
 }
 
+const compareLimit=4;
+const compareSelect=document.getElementById('compare-add-select');
+const clearCompareBtn=document.getElementById('clear-compare');
+let compareNames=normalizeCompareNames(urlState.getAll('compare'));
+
+function normalizeCompareNames(names){
+const seen=new Set();
+const normalized=[];
+(names||[]).forEach(name=>{
+const dev=findDevByName(name);
+if(dev&&!seen.has(dev.name)&&normalized.length<compareLimit){
+seen.add(dev.name);
+normalized.push(dev.name);
+}
+});
+return normalized;
+}
+
+function getCompareDevs(){
+return compareNames.map(findDevByName).filter(Boolean);
+}
+
+function syncCompareSelect(){
+if(!compareSelect)return;
+const selected=new Set(compareNames);
+const atLimit=compareNames.length>=compareLimit;
+compareSelect.innerHTML='<option value="">Add developer</option>';
+devs.slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(dev=>{
+const opt=document.createElement('option');
+opt.value=dev.name;
+opt.textContent=dev.name;
+opt.disabled=selected.has(dev.name)||atLimit;
+compareSelect.appendChild(opt);
+});
+compareSelect.value='';
+}
+
+function compareCell(value){
+return `<td>${escapeHtml(value==null||value===''?'--':value)}</td>`;
+}
+
+function renderCompareView(){
+const countEl=document.getElementById('compare-count');
+const slotsEl=document.getElementById('compare-slots');
+const tableWrap=document.getElementById('compare-table-wrap');
+const tableHead=document.getElementById('compare-table-head');
+const tableBody=document.getElementById('compare-table-body');
+if(!countEl||!slotsEl||!tableWrap||!tableHead||!tableBody)return;
+const compareDevs=getCompareDevs();
+countEl.textContent=`${compareDevs.length} / ${compareLimit} selected`;
+syncCompareSelect();
+if(!compareDevs.length){
+slotsEl.innerHTML='<div class="compare-empty">No developers selected.</div>';
+tableWrap.hidden=true;
+return;
+}
+tableWrap.hidden=false;
+slotsEl.innerHTML=compareDevs.map(dev=>{
+const rank=dev.notable?'notable':'#'+dev.rank;
+const work=Number(dev.pq_work_volume)||0;
+return `<div class="compare-slot">
+<div class="compare-slot-head">
+<div>
+<div class="compare-name">${escapeHtml(dev.name)}</div>
+<div class="compare-meta">${escapeHtml(rank)} · ${work} PQ ${work===1?'artifact':'artifacts'} · ${escapeHtml(dev.last_verified||'unverified')}</div>
+</div>
+<button type="button" class="compare-remove" data-compare-remove="${escapeHtml(dev.name)}" aria-label="Remove ${escapeHtml(dev.name)} from compare">&times;</button>
+</div>
+<div style="margin-top:0.6rem"><span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span></div>
+<div class="compare-summary">${escapeHtml(dev.summary||'No public quantum position identified.')}</div>
+</div>`;
+}).join('');
+slotsEl.querySelectorAll('[data-compare-remove]').forEach(btn=>{
+btn.addEventListener('click',()=>removeCompareDev(btn.dataset.compareRemove));
+});
+tableHead.innerHTML='<th>Metric</th>'+compareDevs.map(dev=>`<th>${escapeHtml(dev.name)}</th>`).join('');
+const rows=[
+['Influence',compareDevs.map(dev=>dev.notable?'notable':'#'+dev.rank)],
+['Urgency',compareDevs.map(dev=>`${dev.quantum_urgency_score} / 5`)],
+['PQ work',compareDevs.map(dev=>Number(dev.pq_work_volume)||0)],
+['Affiliation',compareDevs.map(dev=>dev.affiliation||'Independent')],
+['Role',compareDevs.map(dev=>dev.role||'--')],
+['Verified',compareDevs.map(dev=>dev.last_verified||'--')]
+];
+tableBody.innerHTML=rows.map(([label,values])=>`<tr><td>${escapeHtml(label)}</td>${values.map(compareCell).join('')}</tr>`).join('');
+}
+
+function setCompareNames(names){
+compareNames=normalizeCompareNames(names);
+updateUrlState();
+renderCompareView();
+render();
+if(typeof drawChart==='function')drawChart();
+}
+
+function toggleCompareDev(dev){
+if(!dev)return;
+if(compareNames.includes(dev.name)){
+setCompareNames(compareNames.filter(name=>name!==dev.name));
+return;
+}
+if(compareNames.length<compareLimit)setCompareNames([...compareNames,dev.name]);
+}
+
+function removeCompareDev(name){
+setCompareNames(compareNames.filter(current=>current!==name));
+}
+
 function updateUrlState(){
 const params=new URLSearchParams();
 if(activeScore!=='all')params.set('score',activeScore);
 if(activeAffiliation!=='all')params.set('affiliation',activeAffiliation);
 if(searchQuery.trim())params.set('q',searchQuery.trim());
+compareNames.forEach(name=>params.append('compare',name));
 if(activeDevName)params.set('dev',activeDevName);
 const query=params.toString();
 const nextUrl=query?`${window.location.pathname}?${query}`:window.location.pathname;
@@ -1126,14 +1285,20 @@ filtered.forEach(dev=>{
 const src=dev.key_source?`<a href="${escapeHtml(dev.key_source)}" class="source-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">View</a>`:'<span style="color:var(--text-muted)">--</span>';
 const notable=dev.notable?'<span class="notable-tag">notable</span>':'';
 const rank=dev.notable?'+':dev.rank;
+const isCompared=compareNames.includes(dev.name);
+const compareDisabled=!isCompared&&compareNames.length>=compareLimit;
 const tr=document.createElement('tr');
 if(activeDevName===dev.name)tr.classList.add('is-active');
 tr.innerHTML=`<td class="td-rank">${rank}</td>
-<td class="td-name">${escapeHtml(dev.name)}${notable}</td>
+<td class="td-name"><div>${escapeHtml(dev.name)}${notable}</div><button type="button" class="compare-row-btn${isCompared?' is-active':''}" aria-pressed="${isCompared}" ${compareDisabled?'disabled':''}>${isCompared?'Compared':'Compare'}</button></td>
 <td class="td-affil">${escapeHtml(dev.affiliation)}</td>
 <td><span class="badge badge-${dev.quantum_urgency_score}">${dev.quantum_urgency_score}</span></td>
 <td class="td-summary">${escapeHtml(dev.summary||'No public quantum position identified.')}</td>
 <td>${src}</td>`;
+tr.querySelector('.compare-row-btn').addEventListener('click',event=>{
+event.stopPropagation();
+toggleCompareDev(dev);
+});
 tr.addEventListener('click',()=>openDrawer(dev));
 frag.appendChild(tr);
 });
@@ -1187,6 +1352,15 @@ setTimeout(()=>{copyStatus.textContent='';},1800);
 copyStatus.textContent='Copy failed';
 setTimeout(()=>{copyStatus.textContent='';},2200);
 }
+});
+
+compareSelect.addEventListener('change',e=>{
+const dev=findDevByName(e.target.value);
+if(dev)toggleCompareDev(dev);
+});
+
+clearCompareBtn.addEventListener('click',()=>{
+setCompareNames([]);
 });
 
 // === DETAIL DRAWER ===
@@ -1256,6 +1430,7 @@ drawerBackdrop.setAttribute('aria-hidden','true');
 
 renderAffiliationReadiness();
 syncControlsFromState();
+renderCompareView();
 render();
 const initialDev=findDevByName(activeDevName);
 if(initialDev)openDrawer(initialDev);
@@ -1321,7 +1496,18 @@ function drawChart() {
     const vol = dev.pq_work_volume || 0;
     const r = Math.max(6, Math.min(18, 6 + vol * 2.5));
     const isHovered = hoveredDev && hoveredDev.name === dev.name;
+    const isCompared = compareNames.includes(dev.name);
     const color = scoreColors[dev.quantum_urgency_score];
+
+    if (isCompared) {
+      ctx.beginPath();
+      ctx.arc(x, y, r + 5, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(250,250,250,0.85)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([3, 3]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
 
     if (isHovered) {
       ctx.beginPath();
