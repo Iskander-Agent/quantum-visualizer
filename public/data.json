@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Matt Corallo",
+        "change": "pq_work_volume 3→4 — Apr 2026 bitcoin-dev PQ output-type thread adds migration-readiness framing plus ZK/hashtree fallback discussion; score remains 4",
+        "pr": "#84",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1280,15 +1287,17 @@
       "affiliation": "Spiral",
       "role": "Protocol Developer, LDK Lead",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 3,
+      "pq_work_volume": 4,
       "notable": true,
-      "summary": "Proposed OP_HASHBASEDSIG (SPHINCS+) on bitcoin-dev, then laid out a concrete two-step quantum upgrade path on Unchained podcast (Feb 22, 2026): enable PQ key commitments via soft fork first, disable legacy spend paths later. Actively pushing back on the no-one-is-building narrative, noting PQ discussion is now 30-40% of mailing list posts.",
+      "summary": "Proposed OP_HASHBASEDSIG (SPHINCS+) on bitcoin-dev, then laid out a concrete two-step quantum upgrade path on Unchained podcast (Feb 22, 2026): enable PQ key commitments via soft fork first, disable legacy spend paths later. In the Apr 2026 PQ output-type thread, he argues Bitcoin needs the system ready before CRQC rather than relying on a subset of worried users to migrate, and expands the technical design space with ZK/hashtree and efficient proof possibilities. Score remains 4: proactive preparation and protocol-design advocacy, but not a new immediate-activation demand.",
       "key_source": "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/",
       "sources": [
         "https://gnusha.org/pi/bitcoindev/43afd5bb-244e-4698-ba3d-139efa2c2058@mattcorallo.com/",
-        "https://podcasts.apple.com/us/podcast/what-do-bitcoiners-do-about-quantum-with-matt-corallo/id1415720320?i=1000749245854"
+        "https://podcasts.apple.com/us/podcast/what-do-bitcoiners-do-about-quantum-with-matt-corallo/id1415720320?i=1000749245854",
+        "https://gnusha.org/pi/bitcoindev/61159968-e2cd-44a6-8171-a815e6055cff@mattcorallo.com/",
+        "https://gnusha.org/pi/bitcoindev/32cb5b05-643e-4e73-9116-8eb75f21f6d8@mattcorallo.com/"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 52,
