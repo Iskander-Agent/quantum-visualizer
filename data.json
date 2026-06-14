@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Antoine Poinsot",
+        "change": "pq_work_volume 2→3; Delving Bitcoin P2MR public-key-recovery thread records migration-target analysis focused on least-reactive users and broad EC-crypto migration needs; score remains 3",
+        "pr": "#90",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -806,14 +813,15 @@
       "affiliation": "Chaincode Labs",
       "role": "Core Developer",
       "quantum_urgency_score": 3,
-      "pq_work_volume": 2,
+      "pq_work_volume": 3,
       "notable": false,
-      "summary": "'The real material threat...is the perception of an imminent existential quantum threat by important stakeholders.' FUD is more dangerous than actual risk.",
-      "key_source": "https://x.com/darosior/status/2002021021625225310",
+      "summary": "Warns that perceived imminent quantum threat can be more materially dangerous than the near-term technical risk, but in June 2026 P2MR discussion argued migration design should target the least reactive users rather than only large cold wallets because PQ migration ultimately requires nearly all users to stop relying on EC crypto. Scores as cautious planning, not urgent activation advocacy.",
+      "key_source": "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
       "sources": [
-        "https://x.com/darosior/status/2002021021625225310"
+        "https://x.com/darosior/status/2002021021625225310",
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 24,
