@@ -437,9 +437,16 @@
         "change": "pq_work_volume 0→1; normalized the already-recorded Optech #393 P2MR/BIP360 discussion into the developer row, score remains 2",
         "pr": "#81",
         "contributor": "@0xjc65eth"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Karl-Johan Alm",
+        "change": "pq_work_volume 0→1 — normalize existing Taproot exposed-pubkey quantum-risk discussion; score remains 3",
+        "pr": "#85",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1158,14 +1165,14 @@
       "affiliation": "Independent",
       "role": "Core Developer",
       "quantum_urgency_score": 3,
-      "pq_work_volume": 0,
+      "pq_work_volume": 1,
       "notable": false,
       "summary": "Distinguished hash-protected vs exposed-pubkey quantum risk in bitcoin-dev thread. Argued Taproot naked pubkeys give attackers unlimited time vs hashed keys where attacker must race transaction confirmation. Cautious position: recognizes real quantum threat vector in P2TR design. May 2026 sweep of bitcoin-dev (gnusha.org), Delving Bitcoin, and BIP activity found no new statements post-2021.",
       "key_source": "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html",
       "sources": [
         "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html"
       ],
-      "last_verified": "2026-05-14",
+      "last_verified": "2026-06-14",
       "update_history": [
         {
           "date": "2026-05-14",
