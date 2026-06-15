@@ -14,8 +14,8 @@
       "5_urgent": 7,
       "4_proactive": 22,
       "3_cautious": 11,
-      "2_dismissive": 9,
-      "1_no_known_view": 24
+      "2_dismissive": 11,
+      "1_no_known_view": 22
     },
     "scoring_rubric": {
       "1": "No known view - no verifiable public statements found",
@@ -458,6 +458,69 @@
         "change": "pq_work_volume 3→4 — Apr 2026 bitcoin-dev PQ output-type thread adds migration-readiness framing plus ZK/hashtree fallback discussion; score remains 4",
         "pr": "#84",
         "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Karl-Johan Alm",
+        "change": "pq_work_volume 0→1 — normalize existing Taproot exposed-pubkey quantum-risk discussion; score remains 3",
+        "pr": "#85",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Jonas Nick",
+        "change": "pq_work_volume 6→7; May 2026 Blockstream Research OP_CHECKSHRINCS post sketches a concrete hash-based signature opcode path for post-quantum Bitcoin",
+        "pr": "#86",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Pieter Wuille",
+        "change": "pq_work_volume 4->5; Bird of Prey 2 thread records concrete hybrid Schnorr+PQC signature analysis, including SUF/malleability, batch-verification tradeoffs, and longer-term hybrid EC+PQC opcode considerations; score remains 4",
+        "pr": "#87",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Mark Erhardt (Murch)",
+        "change": "pq_work_volume 2→3; Delving Bitcoin P2WOTS review records concrete witness-version allocation and one-time-signature wallet constraints, including address reuse, multi-user transactions, and replacement spends; score remains 2",
+        "pr": "#88",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Ruben Somsen",
+        "change": "score 1→2; pq_work_volume 1→2; Delving Bitcoin P2MR recoverable-EC-leaf review records quantum-relevant protocol analysis of pubkey-hash challenges, batch-validation tradeoffs, and taproot key-path recovery generalization without urgency advocacy",
+        "pr": "#89",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Antoine Poinsot",
+        "change": "pq_work_volume 2→3; Delving Bitcoin P2MR public-key-recovery thread records migration-target analysis focused on least-reactive users and broad EC-crypto migration needs; score remains 3",
+        "pr": "#90",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Dave Harding",
+        "change": "score 1→2, pq_work_volume 0→1; Optech #339 transcript records direct cautious trade-off framing for BIP-360/post-quantum Bitcoin work, not activation advocacy",
+        "pr": "#91",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Olaoluwa Osuntokun",
+        "change": "pq_work_volume 3→4; Delving Bitcoin Post Quantum Lightning analysis maps BOLT 11/12, 8, 7, 4, and channel-layer migration pressure across ML-KEM, ML-DSA, and SLH-DSA choices",
+        "pr": "#92",
+        "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "Hunter Beast",
+        "change": "pq_work_volume 5->6; Hourglass V2 co-authorship adds a concrete soft-fork proposal for rate-limiting legacy P2PK liquidation under quantum-key-recovery scenarios",
+        "pr": "#94",
+        "contributor": "@caydyan"
       }
     ],
     "last_updated": "2026-06-14",
@@ -470,17 +533,18 @@
       "affiliation": "Chaincode Labs",
       "role": "Protocol architect",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 4,
+      "pq_work_volume": 5,
       "notable": false,
-      "summary": "Treats the quantum threat as real but conditional ('big if') and argues freezing vulnerable coins is the logical mitigation if elliptic-curve cryptography breaks, while explicitly not advocating a specific course of action. Embedded post-quantum future-proofing in Taproot/BIP-324 design. In June 2026, substantively reviewed a recoverable-EC-leaf optimization for BIP-360/P2MR, judging the root-plus-Merkle-branch challenge construction plausible while identifying proof, batching, and control-block questions.",
-      "key_source": "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
+      "summary": "Treats the quantum threat as real but conditional ('big if') and argues freezing vulnerable coins is the logical mitigation if elliptic-curve cryptography breaks, while explicitly not advocating a specific course of action. Embedded post-quantum future-proofing in Taproot/BIP-324 design. In June 2026, substantively reviewed a recoverable-EC-leaf optimization for BIP-360/P2MR, judging the root-plus-Merkle-branch challenge construction plausible while identifying proof, batching, and control-block questions. In the Bird of Prey 2 thread, analyzed hybrid Schnorr+PQC signature construction, SUF/malleability and batch-verification tradeoffs, and said the approach is a good basis if Bitcoin ever considers hybrid EC+PQC schemes for newer post-quantum assumptions.",
+      "key_source": "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514",
       "sources": [
         "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
         "https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki",
         "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki",
-        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603/2"
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603/2",
+        "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514"
       ],
-      "last_verified": "2026-06-07"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 2,
@@ -562,18 +626,19 @@
       "affiliation": "Blockstream Research",
       "role": "Cryptographer",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 6,
+      "pq_work_volume": 7,
       "notable": false,
-      "summary": "Most technically active PQ researcher; building SHRINCS (324-byte PQ sigs) and SHRIMPS (multi-device); BIP-360 reviewer; published ePrint paper; presenting at OPNEXT Apr 2026",
-      "key_source": "https://delvingbitcoin.org/t/shrimps-2-5-kb-post-quantum-signatures-across-multiple-stateful-devices/2355",
+      "summary": "Most technically active PQ researcher; building SHRINCS, SHRIMPS, and OP_CHECKSHRINCS hash-based signature paths for post-quantum Bitcoin. BIP-360 reviewer; published the hash-based signatures ePrint paper; May 2026 Blockstream Research post sketches concrete Taproot/P2MR deployment options and failure modes.",
+      "key_source": "https://blog.blockstream.com/op_checkshrincs-a-hash-based-signature-opcode-for-post-quantum-bitcoin/",
       "sources": [
+        "https://blog.blockstream.com/op_checkshrincs-a-hash-based-signature-opcode-for-post-quantum-bitcoin/",
         "https://delvingbitcoin.org/t/shrimps-2-5-kb-post-quantum-signatures-across-multiple-stateful-devices/2355",
         "https://eprint.iacr.org/2025/2203",
         "https://x.com/n1ckler/status/2038695067754328095",
         "https://delvingbitcoin.org/t/shrincs",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 8,
@@ -718,16 +783,17 @@
       "affiliation": "Chaincode Labs",
       "role": "BIP Editor, Research Engineer",
       "quantum_urgency_score": 2,
-      "pq_work_volume": 2,
+      "pq_work_volume": 3,
       "notable": false,
-      "summary": "Dismissive on CRQC timing ('make fun of me if we see a CRQC in less than 20 years'), but actively triaged BIP-360 test-vector PRs in Feb-Apr 2026 as BIP editor by routing review to authors and tracking v2 follow-up.",
-      "key_source": "https://x.com/murchandamus/status/1989417359988462015",
+      "summary": "Dismissive on CRQC timing ('make fun of me if we see a CRQC in less than 20 years'), but actively triaged BIP-360 test-vector PRs and reviewed P2WOTS on Delving Bitcoin by flagging witness-version allocation conflict plus one-time-signature limits for address reuse, multi-user transactions, and replacement spends.",
+      "key_source": "https://delvingbitcoin.org/t/p2wots-post-quantum-utxo-winternitz-signatures/2530",
       "sources": [
         "https://x.com/murchandamus/status/1989417359988462015",
         "https://github.com/bitcoin/bips/pull/2102#issuecomment-3917291624",
-        "https://github.com/bitcoin/bips/pull/2102#issuecomment-4292734608"
+        "https://github.com/bitcoin/bips/pull/2102#issuecomment-4292734608",
+        "https://delvingbitcoin.org/t/p2wots-post-quantum-utxo-winternitz-signatures/2530"
       ],
-      "last_verified": "2026-05-13"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 17,
@@ -754,16 +820,19 @@
       "affiliation": "Independent",
       "role": "BIP-360 co-author, Quantum researcher",
       "quantum_urgency_score": 5,
-      "pq_work_volume": 5,
+      "pq_work_volume": 6,
       "notable": false,
-      "summary": "Original BIP-360 champion; multiple BIP iterations since 2024; 'ready in event of quantum emergency'",
+      "summary": "Original BIP-360 champion with multiple BIP iterations since 2024 and a 'ready in event of quantum emergency' posture. In February 2026, co-authored Hourglass V2 with Michael Casey, a draft consensus soft-fork proposal that rate-limits legacy P2PK liquidation to one spend and at most 1 BTC net outflow per block. The proposal targets a quantum-key-recovery failure mode for exposed public-key outputs without outright freezing or burning them, trading fast liquidation risk for a long, visible migration window.",
       "key_source": "https://github.com/bitcoin/bips/pull/1670",
       "sources": [
         "https://github.com/bitcoin/bips/pull/1670",
         "https://github.com/bitcoin/bips/blob/master/bip-0360.mediawiki",
-        "https://delvingbitcoin.org/t/proposing-a-p2qrh-bip-towards-a-quantum-resistant-soft-fork/956"
+        "https://delvingbitcoin.org/t/proposing-a-p2qrh-bip-towards-a-quantum-resistant-soft-fork/956",
+        "https://delvingbitcoin.org/t/hourglass-v2-update/2246",
+        "https://groups.google.com/g/bitcoindev/c/0E1UyyQIUA0",
+        "https://bitcoinops.org/en/podcast/2026/03/10/"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 19,
@@ -828,14 +897,15 @@
       "affiliation": "Chaincode Labs",
       "role": "Core Developer",
       "quantum_urgency_score": 3,
-      "pq_work_volume": 2,
+      "pq_work_volume": 3,
       "notable": false,
-      "summary": "'The real material threat...is the perception of an imminent existential quantum threat by important stakeholders.' FUD is more dangerous than actual risk.",
-      "key_source": "https://x.com/darosior/status/2002021021625225310",
+      "summary": "Warns that perceived imminent quantum threat can be more materially dangerous than the near-term technical risk, but in June 2026 P2MR discussion argued migration design should target the least reactive users rather than only large cold wallets because PQ migration ultimately requires nearly all users to stop relying on EC crypto. Scores as cautious planning, not urgent activation advocacy.",
+      "key_source": "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
       "sources": [
-        "https://x.com/darosior/status/2002021021625225310"
+        "https://x.com/darosior/status/2002021021625225310",
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 24,
@@ -858,16 +928,17 @@
       "name": "Ruben Somsen",
       "affiliation": "Independent",
       "role": "BIP Editor",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 1,
+      "quantum_urgency_score": 2,
+      "pq_work_volume": 2,
       "notable": false,
-      "summary": "Author of BIP-352 (Silent Payments), a proposal enabling non-interactive reusable payment codes without address reuse.",
-      "key_source": "https://bips.dev/352/",
+      "summary": "Author of BIP-352 (Silent Payments). In June 2026, joined the Delving Bitcoin P2MR recoverable-EC-leaf discussion by noting that a pubkey hash can substitute for the pubkey in Schnorr challenges to enable recovery, while batch validation becomes a bandwidth/CPU tradeoff and the idea could generalize to taproot key-path recovery. Records quantum-relevant protocol review, not migration urgency advocacy.",
+      "key_source": "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
       "sources": [
         "https://bips.dev/352/",
-        "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki"
+        "https://github.com/bitcoin/bips/blob/master/bip-0352.mediawiki",
+        "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603"
       ],
-      "last_verified": "2026-05-13",
+      "last_verified": "2026-06-14",
       "update_history": [
         {
           "date": "2026-05-13",
@@ -875,6 +946,13 @@
           "score_after": 1,
           "source": "null-result sweep",
           "note": "May 2026 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103, and Google Groups bitcoindev. No quantum/PQC statements found in 2026-04-10 to 2026-05-13 window. Score unchanged."
+        },
+        {
+          "date": "2026-06-14",
+          "score_before": 1,
+          "score_after": 2,
+          "source": "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603",
+          "note": "Delving Bitcoin P2MR public-key-recovery thread documents quantum-relevant protocol review of Schnorr challenge inputs, batch-validation tradeoffs, and possible taproot key-path recovery generalization; no urgency advocacy."
         }
       ]
     },
@@ -884,11 +962,12 @@
       "affiliation": "Lightning Labs (CTO)",
       "role": "BIP Editor, Lightning Lead",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 3,
+      "pq_work_volume": 4,
       "notable": false,
-      "summary": "Escalated from research-engaged to proactive in May 2026 bitcoin-dev discussion by proposing a post-quantum path for BIP-324 transport encryption. Argues Bitcoin P2P transport is also quantum-vulnerable because BIP-324 uses ECDH, describes harvest-now-decrypt-later risk for encrypted peer traffic, and calls PQ BIP-324 a lower-hanging target worth pursuing immediately. Explores pure ML-KEM, hybrid ECDH+ML-KEM, classical-then-PQ upgrade, and obfuscated KEM tradeoffs; follow-up rejects TLS 1.3 as a poor fit for Bitcoin Core dependency, secp256k1, authentication, and oblivious-handshake constraints.",
-      "key_source": "https://gnusha.org/pi/bitcoindev/CAO3Pvs9U3prZJiDs0Ns7LSA07R8hM-GQou_FcTZZz-JUQpUYHw@mail.gmail.com/",
+      "summary": "Escalated from research-engaged to proactive in May 2026 bitcoin-dev discussion by proposing a post-quantum path for BIP-324 transport encryption. Extended that work into Lightning with a Delving Bitcoin layer-by-layer migration analysis: BOLT 11/12 invoices need a new format for PQ signatures, BOLT 8 needs PQ or hybrid Noise/KEM handling, BOLT 7 gossip favors ML-DSA over limited-use SLH-DSA for high-churn updates, BOLT 4 onion routing loses ECC blinding compactness, and channel scripts should move away from RIPEMD-160 payment hashes under quantum assumptions. Score stays 4 because this is concrete protocol-preparation work, not immediate activation advocacy.",
+      "key_source": "https://delvingbitcoin.org/t/post-quantum-lightning-layer-by-layer/2479",
       "sources": [
+        "https://delvingbitcoin.org/t/post-quantum-lightning-layer-by-layer/2479",
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs_cetTGP54zDzJJGRPeN7gXrRYGZZYk4mRYnhJQnwotdA@mail.gmail.com/",
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs8A0GLW-xdSHCKosjPqo7WSf-=YJ7F7s7t65RvtArcBEQ@mail.gmail.com/",
         "https://www.coindesk.com/tech/2026/04/09/bitcoin-gets-first-working-prototype-of-quantum-resistant-wallet-rescue-tool",
@@ -897,7 +976,16 @@
         "https://gnusha.org/pi/bitcoindev/CAO3Pvs8i=pLP30nRh_iyjSRJXne19wNezmQmo=JAk8+E4uJPhg@mail.gmail.com/",
         "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki"
       ],
-      "last_verified": "2026-05-11"
+      "last_verified": "2026-06-14",
+      "update_history": [
+        {
+          "date": "2026-06-14",
+          "score_before": 4,
+          "score_after": 4,
+          "source": "https://delvingbitcoin.org/t/post-quantum-lightning-layer-by-layer/2479",
+          "note": "Delving Bitcoin post maps post-quantum migration pressure across Lightning layers: invoices, encrypted transport, gossip authentication, onion routing, channel scripts, and hash choices. pq_work_volume 3→4; score remains 4 because the source is concrete preparation analysis rather than immediate activation advocacy."
+        }
+      ]
     },
     {
       "rank": 27,
@@ -998,18 +1086,19 @@
       "name": "Dave Harding",
       "affiliation": "Brink/Optech",
       "role": "Bitcoin Optech Primary Writer",
-      "quantum_urgency_score": 1,
-      "pq_work_volume": 0,
+      "quantum_urgency_score": 2,
+      "pq_work_volume": 1,
       "notable": false,
-      "summary": "Optech covers quantum objectively (BIP-360, Chaincode report, SHRINCS/SLH-DSA); no personal advocacy position",
-      "key_source": "https://bitcoinops.org/en/newsletters/",
+      "summary": "Optech covers quantum objectively, and Harding has a direct cautious stance: in Optech #339 he said BIP-360/post-quantum Bitcoin work requires community trade-off analysis because it is not a strict security upgrade and carries real costs in other security parameters. Records cautious engagement, not activation advocacy.",
+      "key_source": "https://bitcoinops.org/en/podcast/2025/02/04/",
       "sources": [
+        "https://bitcoinops.org/en/podcast/2025/02/04/",
         "https://bitcoinops.org/en/newsletters/2025/03/07/",
         "https://bitcoinops.org/en/newsletters/2025/06/06/",
         "https://bitcoinops.org/en/newsletters/2025/08/01/",
         "https://bitcoinops.org/en/newsletters/2026/02/06/"
       ],
-      "last_verified": "2026-05-13",
+      "last_verified": "2026-06-14",
       "update_history": [
         {
           "date": "2026-05-13",
@@ -1017,6 +1106,13 @@
           "score_after": 1,
           "source": "null-result sweep",
           "note": "May 2026 null-result sweep: searched bitcoin-dev ML (gnusha.org), Delving Bitcoin, GitHub BIP-360 PRs #2102/#2103, and Google Groups bitcoindev. No quantum/PQC statements found in 2026-04-10 to 2026-05-13 window. Score unchanged."
+        },
+        {
+          "date": "2026-06-14",
+          "score_before": 1,
+          "score_after": 2,
+          "source": "https://bitcoinops.org/en/podcast/2025/02/04/",
+          "note": "Optech #339 transcript records Harding personally framing BIP-360/post-quantum Bitcoin work as a community trade-off with real costs in other security parameters; pq_work_volume 0→1, score moves only to 2 because the stance is cautious rather than urgent or advocacy-oriented."
         }
       ]
     },
@@ -1180,14 +1276,14 @@
       "affiliation": "Independent",
       "role": "Core Developer",
       "quantum_urgency_score": 3,
-      "pq_work_volume": 0,
+      "pq_work_volume": 1,
       "notable": false,
       "summary": "Distinguished hash-protected vs exposed-pubkey quantum risk in bitcoin-dev thread. Argued Taproot naked pubkeys give attackers unlimited time vs hashed keys where attacker must race transaction confirmation. Cautious position: recognizes real quantum threat vector in P2TR design. May 2026 sweep of bitcoin-dev (gnusha.org), Delving Bitcoin, and BIP activity found no new statements post-2021.",
       "key_source": "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html",
       "sources": [
         "https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2021-March/018645.html"
       ],
-      "last_verified": "2026-05-14",
+      "last_verified": "2026-06-14",
       "update_history": [
         {
           "date": "2026-05-14",
