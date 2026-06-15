@@ -271,6 +271,13 @@
         "contributor": "@NoeFabris"
       },
       {
+        "date": "2026-06-03",
+        "developer": "Chevignard, Fouque, Schrottenloher (INRIA)",
+        "change": "pq_work_volume 1->2; Schrottenloher published a reproducible secp256k1 point-addition circuit matching Google's ECDLP result with lower Toffoli count",
+        "pr": null,
+        "contributor": "@caydyan"
+      },
+      {
         "date": "2026-05-13",
         "developer": "Cain, Xu, Bluvstein et al.",
         "change": "new entry — score 4 (Proactive), pq_work_volume 1; neutral-atom Shor implementation path for P-256 ECDLP with ~26k physical qubits (arXiv 2603.28627) — rank 69",
@@ -1452,15 +1459,17 @@
       "affiliation": "INRIA — quantum cryptanalysis research",
       "role": "Academic quantum cryptanalysts",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 1,
+      "pq_work_volume": 2,
       "notable": true,
-      "summary": "EUROCRYPT 2026 paper (IACR ePrint 2026/280) 'Reducing the Number of Qubits in Quantum ECDLP' presents prime-curve ECDLP quantum circuits achieving 3.12n + o(n) qubits versus 5n + o(n) prior (Häner 2020). For P-256: 1,193 logical qubits — a 44% reduction. Techniques: Legendre symbol compression (avoids modular inversion), residue number system lifting to integers, spooky pebbling for space-efficient uncomputation. P-256 now breaks with 42% fewer logical qubits than RSA-3072. Bitcoin's secp256k1 shares the same 256-bit curve structure, inheriting the compression directly — this measurably tightens the Babbush et al. <500K physical-qubit ECDLP-256 budget.",
+      "summary": "EUROCRYPT 2026 paper (IACR ePrint 2026/280) 'Reducing the Number of Qubits in Quantum ECDLP' presents prime-curve ECDLP quantum circuits achieving 3.12n + o(n) qubits versus 5n + o(n) prior (Häner 2020). For P-256: 1,193 logical qubits — a 44% reduction. On June 1, 2026, Schrottenloher published 'Optimized Point Addition Circuits for Elliptic Curve Discrete Logarithms,' reconstructing Google's unpublished secp256k1 logical-circuit result with about 1.5% more qubits but 6.5%-10% lower Toffoli count, plus public code via Qarton/CAPSULE. This strengthens reproducibility of the <500K physical-qubit ECDLP-256 budget without changing the urgency score.",
       "key_source": "https://eprint.iacr.org/2026/280",
       "sources": [
         "https://eprint.iacr.org/2026/280",
-        "https://arxiv.org/abs/2603.28846"
+        "https://arxiv.org/abs/2603.28846",
+        "https://arxiv.org/abs/2606.02235",
+        "https://delvingbitcoin.org/t/pqc-googles-result-on-improving-shors-algorithm-reconstructed/2552"
       ],
-      "last_verified": "2026-04-26"
+      "last_verified": "2026-06-03"
     },
     {
       "rank": 62,
