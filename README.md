@@ -88,6 +88,10 @@ node scripts/build-customer.mjs
 
 The stamp/append scripts are idempotent and safe to re-run, and they keep `data.json` and `public/data.json` in sync. Run `npm run validate:data` before opening or merging data PRs so reviewers can catch stale counts, malformed source URLs, file drift, or missing freshness stamps early. `build-customer.mjs` requires `gh` auth.
 
+## Agent onboarding playbook
+
+Use [docs/agent-onboarding-playbook.md](docs/agent-onboarding-playbook.md) to onboard a new Bounty #33 agent. It covers the 24-hour path from role claim to source-backed Daily Quantum Beat, plus data update, visualizer feature, validation, and payout-registration checklists.
+
 ## Deploy
 
 Push to `main` → Cloudflare Workers auto-deploys within ~30s.
