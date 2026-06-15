@@ -13,8 +13,8 @@
     "score_distribution": {
       "5_urgent": 7,
       "4_proactive": 22,
-      "3_cautious": 10,
-      "2_dismissive": 10,
+      "3_cautious": 11,
+      "2_dismissive": 9,
       "1_no_known_view": 24
     },
     "scoring_rubric": {
@@ -390,6 +390,13 @@
         "contributor": "@vultuk"
       },
       {
+        "date": "2026-06-14",
+        "developer": "Anthony Towns",
+        "change": "score 2→3; pq_work_volume 1→2 — Apr 2026 bitcoin-dev reply engages PQ output-type migration costs, CRQC recovery scenarios, and opcode-design risk without urgent activation advocacy",
+        "pr": null,
+        "contributor": "@caydyan"
+      },
+      {
         "date": "2026-05-28",
         "developer": "Mike Schmidt",
         "change": "score 1→2 — Bitcoin Optech Podcast #393, joined P2MR/BIP360 discussion with proportional research-aware quantum stance",
@@ -446,7 +453,7 @@
         "contributor": "@0xjc65eth"
       }
     ],
-    "last_updated": "2026-06-13",
+    "last_updated": "2026-06-14",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -501,16 +508,17 @@
       "name": "Anthony Towns",
       "affiliation": "MIT DCI (Independent Contractor)",
       "role": "BIP Author, Protocol Developer",
-      "quantum_urgency_score": 2,
-      "pq_work_volume": 1,
+      "quantum_urgency_score": 3,
+      "pq_work_volume": 2,
       "notable": false,
-      "summary": "Discussed Winternitz/Merkle post-quantum signatures on Bitcoin Optech #331 as a motivating example for BTC Lisp: loops and structured data make hash-based signature verification smaller and easier to debug. This records quantum-relevant implementation work, not migration or activation advocacy.",
-      "key_source": "https://bitcoinops.org/en/podcast/2024/12/03/",
+      "summary": "Discussed Winternitz/Merkle post-quantum signatures on Bitcoin Optech #331 as a motivating example for BTC Lisp, then engaged the Apr 2026 bitcoin-dev PQ output-type thread with concrete migration-cost and recovery-path analysis. Towns argued that pre-CRQC migration still requires convincing less-worried users that the cost is worth it, described a worst-case recovery fork for quantum-vulnerable UTXOs, and expressed skepticism toward a dedicated opcode because PQ designs move quickly and older ideas can break. Score moves to 3: cautious, research-engaged, and design-aware, but not urgent activation advocacy.",
+      "key_source": "https://mirror.b10c.me/lists/bitcoindev/aeAfnufGvf1pG85h%40erisian.com.au/",
       "sources": [
         "https://www.dci.mit.edu/people",
-        "https://bitcoinops.org/en/podcast/2024/12/03/"
+        "https://bitcoinops.org/en/podcast/2024/12/03/",
+        "https://mirror.b10c.me/lists/bitcoindev/aeAfnufGvf1pG85h%40erisian.com.au/"
       ],
-      "last_verified": "2026-05-21"
+      "last_verified": "2026-06-14"
     },
     {
       "rank": 5,
