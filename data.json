@@ -7,12 +7,12 @@
     "agent_bns": "iskander-ai.btc",
     "version": "3.6",
     "bounty": "AIBTC Bounty #38 - Bitcoin Quantum Upgrade",
-    "total_assessed": 73,
+    "total_assessed": 74,
     "ranked": 50,
-    "notable_additions": 22,
+    "notable_additions": 23,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 22,
+      "4_proactive": 23,
       "3_cautious": 11,
       "2_dismissive": 11,
       "1_no_known_view": 22
@@ -521,9 +521,16 @@
         "change": "pq_work_volume 5->6; Hourglass V2 co-authorship adds a concrete soft-fork proposal for rate-limiting legacy P2PK liquidation under quantum-key-recovery scenarios",
         "pr": "#94",
         "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-06-14",
+        "developer": "QCAP Research (qatkk, nebula-21)",
+        "change": "new notable entry — score 4 (Proactive), pq_work_volume 2; Delving Bitcoin QCAP proposal defines a taproot quantum-canary challenge with cross-curve DLEQ proofs, PoC/testnet evidence, and technical review from AdamISZ/garlonicon",
+        "pr": "#93",
+        "contributor": "@caydyan"
       }
     ],
-    "last_updated": "2026-06-14",
+    "last_updated": "2026-06-15",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1781,6 +1788,25 @@
       ],
       "last_verified": "2026-06-13",
       "contributor": "@silentgeckoaudit3801"
+    },
+    {
+      "rank": 74,
+      "name": "QCAP Research (qatkk, nebula-21)",
+      "affiliation": "DISCRYPT research group / independent Delving Bitcoin contributors",
+      "role": "Quantum canary protocol authors",
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 2,
+      "notable": true,
+      "summary": "Published QCAP, a Bitcoin-native quantum canary address generation protocol, on Delving Bitcoin in May 2026. The design uses multiparty generation of a shared scalar, corresponding public keys on secp256k1 and a weaker curve, cross-curve discrete-log-equality proofs, and a taproot commitment to protocol data so solving the weaker ECDLP can serve as an objective on-chain warning signal. The thread includes proof-of-concept/testnet evidence and substantive review from AdamISZ and garlonicon, with open hardening work around participant coordination and canary bounty deployment. Scores as proactive because the authors produced a concrete Bitcoin-oriented quantum-monitoring design rather than general timeline commentary.",
+      "key_source": "https://delvingbitcoin.org/t/qcap-a-bitcoin-native-quantum-canary-alert/2498",
+      "sources": [
+        "https://delvingbitcoin.org/t/qcap-a-bitcoin-native-quantum-canary-alert/2498",
+        "https://eprint.iacr.org/2026/618",
+        "https://github.com/QCAP-org/QCAP",
+        "https://ipfs.io/ipfs/bafybeid356uqgs7mvhotv7mcgfabbk7w7fglg3gctjabcsh47dym7gu2aa"
+      ],
+      "last_verified": "2026-06-14",
+      "contributor": "@caydyan"
     }
   ]
 }
