@@ -215,6 +215,26 @@ async function loadData(env: any, request: Request): Promise<any> {
   return r.json();
 }
 
+async function loadContributors(env: any, request: Request): Promise<any | null> {
+  const contributorsUrl = new URL("/contributors.json", request.url);
+  const r = await env.ASSETS.fetch(new Request(contributorsUrl.toString()));
+  if (!r.ok) return null;
+  return r.json();
+}
+
+function revenueAttributionForSlug(contributors: any, slug: string) {
+  const entries = Array.isArray(contributors?.endpoint_attribution)
+    ? contributors.endpoint_attribution
+    : [];
+  return entries.find((entry: any) => {
+    if (entry.slug === slug) return true;
+    if (entry.slug?.endsWith("/*")) {
+      return slug.startsWith(String(entry.slug).slice(0, -1));
+    }
+    return false;
+  }) || null;
+}
+
 function topUrgentSlice(data: any) {
   const ranked = data.developers
     .filter((d: any) => d.quantum_urgency_score >= 4)
@@ -258,6 +278,35 @@ function devSlice(data: any, name: string) {
   });
   if (!dev) return null;
   return { schema: "premium.dev.v1", as_of: data.metadata.last_updated || data.metadata.date, developer: dev };
+}
+
+function silentDevelopersSlice(data: any) {
+  const asOf = data.metadata.last_updated || data.metadata.date;
+  const silent = data.developers
+    .filter((d: any) => d.quantum_urgency_score === 1)
+    .sort((a: any, b: any) => {
+      const ar = Number.isInteger(a.rank) ? a.rank : 9999;
+      const br = Number.isInteger(b.rank) ? b.rank : 9999;
+      return ar - br || String(a.name).localeCompare(String(b.name));
+    })
+    .map((d: any) => ({
+      name: d.name,
+      rank: d.rank ?? null,
+      affiliation: d.affiliation || null,
+      role: d.role || null,
+      last_verified: d.last_verified || null,
+      age_days: daysBetween(d.last_verified, asOf),
+      source_count: Array.isArray(d.sources) ? d.sources.length : 0,
+      key_source: d.key_source || null,
+      next_action: "Find a primary-source quantum/PQC position or re-confirm no public stance.",
+    }));
+  return {
+    schema: "premium.silent_developers.v1",
+    as_of: asOf,
+    thesis: "Score-1 developers are the highest-leverage research backlog because one verified statement can move coverage and the Readiness Index.",
+    count: silent.length,
+    developers: silent,
+  };
 }
 
 function sinceSlice(data: any, sinceDate: string) {
@@ -508,6 +557,17 @@ async function handlePremium(req: Request, env: any, slug: string, sliceFn: (dat
       headers: { "content-type": "application/json" },
     });
   }
+  const contributors = await loadContributors(env, req).catch(() => null);
+  const attribution = revenueAttributionForSlug(contributors, slug);
+  const split = contributors?.policy?.split_bps || null;
+  const attributedEvent = attribution ? {
+    contributor: attribution.contributor,
+    github: attribution.github || null,
+    btc_address: attribution.btc_address || null,
+    stx_address: attribution.stx_address || null,
+    revenue_share_bps: attribution.revenue_share_bps,
+    status: attribution.status,
+  } : null;
 
   const event = {
     ts: new Date().toISOString(),
@@ -516,6 +576,7 @@ async function handlePremium(req: Request, env: any, slug: string, sliceFn: (dat
     payer: outcome.payer || null,
     sats: Number(PRICE_SATS),
     mode: broadcastMode,
+    attribution: attributedEvent,
   };
   await env.REVENUE_LOG.put(txKey, REPLAY_MARKER_VALUE);
 
@@ -533,6 +594,10 @@ async function handlePremium(req: Request, env: any, slug: string, sliceFn: (dat
   };
   return new Response(JSON.stringify({
     ...slice,
+    revenue_attribution: attribution ? {
+      ...attributedEvent,
+      policy: split,
+    } : null,
     payment: { txid: settledTxid, sats: Number(PRICE_SATS), payer: outcome.payer || null, mode: broadcastMode },
   }), {
     status: 200,
@@ -565,10 +630,21 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
   try {
     const ledgerRaw = await env.REVENUE_LOG.get("ledger:events");
     const ledger: any[] = ledgerRaw ? JSON.parse(ledgerRaw) : [];
-    ledgerStats = { total_events: ledger.length, total_sats: ledger.reduce((s, e) => s + (e.sats || 0), 0), modes: ledger.reduce((acc: any, e: any) => { acc[e.mode || "unknown"] = (acc[e.mode || "unknown"] || 0) + 1; return acc; }, {}) };
+    ledgerStats = {
+      total_events: ledger.length,
+      total_sats: ledger.reduce((s, e) => s + (e.sats || 0), 0),
+      modes: ledger.reduce((acc: any, e: any) => { acc[e.mode || "unknown"] = (acc[e.mode || "unknown"] || 0) + 1; return acc; }, {}),
+      attributed_sats: ledger.reduce((acc: any, e: any) => {
+        const key = e.attribution?.github || e.attribution?.contributor || "unattributed";
+        acc[key] = (acc[key] || 0) + (e.sats || 0);
+        return acc;
+      }, {}),
+    };
   } catch {
     ledgerStats = { error: "ledger_unavailable" };
   }
+
+  const contributors = await loadContributors(env, _req).catch(() => null);
 
   const recommended = relayHealth.reachable && relayHealth.status === "ok" ? "sponsored-relay" : "direct";
 
@@ -585,6 +661,7 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
       "/api/world/premium/index-breakdown": "Quantum Readiness Index w/ voiced + silent dev lists",
       "/api/world/premium/dev/{name}": "Single dev profile by fuzzy name match",
       "/api/world/premium/since/{YYYY-MM-DD}": "Update history entries since date",
+      "/api/world/premium/silent-developers": "Score-1 developer backlog with freshness and source coverage",
       "/api/world/company/freshness": "Free operational freshness audit for the company world model",
       "/api/world/company/history": "Free versioned update-history view (supports since/until/developer/limit filters)",
       "/api/world/company/history/{YYYY-MM-DD}": "Update entries for a specific date",
@@ -611,10 +688,18 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
     recommended_default: recommended,
     fallback_advice: "If a sponsored-relay attempt returns 402 with held=true (relay queue desynced for your sender), retry the same call as broadcast=direct. Each call's reply includes specific advice.",
     revenue_ledger: ledgerStats,
+    revenue_attribution: contributors ? {
+      schema: contributors.schema,
+      updated_at: contributors.updated_at,
+      policy: contributors.policy,
+      endpoint_count: contributors.endpoint_attribution?.length || 0,
+      manifest: "/api/world/revenue/contributors",
+    } : null,
     notes: [
       "Replay protection: each settled txid is single-use.",
       "All sats settle to a dedicated service wallet — separate from any operator's main wallet.",
-      "Free, no-payment endpoints: /api/world/company, /api/world/company/freshness, /api/world/company/history, /api/world/customer, /api/world/premium/doctor.",
+      "Revenue attribution is advisory operational metadata until the DRI distribution script pays contributors from the service wallet ledger.",
+      "Free, no-payment endpoints: /api/world/company, /api/world/company/freshness, /api/world/company/history, /api/world/customer, /api/world/revenue/contributors, /api/world/premium/doctor.",
     ],
   };
 
@@ -642,6 +727,7 @@ export default {
     const companyHistoryMatch = p.match(/^\/api\/world\/company\/history\/(\d{4}-\d{2}-\d{2})$/);
     if (companyHistoryMatch) return handleCompanyHistory(request, env, companyHistoryMatch[1]);
     if (p === "/api/world/customer") return proxyJson(env, request, "/customer.json");
+    if (p === "/api/world/revenue/contributors") return proxyJson(env, request, "/contributors.json");
     if (p === "/api/world/premium/doctor") return handleDoctor(request, env);
 
     if (p === "/api/world/premium/top-urgent") {
@@ -649,6 +735,9 @@ export default {
     }
     if (p === "/api/world/premium/index-breakdown") {
       return handlePremium(request, env, "index-breakdown", indexBreakdownSlice);
+    }
+    if (p === "/api/world/premium/silent-developers") {
+      return handlePremium(request, env, "silent-developers", silentDevelopersSlice);
     }
     const devMatch = p.match(/^\/api\/world\/premium\/dev\/(.+)$/);
     if (devMatch) {

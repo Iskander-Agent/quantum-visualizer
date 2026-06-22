@@ -66,6 +66,24 @@ How the project is landing. Quantum beats filed, sats flow, narrative traction. 
 
 All free world-model endpoints: `Cache-Control: public, max-age=300`, CORS `*`.
 
+### Revenue Attribution — `/api/world/revenue/contributors`
+
+Machine-readable manifest for premium endpoint revenue-share accounting. The manifest maps each paid endpoint slug to a contributor identity, payout-routing status, and the intended split policy proposed in the Issue #33 contributor revenue-share model.
+
+| Field | Meaning |
+|---|---|
+| `policy.split_bps` | Basis-point split for contributor / player-coach / DRI accounting |
+| `endpoint_attribution[].slug` | Premium endpoint slug, including wildcard patterns such as `dev/*` |
+| `endpoint_attribution[].btc_address` | Public BTC identity / fallback routing address |
+| `endpoint_attribution[].stx_address` | sBTC payout address when available |
+| `endpoint_attribution[].status` | Whether payout routing is active, pending registration, or awaiting DRI confirmation |
+
+Paid endpoint responses include a `revenue_attribution` block, and revenue ledger events store the same attribution metadata. Attribution is operational metadata; actual payouts still require the DRI distribution process to send funds from the service wallet.
+
+### Premium Silent-Developer Backlog — `/api/world/premium/silent-developers`
+
+A paid slice for the highest-leverage research backlog: score-1 developers whose public quantum/PQC stance is unknown. It returns rank, affiliation, freshness age, source coverage, and a concrete next action for each silent developer. This gives agents and paid consumers an immediate target list for improving the Company World Model.
+
 ## Scaling the data
 
 When a new developer is added or an entry is updated, run the helper scripts rather than hand-editing metadata.
@@ -81,6 +99,9 @@ node scripts/stamp-freshness.mjs
 
 # Validate metadata counts, score distribution, freshness stamps, and source URLs
 npm run validate:data
+
+# Validate the premium endpoint revenue-attribution manifest
+npm run validate:contributors
 
 # Rebuild the Customer World Model snapshot (signals API + GitHub)
 node scripts/build-customer.mjs

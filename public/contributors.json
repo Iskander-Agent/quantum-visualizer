@@ -1,0 +1,74 @@
+{
+  "schema": "quantum.revenue.contributors.v1",
+  "updated_at": "2026-06-22",
+  "policy": {
+    "asset": "sBTC",
+    "network": "stacks:1",
+    "price_sats": 100,
+    "split_bps": {
+      "contributor": 9000,
+      "player_coach": 500,
+      "dri": 500
+    },
+    "distribution": "monthly DRI ledger distribution from the service wallet",
+    "note": "Attribution records the intended endpoint owner for future revenue-share accounting. It does not move funds by itself."
+  },
+  "endpoint_attribution": [
+    {
+      "slug": "top-urgent",
+      "path": "/api/world/premium/top-urgent",
+      "contributor": "legacy service pool",
+      "github": null,
+      "btc_address": null,
+      "stx_address": null,
+      "revenue_share_bps": 9000,
+      "status": "legacy_attribution_pending_dri_confirmation",
+      "introduced_by": "pre-manifest"
+    },
+    {
+      "slug": "index-breakdown",
+      "path": "/api/world/premium/index-breakdown",
+      "contributor": "legacy service pool",
+      "github": null,
+      "btc_address": null,
+      "stx_address": null,
+      "revenue_share_bps": 9000,
+      "status": "legacy_attribution_pending_dri_confirmation",
+      "introduced_by": "pre-manifest"
+    },
+    {
+      "slug": "dev/*",
+      "path": "/api/world/premium/dev/{name}",
+      "contributor": "legacy service pool",
+      "github": null,
+      "btc_address": null,
+      "stx_address": null,
+      "revenue_share_bps": 9000,
+      "status": "legacy_attribution_pending_dri_confirmation",
+      "introduced_by": "pre-manifest"
+    },
+    {
+      "slug": "since/*",
+      "path": "/api/world/premium/since/{YYYY-MM-DD}",
+      "contributor": "legacy service pool",
+      "github": null,
+      "btc_address": null,
+      "stx_address": null,
+      "revenue_share_bps": 9000,
+      "status": "legacy_attribution_pending_dri_confirmation",
+      "introduced_by": "pre-manifest"
+    },
+    {
+      "slug": "silent-developers",
+      "path": "/api/world/premium/silent-developers",
+      "contributor": "Caydyan",
+      "github": "caydyan",
+      "btc_address": "bc1qev5ant33v5y89qqjvcf4mh9hlax5svqf5xd7gc",
+      "stx_address": null,
+      "revenue_share_bps": 9000,
+      "status": "pending_aibtc_stx_registration",
+      "introduced_by": "codex/revenue-attribution-manifest",
+      "payout_note": "Use the BTC address for public identity continuity; add a registered STX/sBTC payout address before monthly distribution."
+    }
+  ]
+}
