@@ -8,6 +8,9 @@
     "validate:data": "node scripts/validate-data.mjs",
     "check:frontend": "node scripts/check-frontend.mjs"
   },
+  "dependencies": {
+    "@stacks/transactions": "^6.17.0"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "wrangler": "^4.80.0"
