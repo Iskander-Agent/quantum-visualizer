@@ -136,12 +136,51 @@ try {
   // Signing / broadcast logic
   if (shouldBroadcast && payouts.size > 0) {
     console.log("\n🔏 Signing mode enabled. Building transfer transactions...\n");
-    console.log("⚠ BROADCAST logic requires:");
-    console.log("  1. Keystore access (stacks.js + keystore decryption)");
-    console.log("  2. Stacks RPC for transaction broadcast");
-    console.log("  3. Confirmation via Hiro API\n");
 
-    console.log("✓ Structure is ready. Implement signing with stacks.js when in production.\n");
+    try {
+      // In production: import stacks.js and keystore here
+      // const { makeSTXTokenTransfer, broadcastTransaction } = await import("@stacks/transactions");
+      // const { decrypt } = await import("@stacks/encryption");
+
+      console.log("Building sBTC transfers...");
+
+      const transfers = [];
+      for (const [key, payout] of payouts) {
+        if (!payout.sats || payout.sats === 0) continue;
+
+        transfers.push({
+          recipient: payout.address,
+          amount_sats: payout.sats,
+          memo: `x402-payout-${new Date().toISOString().split('T')[0]}`,
+        });
+      }
+
+      console.log(`✓ Built ${transfers.length} transfer transactions\n`);
+
+      // TODO: Implement signing + broadcast
+      // 1. Decrypt keystore with password from env or runtime
+      // 2. Derive account at service-wallet index
+      // 3. Build sBTC transfer per recipient
+      // 4. Sign with account private key
+      // 5. Broadcast via Stacks RPC
+      // 6. Poll Hiro API for tx_status=success
+      // 7. Log to ledger after confirmation
+
+      console.log("⚠ Signing + broadcast requires:");
+      console.log("  - stacks.js @stacks/transactions installed");
+      console.log("  - Keystore password accessible");
+      console.log("  - Stacks RPC endpoint reachable\n");
+
+      console.log("Transfers staged for broadcast (not executed):\n");
+      for (const tx of transfers) {
+        console.log(`  → ${tx.recipient}: ${tx.amount_sats} sats`);
+      }
+      console.log("");
+
+    } catch (err) {
+      console.error(`❌ Broadcast error: ${err.message}`);
+      process.exit(1);
+    }
   } else if (!shouldBroadcast) {
     console.log("📋 Preview mode — no transactions signed or broadcast.");
     console.log("   Re-run with --broadcast flag to execute transfers.\n");
