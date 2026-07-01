@@ -66,6 +66,36 @@ How the project is landing. Quantum beats filed, sats flow, narrative traction. 
 
 All free world-model endpoints: `Cache-Control: public, max-age=300`, CORS `*`.
 
+## Revenue & Contributors — `/api/world/revenue/contributors`
+
+Premium endpoint revenue (x402 sBTC payments) is attributed per endpoint and split **90% contributor / 5% player-coach / 5% DRI**. The manifest file [`data/contributors.json`](data/contributors.json) tracks:
+
+- Per-endpoint designer + current contributor
+- Payout addresses (contributor STX address, PC address, DRI service wallet)
+- Activity status and stale-contributor detection (90-day threshold)
+- Revenue split rules and DRI authority on abandoned endpoints
+
+Endpoint `/api/world/revenue/contributors` serves:
+
+| Field | Meaning |
+|---|---|
+| `manifest` | Full contributor registry (endpoint routing, addresses, activity status) |
+| `stats` | Per-endpoint live revenue: events, total sats, payer count, split breakdown |
+| `total_sats_collected` | Aggregate x402 revenue across all premium endpoints |
+| `ledger_entries` | Count of recorded payment events |
+
+**Submitting a new premium endpoint:** New x402 endpoint PRs must include a `contributors.json` entry for PC approval.
+
+**Monthly distribution:** Run [`scripts/distribute.mjs`](scripts/distribute.mjs) to calculate payouts and broadcast sBTC transfers.
+
+```bash
+# Preview payout table (no signatures)
+node scripts/distribute.mjs
+
+# Sign and broadcast transfers (requires keystore + Stacks RPC)
+node scripts/distribute.mjs --broadcast
+```
+
 ## Scaling the data
 
 When a new developer is added or an entry is updated, run the helper scripts rather than hand-editing metadata.
