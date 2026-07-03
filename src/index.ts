@@ -546,6 +546,60 @@ async function handlePremium(req: Request, env: any, slug: string, sliceFn: (dat
   });
 }
 
+async function handleRevenueContributors(_req: Request, env: any): Promise<Response> {
+  const contributorsData = await proxyJson(env, _req, "/data/contributors.json").catch(() => null);
+  if (!contributorsData) {
+    return new Response(JSON.stringify({ error: "contributors_manifest_not_found" }), {
+      status: 404,
+      headers: { "content-type": "application/json" },
+    });
+  }
+
+  const manifest = JSON.parse(await contributorsData.text());
+  const ledgerRaw = await env.REVENUE_LOG.get("ledger:events");
+  const ledger: any[] = ledgerRaw ? JSON.parse(ledgerRaw) : [];
+
+  // Calculate stats per endpoint
+  const stats: Record<string, any> = {};
+  for (const event of ledger) {
+    if (!stats[event.slug]) {
+      stats[event.slug] = { events: 0, sats: 0, payers: new Set() };
+    }
+    stats[event.slug].events += 1;
+    stats[event.slug].sats += event.sats || 0;
+    if (event.payer) stats[event.slug].payers.add(event.payer);
+  }
+
+  // Merge manifest with live stats
+  const response = {
+    manifest,
+    stats: Object.entries(stats).reduce((acc: any, [slug, data]: [string, any]) => {
+      acc[slug] = {
+        events: data.events,
+        total_sats: data.sats,
+        unique_payers: data.payers.size,
+        split: {
+          contributor: Math.floor((data.sats * 90) / 100),
+          player_coach: Math.floor((data.sats * 5) / 100),
+          dri: Math.floor((data.sats * 5) / 100),
+        },
+      };
+      return acc;
+    }, {}),
+    total_sats_collected: ledger.reduce((sum, e) => sum + (e.sats || 0), 0),
+    ledger_entries: ledger.length,
+  };
+
+  return new Response(JSON.stringify(response), {
+    status: 200,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": "public, max-age=60",
+      "access-control-allow-origin": "*",
+    },
+  });
+}
+
 async function handleDoctor(_req: Request, env: any): Promise<Response> {
   const probedAt = new Date().toISOString();
   let relayHealth: any;
@@ -585,6 +639,7 @@ async function handleDoctor(_req: Request, env: any): Promise<Response> {
       "/api/world/premium/index-breakdown": "Quantum Readiness Index w/ voiced + silent dev lists",
       "/api/world/premium/dev/{name}": "Single dev profile by fuzzy name match",
       "/api/world/premium/since/{YYYY-MM-DD}": "Update history entries since date",
+      "/api/world/revenue/contributors": "Revenue-share manifest + per-endpoint stats (free, read-only)",
       "/api/world/company/freshness": "Free operational freshness audit for the company world model",
       "/api/world/company/history": "Free versioned update-history view (supports since/until/developer/limit filters)",
       "/api/world/company/history/{YYYY-MM-DD}": "Update entries for a specific date",
@@ -642,6 +697,7 @@ export default {
     const companyHistoryMatch = p.match(/^\/api\/world\/company\/history\/(\d{4}-\d{2}-\d{2})$/);
     if (companyHistoryMatch) return handleCompanyHistory(request, env, companyHistoryMatch[1]);
     if (p === "/api/world/customer") return proxyJson(env, request, "/customer.json");
+    if (p === "/api/world/revenue/contributors") return handleRevenueContributors(request, env);
     if (p === "/api/world/premium/doctor") return handleDoctor(request, env);
 
     if (p === "/api/world/premium/top-urgent") {

@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "updated_at": "2026-07-01T00:00:00Z",
+    "description": "Quantum Visualizer revenue-share manifest. Per-endpoint attribution for x402 premium endpoints.",
+    "split": {
+      "contributor": 90,
+      "player_coach": 5,
+      "dri": 5
+    },
+    "stale_threshold_days": 90,
+    "addresses": {
+      "dri": "SP2D26THR4EFBY7PH9JXTG8V2XYM7SZGVTVW1Q572",
+      "player_coach": "SP1ZZRRX5HHCZTH8TCH1VJFTH2XRE4JKSVFAPQHSH"
+    }
+  },
+  "endpoints": {
+    "top-urgent": {
+      "slug": "top-urgent",
+      "description": "Top 5 urgent devs (score 4–5) with quotes + sources",
+      "designer": "Iskander-Agent",
+      "contributor": null,
+      "payout_address": null,
+      "status": {
+        "payout_routing": "dri",
+        "activity": "active",
+        "last_accepted_contribution_date": "2026-04-16"
+      }
+    },
+    "index-breakdown": {
+      "slug": "index-breakdown",
+      "description": "Quantum Readiness Index w/ voiced + silent dev lists",
+      "designer": "Iskander-Agent",
+      "contributor": null,
+      "payout_address": null,
+      "status": {
+        "payout_routing": "dri",
+        "activity": "active",
+        "last_accepted_contribution_date": "2026-04-16"
+      }
+    },
+    "dev-profile": {
+      "slug": "dev/{name}",
+      "description": "Single dev profile by fuzzy name match",
+      "designer": "Iskander-Agent",
+      "contributor": null,
+      "payout_address": null,
+      "status": {
+        "payout_routing": "dri",
+        "activity": "active",
+        "last_accepted_contribution_date": "2026-04-16"
+      }
+    },
+    "since": {
+      "slug": "since/{YYYY-MM-DD}",
+      "description": "Update history entries since date",
+      "designer": "Iskander-Agent",
+      "contributor": null,
+      "payout_address": null,
+      "status": {
+        "payout_routing": "dri",
+        "activity": "active",
+        "last_accepted_contribution_date": "2026-04-16"
+      }
+    }
+  }
+}
