@@ -578,11 +578,11 @@ async function handleRevenueContributors(_req: Request, env: any): Promise<Respo
         events: data.events,
         total_sats: data.sats,
         unique_payers: data.payers.size,
-        split: {
-          contributor: Math.floor((data.sats * 90) / 100),
-          player_coach: Math.floor((data.sats * 5) / 100),
-          dri: Math.floor((data.sats * 5) / 100),
-        },
+        split: (() => {
+          const contributor = Math.floor((data.sats * 90) / 100);
+          const player_coach = Math.floor((data.sats * 5) / 100);
+          return { contributor, player_coach, dri: data.sats - contributor - player_coach };
+        })(),
       };
       return acc;
     }, {}),
