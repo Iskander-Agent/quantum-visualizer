@@ -535,9 +535,16 @@
         "change": "new notable entry — score 4 (Proactive), pq_work_volume 1; proposed recoverable EC leaves for BIP-360/P2MR to reduce common EC spend witness size while retaining a PQ emergency path",
         "pr": "#100",
         "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-07-27",
+        "developer": "Pieter Wuille",
+        "change": "pq_work_volume 5→6; proposed P2XX-T tripwire and P2XX-ML miner-lockdown triggers for EC-path disabling in new post-quantum output types, then analyzed consensus ordering, activation-delay, and script-separation tradeoffs; score remains 4",
+        "pr": null,
+        "contributor": "@Janettbella69"
       }
     ],
-    "last_updated": "2026-06-15",
+    "last_updated": "2026-07-27",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -547,18 +554,20 @@
       "affiliation": "Chaincode Labs",
       "role": "Protocol architect",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 5,
+      "pq_work_volume": 6,
       "notable": false,
-      "summary": "Treats the quantum threat as real but conditional ('big if') and argues freezing vulnerable coins is the logical mitigation if elliptic-curve cryptography breaks, while explicitly not advocating a specific course of action. Embedded post-quantum future-proofing in Taproot/BIP-324 design. In June 2026, substantively reviewed a recoverable-EC-leaf optimization for BIP-360/P2MR, judging the root-plus-Merkle-branch challenge construction plausible while identifying proof, batching, and control-block questions. In the Bird of Prey 2 thread, analyzed hybrid Schnorr+PQC signature construction, SUF/malleability and batch-verification tradeoffs, and said the approach is a good basis if Bitcoin ever considers hybrid EC+PQC schemes for newer post-quantum assumptions.",
-      "key_source": "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514",
+      "summary": "Treats the quantum threat as real but conditional ('big if') and argues freezing vulnerable coins is the logical mitigation if elliptic-curve cryptography breaks, while explicitly not advocating a specific course of action. Embedded post-quantum future-proofing in Taproot/BIP-324 design. In June 2026, substantively reviewed a recoverable-EC-leaf optimization for BIP-360/P2MR, judging the root-plus-Merkle-branch challenge construction plausible while identifying proof, batching, and control-block questions. In the Bird of Prey 2 thread, analyzed hybrid Schnorr+PQC signature construction, SUF/malleability and batch-verification tradeoffs, and said the approach is a good basis if Bitcoin ever considers hybrid EC+PQC schemes for newer post-quantum assumptions. In June-July 2026, proposed P2XX-T tripwire and P2XX-ML miner-lockdown triggers to make future EC-path disabling explicit in new post-quantum output types, then analyzed their consensus ordering, activation-delay, and script-separation tradeoffs.",
+      "key_source": "https://mirror.b10c.me/lists/bitcoindev/yHRpA2LEJ2AugT4W2KiWO3ggSims4GuHBkr6rWtE-e1uVC2wh3ZqD4bUDyxXq1iEuPrezhZZeqDoG7uBLNvjbW0sk_UTorI1Pkz6LcKhXRA%3D%40wuille.net/",
       "sources": [
         "https://groups.google.com/g/bitcoindev/c/uUK6py0Yjq0",
         "https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki",
         "https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki",
         "https://delvingbitcoin.org/t/public-key-recovery-for-ec-leaves-in-p2mr-bip-360/2603/2",
-        "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514"
+        "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514",
+        "https://mirror.b10c.me/lists/bitcoindev/yHRpA2LEJ2AugT4W2KiWO3ggSims4GuHBkr6rWtE-e1uVC2wh3ZqD4bUDyxXq1iEuPrezhZZeqDoG7uBLNvjbW0sk_UTorI1Pkz6LcKhXRA%3D%40wuille.net/",
+        "https://mirror.b10c.me/lists/bitcoindev/G6JS-1KFsfB7MzyRZH42MhcTp4rb_7M9Xg-1xznpwSg9MUjuI9B4ZSfVZ68S-FTaMjGBQhIpPb2E9U346X1xN1jzWoQeL5X_0Ju_j81MSAg%3D%40wuille.net/"
       ],
-      "last_verified": "2026-06-14"
+      "last_verified": "2026-07-27"
     },
     {
       "rank": 2,
