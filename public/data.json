@@ -540,7 +540,7 @@
         "date": "2026-07-27",
         "developer": "Pieter Wuille",
         "change": "pq_work_volume 5→6; proposed P2XX-T tripwire and P2XX-ML miner-lockdown triggers for EC-path disabling in new post-quantum output types, then analyzed consensus ordering, activation-delay, and script-separation tradeoffs; score remains 4",
-        "pr": null,
+        "pr": "#103",
         "contributor": "@Janettbella69"
       }
     ],
