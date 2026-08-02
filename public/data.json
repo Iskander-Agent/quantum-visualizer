@@ -12,8 +12,8 @@
     "notable_additions": 24,
     "score_distribution": {
       "5_urgent": 7,
-      "4_proactive": 24,
-      "3_cautious": 11,
+      "4_proactive": 25,
+      "3_cautious": 10,
       "2_dismissive": 11,
       "1_no_known_view": 22
     },
@@ -535,9 +535,16 @@
         "change": "new notable entry — score 4 (Proactive), pq_work_volume 1; proposed recoverable EC leaves for BIP-360/P2MR to reduce common EC spend witness size while retaining a PQ emergency path",
         "pr": "#100",
         "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-07-26",
+        "developer": "Antoine Riard",
+        "change": "score 3→4; pq_work_volume 3→4 — July 2026 game-theory analysis of PQ sunset activation, miner incentives, and chain-finality risk",
+        "pr": null,
+        "contributor": "@josuefernandoarita20-stack"
       }
     ],
-    "last_updated": "2026-06-15",
+    "last_updated": "2026-08-02",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1181,15 +1188,16 @@
       "name": "Antoine Riard",
       "affiliation": "Independent",
       "role": "Security Researcher, Former Core Dev",
-      "quantum_urgency_score": 3,
-      "pq_work_volume": 3,
+      "quantum_urgency_score": 4,
+      "pq_work_volume": 4,
       "notable": false,
-      "summary": "Cautious: wants better Shor's threat modeling per QC architecture; engaged reviewer but not pushing urgency; proposed practical defenses",
-      "key_source": "https://gnusha.org/pi/bitcoindev/87b4e402-39d8-46b0-8269-4f81fa501627n@googlegroups.com/",
+      "summary": "Proactive on quantum migration security: analyzes incentive failures in tripwire and flag-day sunsets, models miner/CRQC censorship and reorganization strategies, and calls for chain-finality defenses and further protocol research.",
+      "key_source": "https://mirror.b10c.me/lists/bitcoindev/CALZpt%2BFOUJF3E7YDk5xh-Cv9kxduGiuOPVK5x171%3D25C3ryJPQ%40mail.gmail.com/T/",
       "sources": [
-        "https://gnusha.org/pi/bitcoindev/87b4e402-39d8-46b0-8269-4f81fa501627n@googlegroups.com/"
+        "https://gnusha.org/pi/bitcoindev/87b4e402-39d8-46b0-8269-4f81fa501627n@googlegroups.com/",
+        "https://mirror.b10c.me/lists/bitcoindev/CALZpt%2BFOUJF3E7YDk5xh-Cv9kxduGiuOPVK5x171%3D25C3ryJPQ%40mail.gmail.com/T/"
       ],
-      "last_verified": "2026-04-10"
+      "last_verified": "2026-07-26"
     },
     {
       "rank": 38,
