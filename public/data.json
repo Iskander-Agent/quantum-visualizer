@@ -535,9 +535,16 @@
         "change": "new notable entry — score 4 (Proactive), pq_work_volume 1; proposed recoverable EC leaves for BIP-360/P2MR to reduce common EC spend witness size while retaining a PQ emergency path",
         "pr": "#100",
         "contributor": "@caydyan"
+      },
+      {
+        "date": "2026-07-15",
+        "developer": "conduition",
+        "change": "pq_work_volume 4→5 — July 2026 knowledge-asymmetry taxonomy for post-Q-day UTXO recovery; clarified BIP32, hashed-address, and P2TR rescue coverage",
+        "pr": null,
+        "contributor": "@josuefernandoarita20-stack"
       }
     ],
-    "last_updated": "2026-06-15",
+    "last_updated": "2026-08-02",
     "next_review": "weekly — Sundays (DRI synthesis)"
   },
   "developers": [
@@ -1761,10 +1768,10 @@
       "affiliation": "Independent pseudonymous cypherpunk",
       "role": "Bitcoin developer and post-quantum technical reviewer",
       "quantum_urgency_score": 4,
-      "pq_work_volume": 4,
+      "pq_work_volume": 5,
       "notable": true,
-      "summary": "Pseudonymous Bitcoin developer who materially shaped the BIP-361 legacy-signature sunset discussion in April 2026. In review of PR #1895, conduition agreed with the severe CRQC perspective but argued consensus-level restrictions must preserve rescue paths for authentic owners rather than simply lock EC spends. Follow-up PR #2146 was merged with corrections clarifying that Phase B should tighten verification conditions while still allowing commit/reveal or STARK-based rescue protocols. Also published a March 2026 isogeny-PQC analysis for Bitcoin wallet/key-tweaking primitives and joined the May-June 2026 BoP-2 hybrid-signature thread, surfacing SUF, malleability, related-key, and EC+PQC witness-size tradeoffs. Scores as proactive because the work advances concrete post-quantum migration mechanics while keeping activation and confiscation risk technically bounded.",
-      "key_source": "https://github.com/bitcoin/bips/pull/2146",
+      "summary": "Pseudonymous Bitcoin developer who materially shaped the BIP-361 legacy-signature sunset discussion and argued that consensus restrictions must preserve rescue paths for authentic owners. In July 2026, conduition introduced a knowledge-asymmetry taxonomy for post-Q-day UTXO recovery, separated recoverable from unrecoverable outputs, analyzed BIP32, hashed-address, and P2TR-internal-key proofs, and argued that rescue-policy selection should be decoupled from the ZKP-versus-commit/reveal proving mechanism. Earlier work includes merged BIP-361 corrections, isogeny-PQC wallet/key-tweaking analysis, and BoP-2 hybrid-signature review. Scores as proactive because the work advances concrete post-quantum migration mechanics while keeping activation and confiscation risk technically bounded.",
+      "key_source": "https://mirror.b10c.me/lists/bitcoindev/sdGGYMMWowlFff6Yh8usMel61HVYmV8KPMqT9np2kK7GxPbVaogJ2aJSFe4v16VNLef4eDwNgfReiK-7j-sYn1jlXHPoAPWAwNBbSJxEz3M%3D%40protonmail.com/T/",
       "sources": [
         "https://github.com/bitcoin/bips/pull/1895#discussion_r3083313838",
         "https://github.com/bitcoin/bips/pull/1895#discussion_r3083374901",
@@ -1773,9 +1780,10 @@
         "https://github.com/bitcoin/bips/pull/2146#discussion_r3107148766",
         "https://delvingbitcoin.org/t/compact-isogeny-pqc-can-replace-hd-wallets-key-tweaking-silent-payments/2324",
         "https://delvingbitcoin.org/t/bird-of-prey-2-non-malleable-schnorr-pq-signatures/2514",
-        "https://github.com/conduition"
+        "https://github.com/conduition",
+        "https://mirror.b10c.me/lists/bitcoindev/sdGGYMMWowlFff6Yh8usMel61HVYmV8KPMqT9np2kK7GxPbVaogJ2aJSFe4v16VNLef4eDwNgfReiK-7j-sYn1jlXHPoAPWAwNBbSJxEz3M%3D%40protonmail.com/T/"
       ],
-      "last_verified": "2026-06-06",
+      "last_verified": "2026-07-15",
       "contributor": "@xoxoskeleton"
     },
     {
