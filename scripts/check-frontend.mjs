@@ -19,6 +19,10 @@ for (const id of [
   "freshness-body",
   "freshness-updates",
   "freshness-stale-list",
+  "research-gap-panel",
+  "research-gap-count",
+  "research-gap-body",
+  "research-gap-copy-status",
   "payout-panel",
   "payout-kpis",
   "payout-ledger-body",
@@ -41,6 +45,19 @@ assert(
   "missing renderAffiliationReadiness()",
 );
 assert(html.includes("function renderFreshnessAudit"), "missing renderFreshnessAudit()");
+assert(html.includes("function collectResearchGaps"), "missing collectResearchGaps()");
+assert(html.includes("function buildResearchBrief"), "missing buildResearchBrief()");
+assert(html.includes("function renderResearchGapQueue"), "missing renderResearchGapQueue()");
+assert(
+  html.includes("Number(d.quantum_urgency_score)===1"),
+  "research gap queue must include only developers with no known quantum position",
+);
+assert(
+  html.includes("(influenceScore*0.7)+(ageScore*0.3)"),
+  "research gap priority must blend influence and data age",
+);
+assert(html.includes("data-research-open"), "research gaps must expose an Open action");
+assert(html.includes("data-research-copy"), "research gaps must expose a Copy brief action");
 assert(html.includes("function renderPayoutLedger"), "missing renderPayoutLedger()");
 assert(html.includes("function renderPrWorkQueue"), "missing renderPrWorkQueue()");
 assert(html.includes("function renderCompareView"), "missing renderCompareView()");
