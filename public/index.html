@@ -245,6 +245,33 @@ tr:hover td{background:var(--bg-elevated)}
 .freshness-chip span{font-family:'JetBrains Mono',monospace;color:var(--text-muted);font-size:0.68rem}
 @media(max-width:760px){.freshness-body{grid-template-columns:1fr}.freshness-kpis{grid-template-columns:1fr 1fr}.freshness-item{grid-template-columns:1fr}}
 
+/* Research gap queue */
+.research-gap-section{padding:2.5rem 0;border-top:1px solid var(--border)}
+.research-gap-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
+.research-gap-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.research-gap-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:760px;line-height:1.6}
+.research-gap-head-meta{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;justify-content:flex-end}
+.research-gap-status{min-width:8rem;font-size:0.72rem;color:var(--accent);text-align:right}
+.research-gap-body{padding:1.25rem;background:var(--bg)}
+.research-gap-table-wrap{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:auto;-webkit-overflow-scrolling:touch}
+.research-gap-table{min-width:820px;font-size:0.82rem}
+.research-gap-table td{background:var(--bg);vertical-align:middle}
+.research-gap-priority{display:flex;align-items:center;gap:0.55rem;white-space:nowrap}
+.research-gap-position{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted)}
+.research-gap-score{display:inline-flex;align-items:center;justify-content:center;min-width:3.2rem;padding:0.25rem 0.45rem;border:1px solid var(--border);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:800}
+.research-gap-score.p1{border-color:rgba(220,38,38,0.28);background:var(--red-bg);color:var(--red)}
+.research-gap-score.p2{border-color:rgba(247,147,26,0.28);background:rgba(247,147,26,0.08);color:var(--accent)}
+.research-gap-score.p3{border-color:rgba(82,82,91,0.25);background:var(--gray-bg);color:var(--text-muted)}
+.research-gap-name{font-weight:700;line-height:1.4}
+.research-gap-metric{font-family:'JetBrains Mono',monospace;font-size:0.76rem;font-weight:700;white-space:nowrap}
+.research-gap-detail{font-size:0.7rem;color:var(--text-muted);margin-top:0.15rem;white-space:nowrap}
+.research-gap-actions{display:flex;align-items:center;gap:0.45rem;white-space:nowrap}
+.research-gap-action{padding:0.36rem 0.65rem;border:1px solid var(--border);border-radius:var(--radius-xs);background:transparent;color:var(--text-secondary);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.7rem;font-weight:700;transition:all 0.15s}
+.research-gap-action:hover{border-color:var(--border-light);background:var(--bg-hover);color:var(--text)}
+.research-gap-action.copy{border-color:rgba(247,147,26,0.25);background:rgba(247,147,26,0.08);color:var(--accent)}
+.research-gap-action.copy:hover{border-color:rgba(247,147,26,0.45);background:rgba(247,147,26,0.14);color:#fbbf24}
+@media(max-width:760px){.research-gap-head{align-items:flex-start}.research-gap-head-meta{justify-content:flex-start}.research-gap-status{text-align:left}.research-gap-body{padding:0.75rem}}
+
 /* Payout ledger */
 .payout-section{padding:2.5rem 0;border-top:1px solid var(--border)}
 .payout-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
@@ -588,6 +615,42 @@ tbody tr.is-active td{background:var(--bg-hover)}
 </div>
 </section>
 
+<!-- Research Gap Queue -->
+<section class="research-gap-section">
+<div class="container">
+<div class="research-gap-panel" id="research-gap-panel">
+<div class="research-gap-head">
+<div>
+<h2 class="section-title">Research Gap Queue</h2>
+<p class="research-gap-sub">Developers with no documented quantum position, ranked by a transparent blend of protocol influence (70%) and source age (30%). Open a profile for context or copy a ready-to-run research brief.</p>
+</div>
+<div class="research-gap-head-meta">
+<span class="section-count" id="research-gap-count"></span>
+<span class="research-gap-status" id="research-gap-copy-status" aria-live="polite"></span>
+</div>
+</div>
+<div class="research-gap-body">
+<div class="research-gap-table-wrap">
+<table class="research-gap-table">
+<thead>
+<tr>
+<th>Priority</th>
+<th>Developer</th>
+<th>Influence</th>
+<th>Data Age</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="research-gap-body">
+<tr><td colspan="5" class="empty">Building research gap queue...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- Payout Ledger -->
 <section class="payout-section">
 <div class="container">
@@ -886,6 +949,108 @@ updatesEl.innerHTML=updates.length
 }
 
 renderFreshnessAudit();
+
+function researchGapBand(score){
+if(score>=70)return 'p1';
+if(score>=40)return 'p2';
+return 'p3';
+}
+
+function collectResearchGaps(){
+const asOf=data.metadata.last_updated||data.metadata.date||new Date().toISOString().slice(0,10);
+const ranked=devs.filter(d=>Number.isInteger(d.rank)&&d.rank>0);
+const rankMax=Math.max(...ranked.map(d=>d.rank),1);
+return devs.filter(d=>Number(d.quantum_urgency_score)===1).map(dev=>{
+const ageDays=daysBetween(dev.last_verified,asOf);
+const influenceScore=Number.isInteger(dev.rank)
+?Math.max(0,Math.min(100,((rankMax+1-dev.rank)/rankMax)*100))
+:0;
+const ageScore=ageDays===null?100:Math.min(100,(ageDays/180)*100);
+const priorityScore=Math.round((influenceScore*0.7)+(ageScore*0.3));
+return {dev,ageDays,influenceScore,ageScore,priorityScore,band:researchGapBand(priorityScore)};
+}).sort((a,b)=>
+b.priorityScore-a.priorityScore||
+(a.dev.rank||9999)-(b.dev.rank||9999)||
+(b.ageDays??9999)-(a.ageDays??9999)||
+a.dev.name.localeCompare(b.dev.name)
+);
+}
+
+function buildResearchBrief(dev,gap){
+const rank=Number.isInteger(dev.rank)?`#${dev.rank}`:'unranked';
+const verified=dev.last_verified?`${dev.last_verified}${gap.ageDays===null?'':` (${gap.ageDays} days old)`}`:'missing';
+return [
+`Research brief: close the Bitcoin quantum-position gap for ${dev.name}`,
+'',
+'Why this is prioritized',
+`- Research priority: ${gap.priorityScore}/100 (${gap.band.toUpperCase()})`,
+`- Protocol influence: ${rank}`,
+`- Affiliation: ${dev.affiliation||'Independent / unknown'}`,
+`- Last verified: ${verified}`,
+'',
+'Research task',
+"Find and verify this developer's clearest public position on Bitcoin quantum risk, post-quantum signatures, or migration urgency. Prioritize primary sources: bitcoin-dev, Delving Bitcoin, BIPs and GitHub discussions, personal writing, conference talks, and podcasts.",
+'',
+'Deliverable',
+'Provide source URL(s), publication date(s), a concise evidence summary, and a recommended urgency score (1-5) with rationale. If no stance is found, document the searches performed and report a dated null result.'
+].join('\n');
+}
+
+let researchGapStatusTimer=null;
+
+function renderResearchGapQueue(){
+const body=document.getElementById('research-gap-body');
+const count=document.getElementById('research-gap-count');
+const status=document.getElementById('research-gap-copy-status');
+if(!body||!count||!status)return;
+const asOf=data.metadata.last_updated||data.metadata.date||new Date().toISOString().slice(0,10);
+const gaps=collectResearchGaps();
+count.textContent=`${gaps.length} open gaps · As of ${asOf}`;
+if(!gaps.length){
+body.innerHTML='<tr><td colspan="5" class="empty">Every developer has a documented quantum position.</td></tr>';
+return;
+}
+body.innerHTML=gaps.map((gap,index)=>{
+const dev=gap.dev;
+const ageText=gap.ageDays===null?'Unknown':`${gap.ageDays}d old`;
+const verifiedText=dev.last_verified||'Verification missing';
+const influenceText=Number.isInteger(dev.rank)?`#${dev.rank}`:'Unranked';
+return `<tr>
+<td><div class="research-gap-priority"><span class="research-gap-position">${String(index+1).padStart(2,'0')}</span><span class="research-gap-score ${gap.band}">${gap.band.toUpperCase()} · ${gap.priorityScore}</span></div></td>
+<td><div class="research-gap-name">${escapeHtml(dev.name)}</div><div class="td-affil">${escapeHtml(dev.affiliation||'Independent')}</div></td>
+<td><div class="research-gap-metric">${escapeHtml(influenceText)}</div><div class="research-gap-detail">${Math.round(gap.influenceScore)} / 100 impact</div></td>
+<td><div class="research-gap-metric">${escapeHtml(ageText)}</div><div class="research-gap-detail">${escapeHtml(verifiedText)}</div></td>
+<td><div class="research-gap-actions"><button type="button" class="research-gap-action" data-research-open="${escapeHtml(dev.name)}">Open</button><button type="button" class="research-gap-action copy" data-research-copy="${escapeHtml(dev.name)}">Copy brief</button></div></td>
+</tr>`;
+}).join('');
+body.querySelectorAll('[data-research-open]').forEach(button=>{
+button.addEventListener('click',()=>{
+const gap=gaps.find(item=>item.dev.name===button.dataset.researchOpen);
+if(gap)openDrawer(gap.dev);
+});
+});
+body.querySelectorAll('[data-research-copy]').forEach(button=>{
+button.addEventListener('click',async()=>{
+const gap=gaps.find(item=>item.dev.name===button.dataset.researchCopy);
+if(!gap)return;
+clearTimeout(researchGapStatusTimer);
+try{
+await copyText(buildResearchBrief(gap.dev,gap));
+button.textContent='Copied';
+status.textContent=`Brief copied for ${gap.dev.name}`;
+researchGapStatusTimer=setTimeout(()=>{
+button.textContent='Copy brief';
+status.textContent='';
+},1800);
+}catch{
+status.textContent='Copy failed';
+researchGapStatusTimer=setTimeout(()=>{status.textContent='';},2200);
+}
+});
+});
+}
+
+renderResearchGapQueue();
 
 function formatSats(value){
 if(value==null||value===''||Number.isNaN(Number(value)))return '--';
