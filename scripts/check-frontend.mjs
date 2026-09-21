@@ -32,6 +32,11 @@ for (const id of [
   "compare-table-head",
   "compare-table-body",
   "mobile-scorecards",
+  "scenario-panel",
+  "scenario-voices",
+  "scenario-stance",
+  "scenario-kpis",
+  "scenario-summary",
 ]) {
   assert(html.includes(`id="${id}"`), `missing #${id}`);
 }
@@ -47,6 +52,9 @@ assert(html.includes("function renderCompareView"), "missing renderCompareView()
 assert(html.includes("function toggleCompareDev"), "missing toggleCompareDev()");
 assert(html.includes("params.append('compare',name)"), "compare selections must be URL-shareable");
 assert(html.includes("function renderMobileScorecards"), "missing renderMobileScorecards()");
+assert(html.includes("function projectReadiness"), "missing projectReadiness()");
+assert(html.includes("function renderReadinessScenario"), "missing renderReadinessScenario()");
+assert(html.includes("params.set('scenarioVoices'"), "scenario state must be URL-shareable");
 assert(html.includes(".table-wrap{display:none}"), "mobile breakpoint should replace the wide scorecard table");
 assert(html.includes("openDrawer(dev);"), "mobile scorecards should open the existing detail drawer");
 assert(html.includes("fetch('/customer.json')"), "missing customer world model fetch");

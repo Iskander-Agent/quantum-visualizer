@@ -63,6 +63,32 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .index-scale div{padding:0.4rem 0;text-align:center;flex:1;color:rgba(255,255,255,0.7)}
 .index-scale .is-active{outline:2px solid var(--text);outline-offset:-2px;color:#fff;font-weight:800}
 
+/* Readiness scenario lab */
+.scenario-section{padding:2.5rem 0;border-bottom:1px solid var(--border)}
+.scenario-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
+.scenario-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.scenario-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:720px;line-height:1.6}
+.scenario-body{display:grid;grid-template-columns:minmax(260px,0.8fr) minmax(0,1.2fr);gap:1px;background:var(--border)}
+.scenario-controls{padding:1.25rem 1.5rem;background:var(--bg-elevated)}
+.scenario-control+.scenario-control{margin-top:1.2rem}
+.scenario-control-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:0.55rem}
+.scenario-control-label{font-size:0.76rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary)}
+.scenario-control-value{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--accent)}
+.scenario-range{width:100%;accent-color:var(--accent);cursor:pointer}
+.scenario-hint{font-size:0.7rem;color:var(--text-muted);line-height:1.5;margin-top:0.35rem}
+.scenario-results{padding:1.25rem;background:var(--bg)}
+.scenario-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.scenario-kpi{background:var(--bg-elevated);padding:1rem;min-width:0}
+.scenario-kpi-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted)}
+.scenario-kpi-value{font-family:'JetBrains Mono',monospace;font-size:1.45rem;font-weight:800;margin-top:0.25rem}
+.scenario-kpi-delta{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);margin-top:0.25rem}
+.scenario-meter{height:0.55rem;border-radius:100px;background:linear-gradient(90deg,var(--gray) 0 20%,var(--red) 20% 40%,var(--yellow) 40% 60%,var(--orange) 60% 80%,#22c55e 80% 100%);position:relative;margin:1.25rem 0 0.8rem}
+.scenario-marker{position:absolute;top:50%;width:0.85rem;height:0.85rem;border:2px solid var(--bg);border-radius:50%;background:var(--text);transform:translate(-50%,-50%);box-shadow:0 0 0 1px var(--border-light);transition:left 0.2s ease}
+.scenario-marker.current{background:var(--text-muted);width:0.65rem;height:0.65rem}
+.scenario-summary{font-size:0.82rem;color:var(--text-secondary);line-height:1.65}
+.scenario-summary strong{color:var(--text)}
+@media(max-width:760px){.scenario-body{grid-template-columns:1fr}.scenario-kpis{grid-template-columns:1fr 1fr}.scenario-kpi:last-child{grid-column:1/-1}}
+
 /* Stats bar */
 .stats-bar{padding:2rem 0;border-bottom:1px solid var(--border)}
 .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden}
@@ -408,6 +434,40 @@ tbody tr.is-active td{background:var(--bg-hover)}
 <section class="index-section">
 <div class="container">
 <div class="index-card" id="index-card"></div>
+</div>
+</section>
+
+<!-- Readiness scenario lab -->
+<section class="scenario-section">
+<div class="container">
+<div class="scenario-panel" id="scenario-panel">
+<div class="scenario-head">
+<div>
+<h2 class="section-title">Readiness Scenario Lab</h2>
+<p class="scenario-sub">Model how the index changes when currently silent developers publish a position. Scenarios stay local and never alter the source data.</p>
+</div>
+<button type="button" class="view-link-button" id="copy-scenario">Copy scenario</button>
+</div>
+<div class="scenario-body">
+<div class="scenario-controls">
+<div class="scenario-control">
+<div class="scenario-control-head"><label class="scenario-control-label" for="scenario-voices">Silent developers speaking</label><span class="scenario-control-value" id="scenario-voices-value"></span></div>
+<input class="scenario-range" id="scenario-voices" type="range" min="0" value="0" step="1">
+<div class="scenario-hint" id="scenario-voices-hint"></div>
+</div>
+<div class="scenario-control">
+<div class="scenario-control-head"><label class="scenario-control-label" for="scenario-stance">Assumed urgency</label><span class="scenario-control-value" id="scenario-stance-value"></span></div>
+<input class="scenario-range" id="scenario-stance" type="range" min="2" max="5" value="4" step="1">
+<div class="scenario-hint">2 = dismissive, 3 = cautious, 4 = proactive, 5 = urgent.</div>
+</div>
+</div>
+<div class="scenario-results" aria-live="polite">
+<div class="scenario-kpis" id="scenario-kpis"></div>
+<div class="scenario-meter"><span class="scenario-marker current" id="scenario-current-marker" title="Current index"></span><span class="scenario-marker" id="scenario-projected-marker" title="Projected index"></span></div>
+<p class="scenario-summary" id="scenario-summary"></p>
+</div>
+</div>
+</div>
 </div>
 </section>
 
@@ -834,6 +894,80 @@ indexEl.innerHTML=`
 <div class="index-scale">${scaleItems.map(s=>`<div style="background:${s.bg}" class="${s.active?'is-active':''}">${s.label}</div>`).join('')}</div>
 </div>`;
 
+// Readiness scenario lab
+const scenarioUrlState=new URLSearchParams(window.location.search);
+const scenarioSilent=Math.max(0,Number(coverage.silent)||0);
+const scenarioBaseVoices=Math.max(0,Number(voiced.voices_count)||0);
+const scenarioBaseWeighted=(dist['5_urgent']||0)*5+(dist['4_proactive']||0)*4+(dist['3_cautious']||0)*3+(dist['2_dismissive']||0)*2;
+const scenarioDerivedBaseline=Math.round((scenarioBaseVoices?Math.round(scenarioBaseWeighted/(scenarioBaseVoices*5)*100):0)*(total?Math.round(scenarioBaseVoices/total*100):0)/100);
+const scenarioStanceLabels={2:'Dismissive',3:'Cautious',4:'Proactive',5:'Urgent'};
+let scenarioVoices=Math.min(scenarioSilent,Math.max(0,parseInt(scenarioUrlState.get('scenarioVoices')||'0',10)||0));
+let scenarioStance=Math.min(5,Math.max(2,parseInt(scenarioUrlState.get('scenarioScore')||'4',10)||4));
+const scenarioVoicesInput=document.getElementById('scenario-voices');
+const scenarioStanceInput=document.getElementById('scenario-stance');
+scenarioVoicesInput.max=String(scenarioSilent);
+scenarioVoicesInput.value=String(scenarioVoices);
+scenarioStanceInput.value=String(scenarioStance);
+
+function projectReadiness(newVoices,stance){
+const projectedVoices=scenarioBaseVoices+newVoices;
+const projectedWeighted=scenarioBaseWeighted+(newVoices*stance);
+const urgency=projectedVoices?Math.round(projectedWeighted/(projectedVoices*5)*100):0;
+const projectedCoverage=total?Math.round(projectedVoices/total*100):0;
+const rawScore=Math.round(urgency*projectedCoverage/100);
+const projectedScore=Math.min(100,Math.max(0,rawScore+(score-scenarioDerivedBaseline)));
+return {score:projectedScore,urgency,coverage:projectedCoverage,level:levelForScore(projectedScore)};
+}
+
+function voicesToNextLevel(stance){
+const currentLevel=levelForScore(score);
+for(let count=1;count<=scenarioSilent;count+=1){
+const projected=projectReadiness(count,stance);
+if(projected.level!==currentLevel)return {count,projected};
+}
+return null;
+}
+
+function syncScenarioUrl(){
+const url=new URL(window.location.href);
+if(scenarioVoices>0)url.searchParams.set('scenarioVoices',String(scenarioVoices));
+else url.searchParams.delete('scenarioVoices');
+if(scenarioStance!==4)url.searchParams.set('scenarioScore',String(scenarioStance));
+else url.searchParams.delete('scenarioScore');
+window.history.replaceState(null,'',url.pathname+(url.searchParams.toString()?'?'+url.searchParams.toString():'')+url.hash);
+}
+
+function renderReadinessScenario(){
+const projected=projectReadiness(scenarioVoices,scenarioStance);
+const delta=projected.score-score;
+const next=voicesToNextLevel(scenarioStance);
+document.getElementById('scenario-voices-value').textContent=`${scenarioVoices} / ${scenarioSilent}`;
+document.getElementById('scenario-voices-hint').textContent=scenarioSilent?`${scenarioSilent-scenarioVoices} silent developers remain in this scenario.`:'Every tracked developer already has a public position.';
+document.getElementById('scenario-stance-value').textContent=`${scenarioStance} · ${scenarioStanceLabels[scenarioStance]}`;
+document.getElementById('scenario-kpis').innerHTML=[
+{label:'Projected index',value:projected.score,delta:(delta>=0?'+':'')+delta+' vs current'},
+{label:'Voiced urgency',value:projected.urgency,delta:(projected.urgency-voiced.score>=0?'+':'')+(projected.urgency-voiced.score)+' points'},
+{label:'Coverage',value:projected.coverage+'%',delta:(projected.coverage-coverage.score>=0?'+':'')+(projected.coverage-coverage.score)+' points'}
+].map(item=>`<div class="scenario-kpi"><div class="scenario-kpi-label">${item.label}</div><div class="scenario-kpi-value">${item.value}</div><div class="scenario-kpi-delta">${item.delta}</div></div>`).join('');
+document.getElementById('scenario-current-marker').style.left=Math.min(100,Math.max(0,score))+'%';
+document.getElementById('scenario-projected-marker').style.left=Math.min(100,Math.max(0,projected.score))+'%';
+const movement=delta===0?'holds at':delta>0?'rises to':'falls to';
+const threshold=next?` At this stance, <strong>${next.count} new ${next.count===1?'voice':'voices'}</strong> would move the index to ${next.projected.level}.`:` This stance does not reach the next readiness band with the remaining silent developers.`;
+const stanceArticle=scenarioStance===5?'an':'a';
+document.getElementById('scenario-summary').innerHTML=`With <strong>${scenarioVoices} silent ${scenarioVoices===1?'developer':'developers'}</strong> taking ${stanceArticle} ${scenarioStanceLabels[scenarioStance].toLowerCase()} position, readiness ${movement} <strong>${projected.score}/100 (${projected.level})</strong>.${threshold}`;
+}
+
+scenarioVoicesInput.addEventListener('input',event=>{scenarioVoices=parseInt(event.target.value,10)||0;renderReadinessScenario();syncScenarioUrl();});
+scenarioStanceInput.addEventListener('input',event=>{scenarioStance=parseInt(event.target.value,10)||4;renderReadinessScenario();syncScenarioUrl();});
+document.getElementById('copy-scenario').addEventListener('click',async event=>{
+syncScenarioUrl();
+const original=event.currentTarget.textContent;
+try{await navigator.clipboard.writeText(window.location.href);event.currentTarget.textContent='Copied';}
+catch(_error){event.currentTarget.textContent='Copy failed';}
+setTimeout(()=>{event.currentTarget.textContent=original;},1600);
+});
+renderReadinessScenario();
+
 // Key insight
 document.getElementById('key-insight').textContent=data.metadata.key_insight;
 document.getElementById('context').textContent=data.metadata.critical_context;
@@ -1157,6 +1291,8 @@ if(activeAffiliation!=='all')params.set('affiliation',activeAffiliation);
 if(searchQuery.trim())params.set('q',searchQuery.trim());
 compareNames.forEach(name=>params.append('compare',name));
 if(activeDevName)params.set('dev',activeDevName);
+if(scenarioVoices>0)params.set('scenarioVoices',String(scenarioVoices));
+if(scenarioStance!==4)params.set('scenarioScore',String(scenarioStance));
 const query=params.toString();
 const nextUrl=query?`${window.location.pathname}?${query}`:window.location.pathname;
 window.history.replaceState(null,'',nextUrl);
