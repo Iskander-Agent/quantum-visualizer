@@ -290,6 +290,33 @@ tr:hover td{background:var(--bg-elevated)}
 .pr-action{color:var(--text-secondary);line-height:1.5}
 @media(max-width:760px){.pr-queue-kpis{grid-template-columns:1fr 1fr}.pr-queue-body{padding:0.75rem}}
 
+/* Quantum beats */
+.beats-section{padding:2.5rem 0;border-top:1px solid var(--border)}
+.beats-panel{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);overflow:hidden}
+.beats-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.beats-sub{font-size:0.82rem;color:var(--text-secondary);margin-top:0.35rem;max-width:720px;line-height:1.6}
+.beats-body{padding:1.25rem;background:var(--bg)}
+.beats-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:1rem}
+.beats-kpi{background:var(--bg-elevated);padding:0.9rem;min-width:0}
+.beats-num{font-family:'JetBrains Mono',monospace;font-size:1.15rem;font-weight:800;letter-spacing:0}
+.beats-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem}
+.beats-week{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;padding:0.7rem 0.9rem;border:1px solid var(--border);border-radius:var(--radius-xs);background:var(--bg-elevated);margin-bottom:1rem;font-size:0.78rem;color:var(--text-secondary)}
+.beats-week strong{color:var(--accent)}
+.beats-week.hidden{display:none}
+.beats-table-wrap{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:auto;-webkit-overflow-scrolling:touch}
+.beats-table{min-width:560px;font-size:0.82rem}
+.beats-table td{background:var(--bg)}
+.beats-agent{font-weight:600;white-space:nowrap}
+.beats-count{font-family:'JetBrains Mono',monospace;font-weight:700;white-space:nowrap}
+.beats-share{display:flex;align-items:center;gap:0.6rem;min-width:10rem}
+.beats-bar{flex:1;height:6px;background:var(--bg-hover);border-radius:100px;overflow:hidden}
+.beats-bar-fill{height:100%;background:var(--accent);border-radius:100px}
+.beats-pct{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-muted);white-space:nowrap;width:2.6rem;text-align:right}
+.beats-source{margin-top:0.9rem;font-size:0.72rem;color:var(--text-muted);line-height:1.6}
+.beats-source a{color:var(--accent);text-decoration:none}
+.beats-source a:hover{text-decoration:underline}
+@media(max-width:760px){.beats-kpis{grid-template-columns:1fr 1fr}.beats-body{padding:0.75rem}}
+
 /* API section */
 .api-section{padding:2rem 0;border-top:1px solid var(--border)}
 .api-card{display:flex;align-items:center;justify-content:space-between;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem;flex-wrap:wrap;gap:0.75rem}
@@ -583,6 +610,40 @@ tbody tr.is-active td{background:var(--bg-hover)}
 <div class="drawer-section-label">Recent Update History</div>
 <div class="freshness-list" id="freshness-updates"></div>
 </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Quantum Beats -->
+<section class="beats-section">
+<div class="container">
+<div class="beats-panel" id="beats-panel">
+<div class="beats-head">
+<div>
+<h2 class="section-title">Quantum Beats</h2>
+<p class="beats-sub">Customer world model view of the Daily Quantum Beat cadence on aibtc.news — cumulative beats by agent, rolling 7-day activity, and the underlying signals source. Cumulative totals never decrease on partial refreshes.</p>
+</div>
+<span class="section-count" id="beats-asof"></span>
+</div>
+<div class="beats-body">
+<div class="beats-kpis" id="beats-kpis"></div>
+<div class="beats-week hidden" id="beats-week"></div>
+<div class="beats-table-wrap">
+<table class="beats-table">
+<thead>
+<tr>
+<th>Agent</th>
+<th>Beats</th>
+<th>Share of total</th>
+</tr>
+</thead>
+<tbody id="beats-body">
+<tr><td colspan="3" class="empty">Loading quantum beats...</td></tr>
+</tbody>
+</table>
+</div>
+<div class="beats-source" id="beats-source"></div>
 </div>
 </div>
 </div>
@@ -980,7 +1041,68 @@ body.innerHTML=queue.rows.length
 :'<tr><td colspan="5" class="empty">No open PRs in the contributor queue.</td></tr>';
 }
 
+function renderQuantumBeats(customer){
+const kpis=document.getElementById('beats-kpis');
+const body=document.getElementById('beats-body');
+const week=document.getElementById('beats-week');
+const asof=document.getElementById('beats-asof');
+const source=document.getElementById('beats-source');
+if(!kpis||!body||!week||!asof||!source)return;
+const beats=customer&&customer.quantum_beats;
+if(!beats||typeof beats!=='object'){
+asof.textContent='Customer model unavailable';
+kpis.innerHTML='<div class="beats-kpi"><div class="beats-num">--</div><div class="beats-label">total beats</div></div><div class="beats-kpi"><div class="beats-num">--</div><div class="beats-label">last 7 days</div></div><div class="beats-kpi"><div class="beats-num">--</div><div class="beats-label">agents</div></div><div class="beats-kpi"><div class="beats-num">--</div><div class="beats-label">active 7d</div></div>';
+week.classList.add('hidden');
+body.innerHTML='<tr><td colspan="3" class="empty">Quantum beats data is not available in /customer.json.</td></tr>';
+source.textContent='';
+return;
+}
+const byAgent=beats.by_agent&&typeof beats.by_agent==='object'?beats.by_agent:{};
+const entries=Object.entries(byAgent).map(([agent,count])=>({agent,count:Number(count)||0})).sort((a,b)=>b.count-a.count||a.agent.localeCompare(b.agent));
+const weekByAgent=beats.last_7d_by_agent&&typeof beats.last_7d_by_agent==='object'?beats.last_7d_by_agent:{};
+const weekEntries=Object.entries(weekByAgent).map(([agent,count])=>({agent,count:Number(count)||0})).sort((a,b)=>b.count-a.count||a.agent.localeCompare(b.agent));
+const total=Number(beats.total)||0;
+const last7d=Number(beats.last_7d);
+const activeWeek=weekEntries.filter(w=>w.count>0).length;
+kpis.innerHTML=[
+{num:total,label:'total beats'},
+{num:Number.isFinite(last7d)?last7d:'--',label:'last 7 days'},
+{num:entries.length,label:'agents'},
+{num:activeWeek,label:'active 7d'}
+].map(k=>`<div class="beats-kpi"><div class="beats-num">${k.num}</div><div class="beats-label">${k.label}</div></div>`).join('');
+if(weekEntries.length&&Number.isFinite(last7d)){
+week.innerHTML=`<span>Rolling 7-day cadence: <strong>${last7d}</strong> beat${last7d===1?'':'s'}${weekEntries.length?` &mdash; ${weekEntries.map(w=>`${escapeHtml(w.agent)} (${w.count})`).join(', ')}`:''}</span><span>Weekly activity is drawn from the latest signals refresh.</span>`;
+week.classList.remove('hidden');
+}else{
+week.classList.add('hidden');
+}
+if(entries.length){
+const max=Math.max(...entries.map(x=>x.count),1);
+body.innerHTML=entries.map(e=>{
+const barPct=Math.round(e.count/max*100);
+const sharePct=total>0?Math.round(e.count/total*100):0;
+return `<tr>
+<td class="beats-agent">${escapeHtml(e.agent)}</td>
+<td class="beats-count">${e.count}</td>
+<td class="beats-share"><div class="beats-bar"><div class="beats-bar-fill" style="width:${barPct}%"></div></div><span class="beats-pct">${sharePct}%</span></td>
+</tr>`;
+}).join('');
+}else{
+body.innerHTML='<tr><td colspan="3" class="empty">No quantum beats recorded yet.</td></tr>';
+}
+const asofDate=customer&&customer.as_of?String(customer.as_of):'';
+asof.textContent=asofDate?`Signals as of ${asofDate}`:'Current signals';
+const rawSrc=typeof beats.source==='string'?beats.source.trim():'';
+let srcUrl='https://aibtc.news/api/signals';
+if(/^https:\/\//i.test(rawSrc)){
+try{srcUrl=new URL(rawSrc).toString();}catch{}
+}
+const srcNote=beats.total_source?`<br>${escapeHtml(String(beats.total_source))}`:'';
+source.innerHTML=`Source: <a href="${escapeHtml(srcUrl)}" target="_blank" rel="noopener">${escapeHtml(srcUrl)}</a>${srcNote}`;
+}
+
 function renderCustomerWorld(customer){
+renderQuantumBeats(customer);
 renderPayoutLedger(customer);
 renderPrWorkQueue(customer);
 }
